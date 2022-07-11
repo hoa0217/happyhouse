@@ -1,4 +1,4 @@
-# happyhouse_front
+# happyhouse_frontend
 
 ## Project setup
 ```
