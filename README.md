@@ -11,7 +11,7 @@
 ## 📌 프로젝트 소개
 
 ## 🛺 [배포 URL](http://49.50.172.69)
-> 프로젝트 배포 사이트(http://49.50.172.69)입니다.
+> 프로젝트 배포 사이트(http://49.50.172.69) 입니다.
 
 ## 기술 스택
 
@@ -20,5 +20,5 @@
 ## 🔥 [기능 명세서](https://www.notion.so/b626f197b9bf48d3901dadff4adb877f)
 > 프로젝트 요구사항 명세서입니다.
 
-## 📖 [WIKI Home](https://github.com/boostcamp-2020/IssueTracker-25/wiki)
+## 📖 [WIKI Home](https://github.com/hoa0217/happyhouse/wiki)
 > 팀 그라운드 룰, 스프린트 과정의 기록을 남깁니다.
