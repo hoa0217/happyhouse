@@ -1,8 +1,6 @@
 package com.web.happyhouse.address.entity;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -11,9 +9,8 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Gugun {
     @Id
-    private String gugunCode;
-    private String gugunName;
+    private String gugunCode;        // 구군 코드
+    private String gugunName;        // 구군 이름
 }

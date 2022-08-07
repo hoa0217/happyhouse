@@ -1,25 +1,23 @@
 package com.web.happyhouse.house.entity;
 
-import lombok.AccessLevel;
+import com.web.happyhouse.base.BaseEntity;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HouseOption {
+public class HouseOption extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue
     private Long houseOptionId;             // 옵션ID
 
-    @OneToOne(fetch = LAZY)
+    @OneToOne(mappedBy = "houseOption", fetch = FetchType.LAZY)
     private HouseOnSale houseOnSale;        // 매물ID
 
     private Boolean electricYn;             // 전기포함유무

@@ -1,20 +1,19 @@
 package com.web.happyhouse.address.entity;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Dong {
-
     @Id
-    private String dongCode;
-    private String dongName;
+    private String dongCode;        // 동 코드
+    private String dongName;        // 동 이름
+
 }

@@ -1,15 +1,17 @@
 package com.web.happyhouse.house.entity;
 
+import com.web.happyhouse.address.entity.Dong;
+import com.web.happyhouse.base.BaseEntity;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-import static javax.persistence.FetchType.LAZY;
+import java.io.Serializable;
+import java.math.BigDecimal;
+
 
 /**
  *  매물 Entity
@@ -17,15 +19,15 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HouseOnSale {
+public class HouseOnSale extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue
     @Column(name = "house_on_sale_id")
     private Long houseOnSaleId;             // 거래ID
 
-    private String addressCode;             // 주소코드
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Dong dongCode;             // 주소코드
 
     private double contractArea;            // 계약면적
 
@@ -49,14 +51,19 @@ public class HouseOnSale {
     @Enumerated(EnumType.STRING)
     private DealType dealType;              // 거래유형(매매, 전세, 월세)
 
-    private Long price;                     // 가격(매매가, 전세가, 월세보증금)
+    @Column(scale = 0)
+    private BigDecimal price;                     // 가격(매매가, 전세가, 월세보증금)
 
-    private Long rent;                      // 월세
+    @Column(scale = 0)
+    private BigDecimal rent;                      // 월세
 
-    private Long mngFee;                    // 관리비
+    @Column(scale = 0)
+    private BigDecimal mngFee;                    // 관리비
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "house_info_id")
     private HouseInfo houseInfo;            // 정보ID
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private HouseOption houseOption;        // 매물ID
 }

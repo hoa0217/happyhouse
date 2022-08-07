@@ -1,9 +1,8 @@
 package com.web.happyhouse.house.entity;
 
+import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.house.domain.HouseType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HouseInfo {
 
     @Id
@@ -22,7 +20,8 @@ public class HouseInfo {
     @Column(name = "house_info_id")
     private Long houseInfoId;           // 정보ID
 
-    private String addressCode;         // 주소코드
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Dong dongCode;         // 주소코드
 
     private String beon;                // 번
 

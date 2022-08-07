@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import static javax.persistence.FetchType.LAZY;
+import java.math.BigDecimal;
 
 /**
  * House거래 Entity
@@ -13,7 +13,6 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HouseDeal {
 
     @Id @GeneratedValue
@@ -21,9 +20,11 @@ public class HouseDeal {
 
     private double area;                // 면적
 
-    private Long price;                 // 가격(매매가, 전세가, 월세보증금)
+    @Column(scale = 2)
+    private BigDecimal price;           // 가격(매매가, 전세가, 월세보증금)
 
-    private Long rent;                  // 월세
+    @Column(scale = 2)
+    private BigDecimal rent;            // 월세
 
     private String dealYear;            // 거래년
 
@@ -36,7 +37,8 @@ public class HouseDeal {
     @Enumerated(EnumType.STRING)
     private DealType dealType;            // 거래유형(매매, 전세, 월세)
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_info_id")
     private HouseInfo houseInfo;
 
 }
