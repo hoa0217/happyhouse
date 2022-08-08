@@ -5,19 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
-
 
 @Entity
 @Getter
 @Setter
-public class HouseOption extends BaseEntity implements Serializable {
+public class HouseOption extends BaseEntity{
 
     @Id
     @GeneratedValue
+    @Column(name = "house_option_id")
     private Long houseOptionId;             // 옵션ID
 
-    @OneToOne(mappedBy = "houseOption", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_on_sale_id")
     private HouseOnSale houseOnSale;        // 매물ID
 
     private Boolean electricYn;             // 전기포함유무
@@ -41,9 +41,4 @@ public class HouseOption extends BaseEntity implements Serializable {
 
     private Boolean tvYn;
     private Boolean elevatorYn;
-
-
-
-
-
 }

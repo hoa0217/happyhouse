@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 
@@ -19,7 +17,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-public class HouseOnSale extends BaseEntity implements Serializable {
+public class HouseOnSale extends BaseEntity{
 
     @Id
     @GeneratedValue
@@ -64,6 +62,4 @@ public class HouseOnSale extends BaseEntity implements Serializable {
     @JoinColumn(name = "house_info_id")
     private HouseInfo houseInfo;            // 정보ID
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private HouseOption houseOption;        // 매물ID
 }
