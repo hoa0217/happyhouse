@@ -2,8 +2,8 @@ package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.house.domain.HouseType;
-import lombok.Getter;
-import lombok.Setter;
+import com.web.happyhouse.house.dto.HouseInfoDto;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HouseInfo {
 
     @Id
@@ -21,7 +22,7 @@ public class HouseInfo {
     private Long houseInfoId;           // 정보ID
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Dong dongCode;         // 주소코드
+    private Dong dong;         // 주소코드
 
     private String beon;                // 번
 
@@ -34,4 +35,42 @@ public class HouseInfo {
     @Enumerated(EnumType.STRING)
     private HouseType houseType;        // 유형
 
+
+    @Builder
+    private HouseInfo(Long houseInfoId, Dong dong, String beon, String ji, String houseName, String buildYear, HouseType houseType) {
+        this.houseInfoId = houseInfoId;
+        this.dong = dong;
+        this.beon = beon;
+        this.ji = ji;
+        this.houseName = houseName;
+        this.buildYear = buildYear;
+        this.houseType = houseType;
+    }
+
+    public static HouseInfoDto toDto(HouseInfo entity){
+        HouseInfoDto dto = new HouseInfoDto();
+        dto.setHouseInfoId(entity.getHouseInfoId());
+        dto.setDongCode(entity.getDong().getDongCode());
+        dto.setBeon(entity.getBeon());
+        dto.setJi(entity.getJi());
+        dto.setHouseName(entity.getHouseName());
+        dto.setBuildYear(entity.getBuildYear());
+        dto.setHouseType(entity.getHouseType());
+        return dto;
+    }
+
+    public static HouseInfo toEntity(HouseInfoDto dto, Dong dong) {
+
+        HouseInfo entity = HouseInfo.builder()
+                .houseInfoId(dto.getHouseInfoId())
+                .dong(dong)
+                .beon(dto.getBeon())
+                .ji(dto.getJi())
+                .houseName(dto.getHouseName())
+                .buildYear(dto.getBuildYear())
+                .houseType(dto.getHouseType())
+                .build();
+
+        return entity;
+    }
 }
