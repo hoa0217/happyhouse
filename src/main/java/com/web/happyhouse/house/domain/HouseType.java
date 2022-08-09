@@ -1,5 +1,5 @@
 package com.web.happyhouse.house.domain;
 
 public enum HouseType {
-    APT, OFFICETEL, VILLA, MULTIFAMILYHOUSE
+    APT, OFFICETEL, ONEROOM, TWOROOM
 }

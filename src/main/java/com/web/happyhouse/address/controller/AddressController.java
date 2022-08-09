@@ -8,29 +8,31 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/address")
 public class AddressController {
 
     private final AddressService addressService;
 
-    @GetMapping("/address/sido")
+    @GetMapping("/sido")
     public SidoListDto getSidoList(){
         SidoListDto sidoListDto = new SidoListDto();
         sidoListDto.setSidoDtoList(addressService.searchSidoList());
         return sidoListDto;
     }
 
-    @GetMapping("/address/gugun/{sidocode}")
-    public GugunListDto getGugunList(@PathVariable String sidoCode){
+    @GetMapping("/gugun/{sidoCode}")
+    public GugunListDto getGugunList(@PathVariable("sidoCode") String sidoCode){
         GugunListDto gugunListDto = new GugunListDto();
         gugunListDto.setGugunDtoList(addressService.searchGugunList(sidoCode));
         return gugunListDto;
     }
 
-    @GetMapping("/address/dong/{gugunCode}")
-    public DongListDto getDongList(@PathVariable String gugunCode){
+    @GetMapping("/dong/{gugunCode}")
+    public DongListDto getDongList(@PathVariable("gugunCode") String gugunCode){
         DongListDto dongListDto = new DongListDto();
         dongListDto.setDongDtoList(addressService.searchDongList(gugunCode.substring(0,2), gugunCode));
         return dongListDto;
