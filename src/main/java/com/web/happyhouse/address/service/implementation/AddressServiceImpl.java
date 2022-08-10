@@ -47,7 +47,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<DongDto> searchDongList(String sidoCode, String gugunCode) {
-        return dongRepository.findBySidoCodeAndDongCode(sidoCode, gugunCode)
+        return dongRepository.findBySidoCodeAndGugunCode(sidoCode, gugunCode)
                 .stream()
                 .map(entity -> Dong.toDto(entity))
                 .collect(Collectors.toList());

@@ -1,8 +1,7 @@
 package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.base.BaseEntity;
-import com.web.happyhouse.house.dto.HouseOnSaleDto;
-import com.web.happyhouse.house.dto.HouseOptionDto;
+import com.web.happyhouse.house.dto.HouseOptionVillaDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,43 +10,43 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HouseOption extends BaseEntity{
+public class HouseOptionVilla extends BaseEntity{
 
     @Id
     @GeneratedValue
-    @Column(name = "house_option_id")
-    private Long houseOptionId;             // 옵션ID
+    @Column(name = "house_option_villa_id")
+    private Long houseOptionVillaId;             // 옵션ID
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "house_on_sale_id")
-    private HouseOnSale houseOnSale;        // 매물ID
+    @JoinColumn(name = "house_on_sale_villa_id")
+    private HouseOnSaleVilla houseOnSaleVilla;        // 빌라매물ID
 
-    private Boolean electricYn;             // 전기포함유무
-    private Boolean gasYn;                  // 가스포함유무
-    private Boolean waterYn;                // 수도포함유무
-    private Boolean internetYn;             // 인터넷포함유무
-    private Boolean tvConnectYn;
+    private Boolean electricYn;             // 전기세포함유무
+    private Boolean gasYn;                  // 가스비포함유무
+    private Boolean waterYn;                // 수도세포함유무
+    private Boolean internetYn;             // 인터넷연결포함유무
+    private Boolean tvConnectYn;            // TV연결포함유무
 
-    private Boolean personalBoilYn;
-    private Boolean centerBoilYn;
-    private Boolean localBoilYn;
+    private Boolean personalBoilYn;         // 개인난방
+    private Boolean centerBoilYn;           // 중앙난방
+    private Boolean localBoilYn;            // 지역난방
 
-    private Boolean rfgYn;
-    private Boolean bedYn;
-    private Boolean laundryYn;
-    private Boolean airConditionerYn;
-    private Boolean microwaveYn;
-    private Boolean gasStoveYn;
-    private Boolean inductionYn;
-    private Boolean closetYn;
+    private Boolean rfgYn;                  // 냉장고유무
+    private Boolean bedYn;                  // 침대유무
+    private Boolean laundryYn;              // 세탁기유무
+    private Boolean airConditionerYn;       // 에어컨유무
+    private Boolean microwaveYn;            // 전자레인지유무
+    private Boolean gasStoveYn;             // 가스레인지유무
+    private Boolean inductionYn;            // 인덕션유무
+    private Boolean closetYn;               // 옷장유무
 
-    private Boolean tvYn;
-    private Boolean elevatorYn;
+    private Boolean tvYn;                   // TV유무
+    private Boolean elevatorYn;             // 승강기유무
 
     @Builder
-    private HouseOption(Long houseOptionId, HouseOnSale houseOnSale, Boolean electricYn, Boolean gasYn, Boolean waterYn, Boolean internetYn, Boolean tvConnectYn, Boolean personalBoilYn, Boolean centerBoilYn, Boolean localBoilYn, Boolean rfgYn, Boolean bedYn, Boolean laundryYn, Boolean airConditionerYn, Boolean microwaveYn, Boolean gasStoveYn, Boolean inductionYn, Boolean closetYn, Boolean tvYn, Boolean elevatorYn) {
-        this.houseOptionId = houseOptionId;
-        this.houseOnSale = houseOnSale;
+    private HouseOptionVilla(Long houseOptionVillaId, HouseOnSaleVilla houseOnSaleVilla, Boolean electricYn, Boolean gasYn, Boolean waterYn, Boolean internetYn, Boolean tvConnectYn, Boolean personalBoilYn, Boolean centerBoilYn, Boolean localBoilYn, Boolean rfgYn, Boolean bedYn, Boolean laundryYn, Boolean airConditionerYn, Boolean microwaveYn, Boolean gasStoveYn, Boolean inductionYn, Boolean closetYn, Boolean tvYn, Boolean elevatorYn) {
+        this.houseOptionVillaId = houseOptionVillaId;
+        this.houseOnSaleVilla = houseOnSaleVilla;
         this.electricYn = electricYn;
         this.gasYn = gasYn;
         this.waterYn = waterYn;
@@ -68,10 +67,10 @@ public class HouseOption extends BaseEntity{
         this.elevatorYn = elevatorYn;
     }
 
-    public static HouseOptionDto toDto(HouseOption entity){
-        HouseOptionDto dto = new HouseOptionDto();
-        dto.setHouseOptionId(entity.getHouseOptionId());
-        dto.setHouseOnSaleId(entity.getHouseOnSale().getHouseOnSaleId());
+    public static HouseOptionVillaDto toDto(HouseOptionVilla entity){
+        HouseOptionVillaDto dto = new HouseOptionVillaDto();
+        dto.setHouseOptionVillaId(entity.getHouseOptionVillaId());
+        dto.setHouseOnSaleVillaId(entity.getHouseOnSaleVilla().getHouseOnSaleVillaId());
         dto.setElectricYn(entity.getElectricYn());
         dto.setGasYn(entity.getGasYn());
         dto.setWaterYn(entity.getWaterYn());
@@ -94,11 +93,11 @@ public class HouseOption extends BaseEntity{
         return dto;
     }
 
-    public static HouseOption toEntity(HouseOptionDto dto, HouseOnSale houseOnSale) {
+    public static HouseOptionVilla toEntity(HouseOptionVillaDto dto, HouseOnSaleVilla houseOnSaleVilla) {
 
-        HouseOption entity = HouseOption.builder()
-                .houseOptionId(dto.getHouseOptionId())
-                .houseOnSale(houseOnSale)
+        HouseOptionVilla entity = HouseOptionVilla.builder()
+                .houseOptionVillaId(dto.getHouseOptionVillaId())
+                .houseOnSaleVilla(houseOnSaleVilla)
                 .electricYn(dto.getElectricYn())
                 .gasYn(dto.getGasYn())
                 .waterYn(dto.getWaterYn())
