@@ -1,6 +1,9 @@
 package com.web.happyhouse.house.entity;
 
+import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.house.domain.DealType;
+import com.web.happyhouse.house.dto.HouseDealDto;
+import com.web.happyhouse.house.dto.HouseInfoDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +16,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HouseDeal {
 
     @Id @GeneratedValue
@@ -40,5 +44,51 @@ public class HouseDeal {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "house_info_id")
     private HouseInfo houseInfo;
+
+    @Builder
+    private HouseDeal(Long houseDealId, double area, BigDecimal price, BigDecimal rent, String dealYear, String dealMonth, String dealDay, String floor, DealType dealType, HouseInfo houseInfo) {
+        this.houseDealId = houseDealId;
+        this.area = area;
+        this.price = price;
+        this.rent = rent;
+        this.dealYear = dealYear;
+        this.dealMonth = dealMonth;
+        this.dealDay = dealDay;
+        this.floor = floor;
+        this.dealType = dealType;
+        this.houseInfo = houseInfo;
+    }
+
+    public static HouseDealDto toDto(HouseDeal entity){
+        HouseDealDto dto = new HouseDealDto();
+        dto.setHouseDealId(entity.getHouseDealId());
+        dto.setArea(entity.getArea());
+        dto.setPrice(entity.getPrice());
+        dto.setRent(entity.getRent());
+        dto.setDealYear(entity.getDealYear());
+        dto.setDealMonth(entity.getDealMonth());
+        dto.setDealDay(entity.getDealDay());
+        dto.setFloor(entity.getFloor());
+        dto.setDealType(entity.getDealType());
+        dto.setHouseInfoId(entity.getHouseInfo().getHouseInfoId());
+        return dto;
+    }
+    public static HouseDeal toEntity(HouseDealDto dto, HouseInfo houseInfo) {
+
+        HouseDeal entity = HouseDeal.builder()
+                .houseDealId(dto.getHouseDealId())
+                .area(dto.getArea())
+                .price(dto.getPrice())
+                .rent(dto.getRent())
+                .dealYear(dto.getDealYear())
+                .dealMonth(dto.getDealMonth())
+                .dealDay(dto.getDealDay())
+                .floor(dto.getFloor())
+                .dealType(dto.getDealType())
+                .houseInfo(houseInfo)
+                .build();
+
+        return entity;
+    }
 
 }
