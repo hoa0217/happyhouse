@@ -22,11 +22,13 @@ public class HouseInfo {
     private Long houseInfoId;           // 정보ID
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Dong dong;         // 주소코드
+    private Dong dong;                  // 주소코드
 
     private String beon;                // 번
 
     private String ji;                  // 지
+
+    private String jibunAddress;        // 지번주소
 
     private String houseName;           // 건물명
 
@@ -37,11 +39,12 @@ public class HouseInfo {
 
 
     @Builder
-    private HouseInfo(Long houseInfoId, Dong dong, String beon, String ji, String houseName, String buildYear, HouseType houseType) {
+    private HouseInfo(Long houseInfoId, Dong dong, String beon, String ji, String jibunAddress, String houseName, String buildYear, HouseType houseType) {
         this.houseInfoId = houseInfoId;
         this.dong = dong;
         this.beon = beon;
         this.ji = ji;
+        this.jibunAddress = jibunAddress;
         this.houseName = houseName;
         this.buildYear = buildYear;
         this.houseType = houseType;
@@ -53,6 +56,7 @@ public class HouseInfo {
         dto.setDongCode(entity.getDong().getDongCode());
         dto.setBeon(entity.getBeon());
         dto.setJi(entity.getJi());
+        dto.setJibunAddress(entity.getJibunAddress());
         dto.setHouseName(entity.getHouseName());
         dto.setBuildYear(entity.getBuildYear());
         dto.setHouseType(entity.getHouseType());
@@ -66,6 +70,7 @@ public class HouseInfo {
                 .dong(dong)
                 .beon(dto.getBeon())
                 .ji(dto.getJi())
+                .jibunAddress(dto.getJibunAddress())
                 .houseName(dto.getHouseName())
                 .buildYear(dto.getBuildYear())
                 .houseType(dto.getHouseType())

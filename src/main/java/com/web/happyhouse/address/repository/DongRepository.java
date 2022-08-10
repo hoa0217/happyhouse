@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface DongRepository extends JpaRepository<Dong, Long> {
 
-    List<Dong> findBySidoCodeAndDongCode(String sidoCode, String dongCode);
+    List<Dong> findBySidoCodeAndGugunCode(String sidoCode, String gugunCode);
+    Dong findByDongCode(String dongCode);
 
 }

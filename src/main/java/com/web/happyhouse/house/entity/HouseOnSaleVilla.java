@@ -4,7 +4,9 @@ import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.base.BaseEntity;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
+import com.web.happyhouse.house.domain.HouseType;
 import com.web.happyhouse.house.dto.HouseOnSaleDto;
+import com.web.happyhouse.house.dto.HouseOnSaleVillaDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,21 +14,28 @@ import java.math.BigDecimal;
 
 
 /**
- * 매물(아파트, 오피스텔) Entity
+ * 매물(원룸, 투룸)Entity
  */
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HouseOnSale extends BaseEntity {
+public class HouseOnSaleVilla extends BaseEntity {
 
     @Id
     @GeneratedValue
-    @Column(name = "house_on_sale_id")
-    private Long houseOnSaleId;             // 거래ID
+    @Column(name = "house_on_sale_villa_id")
+    private Long houseOnSaleVillaId;             // 거래ID
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Dong dong;                      // 주소코드
+    private Dong dong;                      // 법정동코드
+
+    private String zoneCode;                // 우편번호
+
+    private String jibunAddress;            // 지번주소
+
+    @Enumerated(EnumType.STRING)
+    private HouseType houseType;            // 유형
 
     private double contractArea;            // 계약면적
 
@@ -59,14 +68,13 @@ public class HouseOnSale extends BaseEntity {
     @Column(scale = 0)
     private BigDecimal mngFee;                    // 관리비
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "house_info_id")
-    private HouseInfo houseInfo;            // 정보ID
-
     @Builder
-    private HouseOnSale(Long houseOnSaleId, Dong dong, double contractArea, double netLeasableArea, String totalFloor, String floor, String roomCount, String bathCount, DirType dirType, String parkCount, String movingDate, DealType dealType, BigDecimal price, BigDecimal rent, BigDecimal mngFee, HouseInfo houseInfo) {
-        this.houseOnSaleId = houseOnSaleId;
+    public HouseOnSaleVilla(Long houseOnSaleVillaId, Dong dong, String zonecode, String jibunAddress, HouseType houseType, double contractArea, double netLeasableArea, String totalFloor, String floor, String roomCount, String bathCount, DirType dirType, String parkCount, String movingDate, DealType dealType, BigDecimal price, BigDecimal rent, BigDecimal mngFee) {
+        this.houseOnSaleVillaId = houseOnSaleVillaId;
         this.dong = dong;
+        this.zoneCode = zonecode;
+        this.jibunAddress = jibunAddress;
+        this.houseType = houseType;
         this.contractArea = contractArea;
         this.netLeasableArea = netLeasableArea;
         this.totalFloor = totalFloor;
@@ -80,14 +88,15 @@ public class HouseOnSale extends BaseEntity {
         this.price = price;
         this.rent = rent;
         this.mngFee = mngFee;
-        this.houseInfo = houseInfo;
     }
 
-
-    public static HouseOnSaleDto toDto(HouseOnSale entity) {
-        HouseOnSaleDto dto = new HouseOnSaleDto();
-        dto.setHouseOnSaleId(entity.getHouseOnSaleId());
+    public static HouseOnSaleVillaDto toDto(HouseOnSaleVilla entity) {
+        HouseOnSaleVillaDto dto = new HouseOnSaleVillaDto();
+        dto.setHouseOnSaleVillaId(entity.getHouseOnSaleVillaId());
         dto.setDongCode(entity.getDong().getDongCode());
+        dto.setZoneCode(entity.getZoneCode());
+        dto.setHouseType(entity.getHouseType());
+        dto.setJibunAddress(entity.getJibunAddress());
         dto.setContractArea(entity.getContractArea());
         dto.setNetLeasableArea(entity.getNetLeasableArea());
         dto.setTotalFloor(entity.getTotalFloor());
@@ -101,16 +110,18 @@ public class HouseOnSale extends BaseEntity {
         dto.setPrice(entity.getPrice());
         dto.setRent(entity.getRent());
         dto.setMngFee(entity.getMngFee());
-        dto.setHouseInfoId(entity.getHouseInfo().getHouseInfoId());
 
         return dto;
     }
 
-    public static HouseOnSale toEntity(HouseOnSaleDto dto, Dong dong, HouseInfo houseInfo) {
+    public static HouseOnSaleVilla toEntity(HouseOnSaleVillaDto dto, Dong dong) {
 
-        HouseOnSale entity = HouseOnSale.builder()
-                .houseOnSaleId(dto.getHouseOnSaleId())
+        HouseOnSaleVilla entity = HouseOnSaleVilla.builder()
+                .houseOnSaleVillaId(dto.getHouseOnSaleVillaId())
                 .dong(dong)
+                .zonecode(dto.getZoneCode())
+                .jibunAddress(dto.getJibunAddress())
+                .houseType(dto.getHouseType())
                 .contractArea(dto.getContractArea())
                 .netLeasableArea(dto.getNetLeasableArea())
                 .totalFloor(dto.getTotalFloor())
@@ -124,7 +135,6 @@ public class HouseOnSale extends BaseEntity {
                 .price(dto.getPrice())
                 .rent(dto.getRent())
                 .mngFee(dto.getMngFee())
-                .houseInfo(houseInfo)
                 .build();
 
         return entity;
