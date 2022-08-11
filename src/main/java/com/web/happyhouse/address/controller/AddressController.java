@@ -32,7 +32,7 @@ public class AddressController {
 
 
     @ApiOperation(value = "구군 리스트 조회", notes="특정 시도코드에 속하는 구군 리스트를 조회한다.")
-    @ApiImplicitParam(value = "시도 코드")
+    @ApiImplicitParam(name="sidoCode",value = "시도 코드")
     @GetMapping("/gugun/{sidoCode}")
     public GugunListDto getGugunList(@PathVariable("sidoCode") String sidoCode){
         GugunListDto gugunListDto = new GugunListDto();
@@ -41,7 +41,7 @@ public class AddressController {
     }
 
     @ApiOperation(value = "동 리스트 조회", notes="특정 구군에 속하는 구군 리스트를 조회한다.")
-    @ApiImplicitParam(value = "구군 코드")
+    @ApiImplicitParam(name="gugunCode", value = "구군 코드")
     @GetMapping("/dong/{gugunCode}")
     public DongListDto getDongList(@PathVariable("gugunCode") String gugunCode){
         DongListDto dongListDto = new DongListDto();
