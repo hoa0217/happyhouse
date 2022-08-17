@@ -2,7 +2,6 @@ package com.web.happyhouse.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -35,8 +34,8 @@ public class SwaggerConfig /*extends WebMvcConfigurationSupport*/ {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Practice Swagger")
-                .description("practice swagger config")
+                .title("Happyhouse API Swagger")
+                .description("HAPPYHOUSE에서 제공하는 API에 대한 swagger")
                 .version("1.0")
                 .build();
     }
