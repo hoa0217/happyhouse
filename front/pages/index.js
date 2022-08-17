@@ -1,56 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker,useMap } from "react-kakao-maps-sdk";
 import Select from "../components/select.js";
 import axios from "axios";
 
 export default function Home() {
-  const positions = [
+
+  const data = [
     {
-      title: "카카오",
+      content: <div style={{ color: "#000" }}>카카오</div>,
       latlng: { lat: 33.450705, lng: 126.570677 },
     },
     {
-      title: "생태연못",
+      content: <div style={{ color: "#000" }}>생태연못</div>,
       latlng: { lat: 33.450936, lng: 126.569477 },
     },
     {
-      title: "텃밭",
+      content: <div style={{ color: "#000" }}>텃밭</div>,
       latlng: { lat: 33.450879, lng: 126.56994 },
     },
     {
-      title: "근린공원",
+      content: <div style={{ color: "#000" }}>근린공원</div>,
       latlng: { lat: 33.451393, lng: 126.570738 },
     },
-  ];
+  ]
+
+  const EventMarkerContainer = ({ position, content }) => {
+    const map = useMap()
+    const [isVisible, setIsVisible] = useState(false)
+
+    return (
+      <MapMarker
+        position={position} // 마커를 표시할 위치
+        // @ts-ignore
+        onClick={(marker) => map.panTo(marker.getPosition())}
+        onMouseOver={() => setIsVisible(true)}
+        onMouseOut={() => setIsVisible(false)}
+      >
+        {isVisible && content}
+      </MapMarker>
+    )
+  }
 
   return (
-    <>
-      <Map
-        center={{
-          lat: 33.450701,
-          lng: 126.570667,
-        }}
-        style={{
-          width: "100vw",
-          height: "100vh",
-        }}
-        level={3} 
-      >
-        {positions.map(position => (
-          <MapMarker
-            key={`${position.title}-${position.latlng}`}
-            position={position.latlng}
-            image={{
-              src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
-              size: {
-                width: 24,
-                height: 35,
-              },
-            }}
-            title={position.title}
-          />
-        ))}
-      </Map>
-    </>
+    <Map // 지도를 표시할 Container
+      center={{
+        // 지도의 중심좌표
+        lat: 33.450701,
+        lng: 126.570667,
+      }}
+      style={{
+        // 지도의 크기
+        width: "100vw",
+        height: "100vh",
+      }}
+      level={3} // 지도의 확대 레벨
+    >
+      {data.map((value) => (
+        <EventMarkerContainer
+          key={`EventMarkerContainer-${value.latlng.lat}-${value.latlng.lng}`}
+          position={value.latlng}
+          content={value.content}
+        />
+      ))}
+    </Map>
   );
 }
+
