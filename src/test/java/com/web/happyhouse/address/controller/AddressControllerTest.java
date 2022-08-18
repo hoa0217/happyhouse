@@ -1,9 +1,12 @@
 package com.web.happyhouse.address.controller;
 
+import com.web.happyhouse.address.dto.DongListDto;
 import com.web.happyhouse.address.dto.GugunListDto;
 import com.web.happyhouse.address.dto.SidoListDto;
+import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.address.entity.Gugun;
 import com.web.happyhouse.address.entity.Sido;
+import com.web.happyhouse.address.repository.DongRepository;
 import com.web.happyhouse.address.repository.GugunRepository;
 import com.web.happyhouse.address.repository.SidoRepository;
 import org.junit.Before;
@@ -41,6 +44,9 @@ public class AddressControllerTest {
     @Autowired
     private GugunRepository gugunRepository;
 
+    @Autowired
+    private DongRepository dongRepository;
+
     @Test
     public void getSidoList() {
         // given
@@ -71,5 +77,21 @@ public class AddressControllerTest {
         List<Gugun> bySidoCode = gugunRepository.findBySidoCode("11");
         assertThat(bySidoCode.size()).isEqualTo(responseEntity.getBody().getGugunDtoList().size());
         System.out.println(responseEntity.getBody().getGugunDtoList());
+    }
+
+    @Test
+    public void getDongList(){
+        // given
+        String url = "http://localhost:" + port + "/address/dong/11350";
+
+        //when
+        ResponseEntity<DongListDto> responseEntity = restTemplate.getForEntity(url, DongListDto.class);
+
+        //then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        List<Dong> byGugunCode = dongRepository.findBySidoCodeAndGugunCode("11","11350");
+        assertThat((byGugunCode.size())).isEqualTo(responseEntity.getBody().getDongDtoList().size());
+        System.out.println(responseEntity.getBody().getDongDtoList());
     }
 }
