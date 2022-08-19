@@ -45,7 +45,13 @@ public class AddressController {
     @GetMapping("/dong/{gugunCode}")
     public DongListDto getDongList(@PathVariable("gugunCode") String gugunCode){
         DongListDto dongListDto = new DongListDto();
-        dongListDto.setDongDtoList(addressService.searchDongList(gugunCode.substring(0,2), gugunCode));
+        if(gugunCode.equals("3611")){
+            // 세종특별자치시만 4자리 시도코드를 가짐
+            dongListDto.setDongDtoList(addressService.searchDongList("3611", gugunCode));
+        }
+        else{
+            dongListDto.setDongDtoList(addressService.searchDongList(gugunCode.substring(0,2), gugunCode));
+        }
         return dongListDto;
     }
 
