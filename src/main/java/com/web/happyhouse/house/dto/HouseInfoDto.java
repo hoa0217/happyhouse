@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +15,7 @@ import javax.persistence.Enumerated;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class HouseInfoDto {
     @ApiModelProperty(notes = "정보 ID", example = "1", required = true)
     private Long houseInfoId;           // 정보ID

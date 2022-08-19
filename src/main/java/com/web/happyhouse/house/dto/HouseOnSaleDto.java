@@ -1,23 +1,24 @@
 package com.web.happyhouse.house.dto;
 
-import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.base.BaseDto;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
-import com.web.happyhouse.house.entity.HouseInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 
 @ApiModel("집 매물 정보")
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class HouseOnSaleDto extends BaseDto {
     @ApiModelProperty(notes = "거래ID")
     private Long houseOnSaleId;             // 거래ID
