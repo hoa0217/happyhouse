@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -75,14 +76,20 @@ public class HouseServiceImpl implements HouseService {
                 .map(entity -> HouseOnSale.toDto(entity))
                 .collect(Collectors.groupingBy(HouseOnSaleDto::getDealType));
 
+        List<HouseOnSaleDto> houseOnSaleMAEMAEList = new ArrayList<>();
+        List<HouseOnSaleDto> houseOnSaleJEONSEList = new ArrayList<>();
+        List<HouseOnSaleDto> houseOnSaleWOLSEList = new ArrayList<>();
         for (DealType dealType : dealTypeToHouseOnSaleMap.keySet()) {
             if (dealType.equals(DealType.MAEMAE))
-                houseOnSaleListDto.setHouseOnSaleMAEMAEList(dealTypeToHouseOnSaleMap.get(dealType));
+                houseOnSaleMAEMAEList = dealTypeToHouseOnSaleMap.get(dealType);
             else if (dealType.equals(DealType.JEONSE))
-                houseOnSaleListDto.setHouseOnSaleJEONSEList(dealTypeToHouseOnSaleMap.get(dealType));
+                houseOnSaleJEONSEList = dealTypeToHouseOnSaleMap.get(dealType);
             else if (dealType.equals(DealType.WOLSE))
-                houseOnSaleListDto.setHouseOnSaleWOLSEList(dealTypeToHouseOnSaleMap.get(dealType));
+                houseOnSaleWOLSEList = dealTypeToHouseOnSaleMap.get(dealType);
         }
+        houseOnSaleListDto.setHouseOnSaleMAEMAEList(houseOnSaleMAEMAEList);
+        houseOnSaleListDto.setHouseOnSaleJEONSEList(houseOnSaleJEONSEList);
+        houseOnSaleListDto.setHouseOnSaleWOLSEList(houseOnSaleWOLSEList);
 
         return houseOnSaleListDto;
     }
