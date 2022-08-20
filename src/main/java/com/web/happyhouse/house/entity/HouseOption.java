@@ -1,7 +1,6 @@
 package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.base.BaseEntity;
-import com.web.happyhouse.house.dto.HouseOnSaleDto;
 import com.web.happyhouse.house.dto.HouseOptionDto;
 import lombok.*;
 
