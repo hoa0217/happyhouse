@@ -13,12 +13,19 @@ public class HappyhouseApplication {
 		SpringApplication.run(HappyhouseApplication.class, args);
 	}
 
+	private final long MAX_AGE_SECS = 3600;
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://happy-haapyhouse.herokuapp.com/");
+				registry.addMapping("/**")
+						.allowedOrigins("http://localhost:3000","https://happy-haapyhouse.herokuapp.com/")
+						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+						.allowedHeaders("*")
+						.allowCredentials(true)
+						.maxAge(MAX_AGE_SECS);
 			}
 		};
 	}
