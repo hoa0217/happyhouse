@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker,useMap } from "react-kakao-maps-sdk";
-import Select from "../components/select.js";
 import axios from "axios";
+import SelectBar from '../components/select.js'
 
-export default function Home() {
+export default function Home({sido,gugun,dong}) {
 
   const data = [
     {
@@ -42,18 +42,20 @@ export default function Home() {
   }
 
   return (
-    <Map // 지도를 표시할 Container
+    <>
+    <SelectBar sido={sido} gugun={gugun} dong={dong} />
+        <Map // 지도를 표시할 Container
       center={{
         // 지도의 중심좌표
-        lat: 33.450701,
-        lng: 126.570667,
+        lat: 37.51323827179843,
+        lng: 127.035686076035,
       }}
       style={{
         // 지도의 크기
         width: "100vw",
         height: "100vh",
       }}
-      level={3} // 지도의 확대 레벨
+      level={7} // 지도의 확대 레벨
     >
       {data.map((value) => (
         <EventMarkerContainer
@@ -63,6 +65,24 @@ export default function Home() {
         />
       ))}
     </Map>
+    </>
   );
+}
+
+export async function getStaticProps(){
+  const res1 = await axios.get('https://happy-haapyhouse.herokuapp.com/address/sido');
+  const res2 = await axios.get('https://happy-haapyhouse.herokuapp.com/address/gugun/11');
+  const res3 = await axios.get('https://happy-haapyhouse.herokuapp.com/address/dong/11110');
+
+  const sido = res1.data.sidoDtoList;
+  const gugun = res2.data.gugunDtoList;
+  const dong = res3.data.dongDtoList;
+  return {
+    props: {
+      sido: sido,
+      gugun: gugun,
+      dong : dong,
+    },
+  }
 }
 
