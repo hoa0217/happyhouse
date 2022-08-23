@@ -24,9 +24,7 @@ public class HouseInfo {
     @ManyToOne(fetch = FetchType.LAZY)
     private Dong dong;                  // 주소코드
 
-    private String beon;                // 번
-
-    private String ji;                  // 지
+    private String jiBun;              // 지번
 
     private String jibunAddress;        // 지번주소
 
@@ -39,11 +37,10 @@ public class HouseInfo {
 
 
     @Builder
-    private HouseInfo(Long houseInfoId, Dong dong, String beon, String ji, String jibunAddress, String houseName, String buildYear, HouseType houseType) {
+    private HouseInfo(Long houseInfoId, Dong dong, String jiBun, String jibunAddress, String houseName, String buildYear, HouseType houseType) {
         this.houseInfoId = houseInfoId;
         this.dong = dong;
-        this.beon = beon;
-        this.ji = ji;
+        this.jiBun = jiBun;
         this.jibunAddress = jibunAddress;
         this.houseName = houseName;
         this.buildYear = buildYear;
@@ -54,8 +51,7 @@ public class HouseInfo {
         HouseInfoDto dto = new HouseInfoDto();
         dto.setHouseInfoId(entity.getHouseInfoId());
         dto.setDongCode(entity.getDong().getDongCode());
-        dto.setBeon(entity.getBeon());
-        dto.setJi(entity.getJi());
+        dto.setJiBun(entity.getJiBun());
         dto.setJibunAddress(entity.getJibunAddress());
         dto.setHouseName(entity.getHouseName());
         dto.setBuildYear(entity.getBuildYear());
@@ -68,8 +64,7 @@ public class HouseInfo {
         HouseInfo entity = HouseInfo.builder()
                 .houseInfoId(dto.getHouseInfoId())
                 .dong(dong)
-                .beon(dto.getBeon())
-                .ji(dto.getJi())
+                .jiBun(dto.getJiBun())
                 .jibunAddress(dto.getJibunAddress())
                 .houseName(dto.getHouseName())
                 .buildYear(dto.getBuildYear())

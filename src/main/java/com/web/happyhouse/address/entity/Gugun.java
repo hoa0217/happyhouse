@@ -37,6 +37,7 @@ public class Gugun {
      */
     public static GugunDto toDto(Gugun entity){
         GugunDto dto = new GugunDto();
+        dto.setSidoCode(entity.getSidoCode());
         dto.setGugunCode(entity.getGugunCode());
         dto.setGugunName(entity.getGugunName());
         return dto;
