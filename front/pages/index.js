@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker,useMap } from "react-kakao-maps-sdk";
+
 import axios from "axios";
 import SelectBar from '../components/select.js'
 
 export default function Home({sido,gugun,dong}) {
+
+  const [searchAddress, setSearchAddress] = useState('');
+  const [state, setState] = useState({
+    center : { lat: 37.51323827179843, lng: 127.035686076035,},
+  })
 
   const data = [
     {
@@ -24,6 +30,24 @@ export default function Home({sido,gugun,dong}) {
     },
   ]
 
+  const SearchMap = () => {
+    const geocoder = new kakao.maps.services.Geocoder();
+    
+    let callback = function(result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        const newSearch = result[0]
+        setState({
+          center: { lat: newSearch.y, lng: newSearch.x }
+        })
+      }
+    };
+    geocoder.addressSearch(`${searchAddress}`, callback);
+  }
+
+  useEffect(()=>{
+    SearchMap();
+  },[searchAddress])
+
   const EventMarkerContainer = ({ position, content }) => {
     const map = useMap()
     const [isVisible, setIsVisible] = useState(false)
@@ -43,19 +67,11 @@ export default function Home({sido,gugun,dong}) {
 
   return (
     <>
-    <SelectBar sido={sido} gugun={gugun} dong={dong} />
+    <SelectBar sido={sido} gugun={gugun} dong={dong} setSearchAddress={setSearchAddress}/>
         <Map // 지도를 표시할 Container
-      center={{
-        // 지도의 중심좌표
-        lat: 37.51323827179843,
-        lng: 127.035686076035,
-      }}
-      style={{
-        // 지도의 크기
-        width: "100vw",
-        height: "100vh",
-      }}
-      level={7} // 지도의 확대 레벨
+      center={state.center}
+      style={{ width: "100vw",height: "100vh" }}
+      level={5} // 지도의 확대 레벨
     >
       {data.map((value) => (
         <EventMarkerContainer
