@@ -6,7 +6,7 @@ import { Button, Tooltip } from 'antd';
 const { Option } = Select;
 
 
-const SelectBar = ({sido, gugun, dong,setSearchAddress}) => {
+const SelectBar = ({sido, gugun, dong,setSearchAddress, setDongCode}) => {
 
   const [gugun1, setGugun1] = useState(gugun);
   const [dong1, setDong1] = useState(dong);
@@ -20,7 +20,7 @@ const SelectBar = ({sido, gugun, dong,setSearchAddress}) => {
     const _sido = key.slice(3);
     const res1 = await axios.get(`https://happy-haapyhouse.herokuapp.com/address/gugun/${code}`);
     const res2 = await axios.get(`https://happy-haapyhouse.herokuapp.com/address/dong/${res1.data.gugunDtoList[0].gugunCode}`);
-    
+        
     setGugun1(res1.data.gugunDtoList);
     setDong1(res2.data.dongDtoList);
     setSido2(_sido);
@@ -35,8 +35,15 @@ const SelectBar = ({sido, gugun, dong,setSearchAddress}) => {
     setDong1(res.data.dongDtoList);
   }
   
-  const dongChange = (name) => {
-    setDong2(name);
+  const dongChange = (key) => {
+    const code = key.slice(0,10);
+    const _dong = key.slice(11);
+    setDong2(_dong);
+    setDongCode(code);
+  }
+
+  const setting = () => {
+    setSearchAddress(`${sido2} ${gugun2} ${dong2}`);
   }
 
   useEffect(()=>{
@@ -85,10 +92,10 @@ const SelectBar = ({sido, gugun, dong,setSearchAddress}) => {
       >
         {
           dong1.map((el) => (
-            <Option key={el.dongName}>{el.dongName}</Option>))
+            <Option key={`${el.dongCode},${el.dongName}`}>{el.dongName}</Option>))
         }
       </Select>
-      <Tooltip onClick={() => setSearchAddress(`${sido2} ${gugun2} ${dong2}`)}>
+      <Tooltip onClick={setting}>
         <Button  shape="circle" icon={<SearchOutlined />} />
       </Tooltip>
     </>
