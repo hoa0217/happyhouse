@@ -1,8 +1,6 @@
 package com.web.happyhouse.bookmark.dto;
 
 import com.web.happyhouse.base.BaseDto;
-import com.web.happyhouse.house.entity.HouseOnSale;
-import com.web.happyhouse.user.entity.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

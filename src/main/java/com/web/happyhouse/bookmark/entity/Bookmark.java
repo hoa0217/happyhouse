@@ -6,7 +6,6 @@ import com.web.happyhouse.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 
 @Entity
 @Getter

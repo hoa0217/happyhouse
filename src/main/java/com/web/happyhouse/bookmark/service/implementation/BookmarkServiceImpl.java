@@ -4,8 +4,8 @@ import com.web.happyhouse.bookmark.dto.BookmarkDto;
 import com.web.happyhouse.bookmark.entity.Bookmark;
 import com.web.happyhouse.bookmark.repository.BookmarkRepository;
 import com.web.happyhouse.bookmark.service.BookmarkService;
-import com.web.happyhouse.user.dto.UserDto;
 import com.web.happyhouse.user.entity.User;
+import com.web.happyhouse.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,20 +14,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BookmarkServiceImpl implements BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<BookmarkDto> getBookmarkList(Long userId) {
-        User user = new User();
-        user.setUserId(userId);
-        return bookmarkRepository.findBookmarkBy(user)
+        User user = userRepository.findById(userId).get();
+
+        return bookmarkRepository.findByUser(user)
                 .stream()
                 .map(entity -> Bookmark.toDto(entity))
                 .collect(Collectors.toList());
-
     }
 }
