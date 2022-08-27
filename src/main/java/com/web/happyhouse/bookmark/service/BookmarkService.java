@@ -15,4 +15,5 @@ public interface BookmarkService {
      */
     List<BookmarkDto> getBookmarkList(Long userId);
 
+    void saveBookmark(Long userId, Long houseOnSaleId);
 }
