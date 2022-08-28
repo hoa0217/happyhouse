@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Bookmark {
+public class Bookmark{
 
     @Id @GeneratedValue
     @Column(name = "bookmark_id")
@@ -32,6 +32,12 @@ public class Bookmark {
         this.houseOnSale = houseOnSale;
     }
 
+    public static Bookmark createBookmark(User user, HouseOnSale houseOnSale){
+        Bookmark bookmark = new Bookmark();
+        bookmark.setUser(user);
+        bookmark.setHouseOnSale(houseOnSale);
+        return bookmark;
+    }
     public static BookmarkDto toDto(Bookmark entity){
         BookmarkDto dto = new BookmarkDto();
         dto.setBookmarkId(entity.getBookmarkId());
