@@ -58,7 +58,9 @@ public class BookmarkServiceImpl implements BookmarkService {
             throw new IllegalArgumentException("해당 ID(" + userId + ")의 회원을 찾을 수 없습니다.");
         });
 
-        HouseOnSale houseOnSale = houseOnSaleRepository.getById(houseOnSaleId);
+        HouseOnSale houseOnSale = houseOnSaleRepository.findById(houseOnSaleId).orElseThrow(() -> {
+            throw new IllegalArgumentException("해당 ID(" + houseOnSaleId + ")의 매물 찾을 수 없습니다.");
+        });
 
         bookmarkRepository.save(Bookmark.createBookmark(user, houseOnSale));
     }
@@ -70,7 +72,9 @@ public class BookmarkServiceImpl implements BookmarkService {
             throw new IllegalArgumentException("해당 ID(" + userId + ")의 회원을 찾을 수 없습니다.");
         });
 
-        HouseOnSaleVilla houseOnSaleVilla = houseOnSaleVillaRepository.getById(houseOnSaleVillaId);
+        HouseOnSaleVilla houseOnSaleVilla = houseOnSaleVillaRepository.findById(houseOnSaleVillaId).orElseThrow(() -> {
+            throw new IllegalArgumentException("해당 ID(" + houseOnSaleVillaId + ")의 빌라 매물 찾을 수 없습니다.");
+        });
 
         bookmarkVillaRepository.save(BookmarkVilla.createBookmark(user, houseOnSaleVilla));
     }
