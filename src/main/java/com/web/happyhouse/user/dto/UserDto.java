@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
+
 @ApiModel("회원 정보")
 @Getter
 @Setter
@@ -19,12 +21,15 @@ public class UserDto extends BaseDto {
     @ApiModelProperty(notes = "사용자 ID", example = "1", required = true)
     private Long userId; // 사용자ID
 
+    @NotEmpty
     @ApiModelProperty(notes = "사용자 이메일", example = "gjwjdghk123@gmail.com", required = true)
     private String email; // 이메일
 
+    @NotEmpty
     @ApiModelProperty(notes = "사용자 이름", example = "허정화")
     private String name; // 이름
 
+    @NotEmpty
     @ApiModelProperty(notes = "비밀번호")
     private String password; // 비밀번호
 

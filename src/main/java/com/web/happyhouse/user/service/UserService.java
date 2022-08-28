@@ -9,21 +9,14 @@ public interface UserService {
      * @param userDto
      * @return
      */
-    Long join(UserDto userDto);
-
-    /**
-     * 회원정보 얻기
-     * @param userId
-     * @return
-     */
-    UserDto getUser(Long userId);
+    UserDto join(UserDto userDto);
 
     /**
      * 회원정보 수정
      * @param userDto
      * @return
      */
-    Long update(UserDto userDto);
+    UserDto update(UserDto userDto);
 
     /**
      * 탈퇴하기
