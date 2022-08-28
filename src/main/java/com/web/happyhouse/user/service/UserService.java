@@ -5,6 +5,13 @@ import com.web.happyhouse.user.dto.UserDto;
 public interface UserService {
 
     /**
+     * 회원 조회
+     * @param userId
+     * @return
+     */
+    UserDto get(Long userId);
+
+    /**
      * 회원가입
      * @param userDto
      * @return

@@ -16,7 +16,6 @@ import javax.validation.Valid;
 @Api(tags ={"User 관리 Controller"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/member")
 public class UserController {
 
     private final UserService userService;
@@ -33,21 +32,27 @@ public class UserController {
         return ResponseDto.res(ResponseCode.OK,"USER", user);
     }
 
+    @ApiOperation(value = "User 조회", notes="User 조회하기")
+    @GetMapping("/user/{userId}")
+    public ResponseDto<UserDto> get(@PathVariable("userId") Long userId){
+        return ResponseDto.res(ResponseCode.OK, "회원조회 성공", userService.get(userId));
+    }
+
     @ApiOperation(value = "User 가입", notes="User 가입하기")
-    @PostMapping("/join")
+    @PostMapping("/user")
     public ResponseDto join(@Valid @ModelAttribute("userDto")UserDto userDto){
         userService.join(userDto);
         return ResponseDto.res(ResponseCode.CREATED, "회원가입 성공");
     }
 
     @ApiOperation(value = "User 정보수정", notes="User 정보수정하기(이름, 비밀번호)")
-    @PatchMapping("/update")
+    @PatchMapping("/user/{userId}")
     public ResponseDto<UserDto> update(@Valid @ModelAttribute("userDto")UserDto userDto) {
         return ResponseDto.res(ResponseCode.OK, "회원정보 업데이트 성공", userService.update(userDto));
     }
 
     @ApiOperation(value = "User 탈퇴", notes="User 탈퇴하기")
-    @DeleteMapping("/delete")
+    @DeleteMapping("/user/{userId}")
     public ResponseDto delete(@Valid @ModelAttribute("loginForm")LoginForm loginForm) {
         userService.delete(loginForm.getEmail(), loginForm.getPassword());
         return ResponseDto.res(ResponseCode.OK, "회원탈퇴 완료");

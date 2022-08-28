@@ -18,6 +18,15 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
+    public UserDto get(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> {
+            throw new NotFoundUserException("해당 아이디(" + userId + ")의 회원을 찾을 수 없습니다.");
+        });
+
+        return User.toDto(user);
+    }
+
+    @Override
     @Transactional
     public UserDto join(UserDto userDto) {
         if(userRepository.existsByEmail(userDto.getEmail())){
@@ -33,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDto update(UserDto userDto) {
         User user = userRepository.findById(userDto.getUserId()).orElseThrow(() -> {
-            throw new NotFoundUserException("해당 이메일(" + userDto.getEmail() + ")의 회원을 찾을 수 없습니다.");
+            throw new NotFoundUserException("해당 아이디(" + userDto.getUserId() + ")의 회원을 찾을 수 없습니다.");
         });
 
         user.update(userDto.getName(), userDto.getPassword());
