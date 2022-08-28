@@ -21,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @ApiOperation(value = "로그인한 User 조회", notes="로그인한 User 조회하기")
-    @GetMapping("/get")
+    @GetMapping("/user/get")
     public ResponseDto<UserDto> get(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserDto user){
         // 세션에 회원 데이터가 없으면
         if (user == null) {
