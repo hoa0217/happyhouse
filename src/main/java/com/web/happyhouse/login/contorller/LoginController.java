@@ -7,7 +7,6 @@ import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
 import com.web.happyhouse.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
