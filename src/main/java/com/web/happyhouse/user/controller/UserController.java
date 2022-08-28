@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @Api(tags ={"User 관리 Controller"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/member")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
