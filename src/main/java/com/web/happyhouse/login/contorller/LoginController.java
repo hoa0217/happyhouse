@@ -6,6 +6,7 @@ import com.web.happyhouse.login.session.SessionConst;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
 import com.web.happyhouse.user.dto.UserDto;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ public class LoginController {
 
     private final LoginService loginService;
 
+    @ApiOperation(value = "User 로그인", notes="User 로그인하기(이메일, 비밀번호)")
     @PostMapping("/login")
     public ResponseDto login(@Valid @ModelAttribute("loginForm") LoginForm loginForm, HttpServletRequest request){
 
@@ -33,6 +35,7 @@ public class LoginController {
         return ResponseDto.res(ResponseCode.OK, "로그인 성공");
     }
 
+    @ApiOperation(value = "User 로그아웃", notes="User 로그인아웃하기")
     @PostMapping("/logout")
     public ResponseDto logOut(HttpServletRequest request){
         HttpSession session = request.getSession(false);
