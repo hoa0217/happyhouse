@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.18.10",
     "antd": "^4.22.7",
     "axios": "^0.27.2",
     "next": "12.2.3",
@@ -20,8 +21,13 @@
     "semantic-ui-react": "^2.1.3"
   },
   "devDependencies": {
+    "@types/node": "^18.7.14",
+    "@types/react": "^18.0.18",
     "eslint": "8.21.0",
-    "eslint-config-next": "12.2.3"
+    "eslint-config-next": "12.2.3",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
   },
   "proxy": "http://api.vworld.kr"
 }
