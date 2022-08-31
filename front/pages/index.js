@@ -13,6 +13,7 @@ export default function Home({ sido, gugun, dong }) {
   const [searchAddress, setSearchAddress] = useState();
   const [dongCode, setDongCode] = useState('1111010100');
   const [data, setData] = useState([]);
+  const [dongList, setDongList] = useState([]);
 
   const moveMap = () => {
     const geocoder = new kakao.maps.services.Geocoder();
@@ -35,7 +36,15 @@ export default function Home({ sido, gugun, dong }) {
     const houseList = [];
 
     const { data : { houseInfoDtoList } } = await axios.get(`https://happy-haapyhouse.herokuapp.com/house/apt/map/${dongCode}`)
+    if (!houseInfoDtoList.length) return; //매물이 없는 경우 종료
+
+    const isCode = houseInfoDtoList[0].dongCode;
     
+    //이미 찾았던 동 찾을 시 종료
+    if (isCode){
+      if(dongList.findIndex(code => code === isCode) !== -1) return;//이미찾은 데이터는 종료
+      setDongList([...dongList,isCode]) //동 리스트에 동 저장
+    }
     houseInfoDtoList.forEach(house => {
       const geocoder = new kakao.maps.services.Geocoder();
 
@@ -45,6 +54,7 @@ export default function Home({ sido, gugun, dong }) {
           houseList.push({
             content: <div>{house.houseName}</div>,
             latlng: { lat: newSearch.y, lng: newSearch.x },
+            houseInfoId: house.houseInfoId,
           });
           setData([...data,...houseList])
         }
@@ -60,8 +70,8 @@ export default function Home({ sido, gugun, dong }) {
   // },[])
 
   useEffect(() => {
-    moveMap();
     searchMap();
+    moveMap();
   }, [searchAddress]);
 
   return (
@@ -84,6 +94,7 @@ export default function Home({ sido, gugun, dong }) {
               key={idx}
               position={value.latlng}
               content={value.content}
+              houseInfoId={value.houseInfoId}
             />
           ))
         }
