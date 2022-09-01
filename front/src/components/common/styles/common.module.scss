@@ -1,38 +1,29 @@
 /** Gray Scale */
-$white100: #ffffff;
-$light100: #f8f8f8;
-$middle20: #e7e7e7;
-$middle40: #cfcfcf;
-$middle100: #888888;
-$dark100: #3e3e3e;
-$black100: #000000;
+$C_White: #ffffff;
+$C_Gray10: #f8f8f8;
+$C_Gray20: #e7e7e7;
+$C_Gray30: #cfcfcf;
+$C_Gray40: #888888;
+$C_Gray50: #3e3e3e;
+$C_Black: #000000;
 
-/** System Color */
-$red100: #e40000;
-$blue100: #0085ff;
-$green100: #00c142;
+/** Color */
+$C_Red10: #ffefea;
+$C_Red20: #ff480d;
+$C_Red30: #e40000;
 
-/** Brand Color */
-$primary100: #ff480d;
-$secondary100: #ffefea;
-$gradient: linear-gradient(322.5deg, #ff480d 19.41%, #ff9573 73.1%);
+$C_Blue: #0085ff;
+$C_Green: #00c142;
 
 /** font-size */
-$fontSize_ss: 12px;
-$fontSize_sm: 14px;
-$fontSize_sl: 15px;
-
-$fontSize_ms: 16px;
-$fontSize_mm: 20px;
-$fontSize_ml: 24px;
-
-$fontSize_ls: 36px;
+$FS_Ss: 12px;
+$FS_Sm: 14px;
+$FS_Sl: 15px;
+$FS_Ms: 16px;
+$FS_Mm: 20px;
+$FS_Ml: 24px;
+$FS_ls: 36px;
 
 /** font-weight */
-$fontWeight_100: 100;
-$fontWeight_200: 200;
-$fontWeight_300: 300;
-$fontWeight_400: 400;
-$fontWeight_500: 500;
-$fontWeight_600: 600;
-$fontWeight_700: 700;
+$Fw_Sm: 600;
+$Fw_Md: 700;
