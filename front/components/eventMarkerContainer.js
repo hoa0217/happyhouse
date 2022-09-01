@@ -20,7 +20,8 @@ const EventMarkerContainer = ({ position, content, houseInfoId }) => {
     //   //4보다 작으면 이동만
       map.panTo(center);
     }
-    const res = await axios.get(`https://happy-haapyhouse.herokuapp.com/house/apt/list/${houseInfoId}`);
+    // const res = await axios.get(`https://happy-haapyhouse.herokuapp.com/house/apt/list/${houseInfoId}`);
+    const res = await axios.get(`https://happy-haapyhouse.herokuapp.com/house/apt/list/138`);
     setHouseData(res);
    }
 
