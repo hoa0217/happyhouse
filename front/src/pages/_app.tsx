@@ -4,6 +4,8 @@ import App from 'next/app';
 import React from 'react';
 import Layout from '@common/layout';
 import '@styles/reset.scss';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@query/queryClient';
 
 class CustomApp extends App {
   constructor(props: any) {
@@ -13,9 +15,11 @@ class CustomApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </QueryClientProvider>
     );
   }
 }

@@ -1,13 +1,12 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import { Layout as AntdLayout } from 'antd';
-import Header from '@common/header';
+import Header from '@common/layout/header';
 
 interface LayoutProps {
   children: JSX.Element;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   const { Content } = AntdLayout;
 
   return (
