@@ -1,0 +1,20 @@
+@import '@styles/variables.scss';
+
+.header{
+  display: flex;
+  align-items: center;
+
+  height: $HEADER_HEIGHT;
+  background-color: $C_Gray40;
+
+}
+
+.menu{
+  width: 100%;
+  min-width: $PAGE_MIN_WIDTH;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: $FS_Mm;
+  font-weight: $Fw_Md;
+}
