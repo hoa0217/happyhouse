@@ -1,35 +1,37 @@
-@import '@styles/variables.scss';
+@import '@styles/constants.scss';
 
-$IMG_PATH : $STATIC_IMG_PATH + '/header';
+$IMG_PATH: $STATIC_IMG_PATH + '/header';
 
-.header{
+.header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: $HEADER_HEIGHT;
-  background-color: $C_Gray40;
-
+  background-color: $C_Gray20;
 }
 
-.menu{
-  width: 500px;
+.menu {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 500px;
   font-size: $FS_Mm;
   font-weight: $Fw_Md;
 }
 
-.login_Wrap{
-  .login{
+.login_Wrap {
+  .login {
     display: flex;
     align-items: center;
+    font-size: $Fw_Md;
+    font-weight: $Fw_Md;
 
-    &:before{
-      width: 24px;
-      height: 24px;
+    &:before {
+      width: 30px;
+      height: 30px;
       background-image: url($IMG_PATH + '/iconLogin.png');
       background-size: cover;
-      content: "";
+      content: '';
     }
   }
 }
