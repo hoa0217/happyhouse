@@ -1,3 +1,12 @@
+/** img 경로*/
+$STATIC_IMG_PATH: '/img';
+
+/** 최소 화면 사이즈 */
+$PAGE_MIN_WIDTH: 1168px;
+
+/* 글로벌 header height */
+$HEADER_HEIGHT: 54px;
+
 /** Gray Scale */
 $C_White: #ffffff;
 $C_Gray10: #f8f8f8;
@@ -27,10 +36,3 @@ $FS_ls: 36px;
 /** font-weight */
 $Fw_Sm: 600;
 $Fw_Md: 700;
-
-
-/** 최소 화면 사이즈 */
-$PAGE_MIN_WIDTH: 1168px;
-
-/* 글로벌 header height */
-$HEADER_HEIGHT: 54px;

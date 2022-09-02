@@ -1,20 +1,35 @@
 @import '@styles/variables.scss';
 
+$IMG_PATH : $STATIC_IMG_PATH + '/header';
+
 .header{
   display: flex;
   align-items: center;
-
   height: $HEADER_HEIGHT;
   background-color: $C_Gray40;
 
 }
 
 .menu{
-  width: 100%;
-  min-width: $PAGE_MIN_WIDTH;
+  width: 500px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: $FS_Mm;
   font-weight: $Fw_Md;
+}
+
+.login_Wrap{
+  .login{
+    display: flex;
+    align-items: center;
+
+    &:before{
+      width: 24px;
+      height: 24px;
+      background-image: url($IMG_PATH + '/iconLogin.png');
+      background-size: cover;
+      content: "";
+    }
+  }
 }
