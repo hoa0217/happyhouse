@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import App from 'next/app';
 import React from 'react';
 import Layout from '@common/layout';
+import '@styles/reset.scss';
 
 class CustomApp extends App {
   constructor(props: any) {
