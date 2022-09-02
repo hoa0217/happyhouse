@@ -20,6 +20,11 @@ a {
   &[role='button'] {
     cursor: pointer;
   }
+
+  &:hover{
+    color: black;
+    text-decoration: none;
+  }
 }
 
 nav {

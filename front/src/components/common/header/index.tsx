@@ -10,6 +10,8 @@ const Header = () => {
 
   return (
     <Header className={cx('header')}>
+      <div className={cx('logo')} />
+      {/* menu 영역 */}
       <nav className={cx('menu')}>
         <li>
           <Link href="/apart">
@@ -32,6 +34,14 @@ const Header = () => {
           </Link>
         </li>
       </nav>
+      {/* login 영역 */}
+      <div className={cx('login_Wrap')}>
+        <Link href="/login">
+          <a role="button" className={cx('login')}>
+            Login
+          </a>
+        </Link>
+      </div>
     </Header>
   );
 };
