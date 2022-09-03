@@ -4,12 +4,13 @@ import { Map } from 'react-kakao-maps-sdk';
 import axios from 'axios';
 import EventMarkerContainer from 'src/components/kaKaoMap/mapMarker';
 import SelectBar from 'src/components/kaKaoMap/select';
-import useAddressDong, { fetchAddressDong } from '@query/addresesQuery';
+import  { useAddressDong, fetchAddressDong } from '@query/addresesQuery';
 import { DongVO } from 'src/domain/vo/adress/DongListVO';
+import { GugunVO } from 'src/domain/vo/adress/GugunListVO';
 
 interface KakaoMapProps {
   dong: DongVO[];
-  sido: any;
+  sido: GugunVO[];
   gugun: any;
 }
 
