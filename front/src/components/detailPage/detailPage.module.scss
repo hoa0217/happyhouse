@@ -1,0 +1,27 @@
+@import '@styles/constants.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  .header_wrapper {
+    padding: 30px;
+    .header {
+      border-bottom: 1px solid $C_Gray40;
+      padding: 0 30px;
+      color: $C_Black;
+      font-size: $FS_ls;
+      padding-bottom: 12px;
+    }
+  }
+  .house_info_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    .introduce_house {
+      display: flex;
+      gap: 45px;
+    }
+    .house_price_info {
+    }
+  }
+}
