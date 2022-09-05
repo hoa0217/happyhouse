@@ -1,17 +1,14 @@
-import { useGetHouseInfo } from 'src/api/houseInfo/HouseInfoApi.query';
+import { useHouseDetail } from '@query/houseQuery';
 import { DetailHeader, DetailWrapper, HouseInfo } from 'src/components/detailPage';
 
 const Detail = () => {
-  const id = 1; // Todo: id 값을 받아야함 (현재는 test용도)
-  const { data, isLoading } = useGetHouseInfo(id);
-
-  console.log('getHouseInfoData :', data);
+  const { data, isLoading } = useHouseDetail('1');
 
   if (isLoading) 'loading..';
 
   return (
     <DetailWrapper>
-      <DetailHeader houseName={data?.houseInfoDto.houseName} />
+      <DetailHeader houseName={data?.data.houseInfoDto.houseName} />
       <HouseInfo />
     </DetailWrapper>
   );

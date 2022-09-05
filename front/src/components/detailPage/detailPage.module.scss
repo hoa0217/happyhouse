@@ -20,6 +20,17 @@
     .introduce_house {
       display: flex;
       gap: 45px;
+      table {
+        width: 500px;
+        color: $C_Black;
+        border: 1px solid $C_Black;
+        tr,
+        td,
+        th {
+          border: 1px solid $C_Black;
+          font-weight: 400;
+        }
+      }
     }
     .house_price_info {
     }
