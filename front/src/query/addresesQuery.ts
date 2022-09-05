@@ -2,8 +2,9 @@ import apiStore from '@api';
 import { useQuery } from '@tanstack/react-query';
 import DongListVO from 'src/domain/vo/adress/DongListVO';
 import GugunListVO from 'src/domain/vo/adress/GugunListVO';
+import SidoListVO from 'src/domain/vo/adress/SidoListVO';
 
-const keys = 'address';
+const key = 'address';
 
 export const fetchAddressDong = async (dong: string) => {
   const { data } = await apiStore.remoteAddressRepo.fetchAddressDong(dong);
@@ -15,10 +16,19 @@ export const fetchAddressGugun = async (gugun: string) => {
   return new GugunListVO(data);
 }
 
+export const fetchAddressSido = async () => {
+  const { data } = await apiStore.remoteAddressRepo.fetchAddressSido();
+  return new SidoListVO(data);
+}
+
 export function useAddressDong(dong: string) {
-  return useQuery([keys, 'dong' ,dong], () => fetchAddressDong(dong));
+  return useQuery([key, 'dong' ,dong], () => fetchAddressDong(dong));
 }
 
 export function useAddressGugun(gugun: string){
-  return useQuery([keys,'gugun',gugun], () => fetchAddressGugun(gugun));
+  return useQuery([key,'gugun',gugun], () => fetchAddressGugun(gugun));
+}
+
+export function useAddressSido(){
+  return useQuery([key, 'sido'], () => fetchAddressSido());
 }
