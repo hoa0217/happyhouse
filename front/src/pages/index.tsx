@@ -7,11 +7,12 @@ import SelectBar from 'src/components/kaKaoMap/select';
 import  { useAddressDong, fetchAddressDong } from '@query/addresesQuery';
 import { DongVO } from 'src/domain/vo/adress/DongListVO';
 import { GugunVO } from 'src/domain/vo/adress/GugunListVO';
+import { SidoVO } from 'src/domain/vo/adress/SidoListVO';
 
 interface KakaoMapProps {
   dong: DongVO[];
-  sido: GugunVO[];
-  gugun: any;
+  sido: SidoVO[];
+  gugun: GugunVO[];
 }
 
 interface mapCenter {
@@ -94,7 +95,6 @@ export default function KakaoMap({ sido, gugun, dong }: KakaoMapProps) {
 
               });
               setData([...data,...houseList]);
-              console.log(data);
             }
           }
         });

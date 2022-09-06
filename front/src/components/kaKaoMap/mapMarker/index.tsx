@@ -1,7 +1,7 @@
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 import React, { useState } from 'react';
 import axios from 'axios';
-import ShowList from './showList';
+import ShowList from './showList/index';
 
 const EventMarkerContainer = ({ position, content, houseInfoId }) => {
   const map = useMap();
