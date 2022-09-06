@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import customAxios from "src/utils/axios";
 import MapListRs from "src/domain/rs/house/apt/MapListRs";
-import HouseInfoListRs from "src/domain/rs/house/apt/houseInfoListRs";
+import HouseInfoListRs from "src/domain/rs/house/apt/HouseInfoListRs";
 
 export default interface HouseStore {
     fetchHouseAptMap(dongCode: string) : Promise<AxiosResponse<MapListRs>>;
