@@ -2,15 +2,19 @@ import { useRouter } from "next/router";
 
 import classNames from "classnames/bind";
 import styles from './showList.module.scss'
-
+import { HouseOnSale } from "src/domain/rs/house/apt/HouseInfoListRs";
 const cx = classNames.bind(styles);
 
-export default function Show({selectedData}){
+interface ShowProps {
+    selectedData : HouseOnSale[] ;
+}
+
+const Show = ({selectedData} : ShowProps) => {
 
     const router = useRouter();
 
     if(!selectedData) return null;
-
+    
     return (
           <div className={cx('list_wrapper')}>
             {
@@ -28,4 +32,6 @@ export default function Show({selectedData}){
           </div>
     )
 }
+
+export default Show;
 

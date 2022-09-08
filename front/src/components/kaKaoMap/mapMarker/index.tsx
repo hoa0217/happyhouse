@@ -1,14 +1,27 @@
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import axios from 'axios';
 import ShowList from './showList/index';
+import customAxios from 'src/utils/axios';
 
-const EventMarkerContainer = ({ position, content, houseInfoId }) => {
+interface EventMarkerContainerProps {
+  position : positonDto;
+  content : ReactNode;
+  houseInfoId : number;
+}
+
+interface positonDto {
+  lat : number;
+  lng : number;
+}
+
+
+const EventMarkerContainer = ({ position, content, houseInfoId } : EventMarkerContainerProps) => {
   const map = useMap();
-  const [isVisible, setIsVisible] = useState(false);
-  const [houseData, setHouseData] = useState();
+  const [isVisible, setIsVisible] = useState<Boolean>(false);
+  const [houseData, setHouseData] = useState<any>();
 
-  const markerClick = async (marker) => {
+  const markerClick = async (marker : any) => {
     const center = marker.getPosition();
 
     if (map.getLevel() > 4) {
@@ -19,8 +32,8 @@ const EventMarkerContainer = ({ position, content, houseInfoId }) => {
       //   //4보다 작으면 이동만
       map.panTo(center);
     }
-    // const res = await axios.get(`https://happy-haapyhouse.herokuapp.com/house/apt/list/${houseInfoId}`);
-    const res = await axios.get(`https://happy-haapyhouse.herokuapp.com/house/apt/list/138`);
+    // const res = await customAxios.get(`apt/list/${houseInfoId}`);//나중에 주석없애줘야됨!!!
+    const res = await customAxios.get(`house/apt/list/138`);
     setHouseData(res);
   };
 
