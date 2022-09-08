@@ -6,14 +6,14 @@ import Show from './show';
 
 const cx = classNames.bind(styles);
 
-const ShowList = ({ houseData}) => {
+const ShowList = ({ houseData} : any) => {
   if (!houseData) return null; //처음실행할때 undefined 방지
 
   const [selected, setSelected] = useState('매매');
   const {
     data: { houseOnSaleJEONSEList, houseOnSaleMAEMAEList, houseOnSaleWOLSEList },
   } = houseData;
-  const [selectedData, setSelectedData] = useState(houseOnSaleJEONSEList)
+  const [selectedData, setSelectedData] = useState(houseOnSaleMAEMAEList)
   const onChange = (e : RadioChangeEvent) => {
     setSelected(e.target.value);
 
