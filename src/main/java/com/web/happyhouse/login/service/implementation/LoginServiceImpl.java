@@ -2,7 +2,7 @@ package com.web.happyhouse.login.service.implementation;
 
 import com.web.happyhouse.exception.NotFoundUserException;
 import com.web.happyhouse.login.service.LoginService;
-import com.web.happyhouse.user.dto.UserDto;
+import com.web.happyhouse.user.dto.UserRs;
 import com.web.happyhouse.user.entity.User;
 import com.web.happyhouse.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDto login(String email, String password) {
+    public UserRs login(String email, String password) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> {
             throw new NotFoundUserException("이메일 또는 비밀번호가 맞지 않습니다.");
         });

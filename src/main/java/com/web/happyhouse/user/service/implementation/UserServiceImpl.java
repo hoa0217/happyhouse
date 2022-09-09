@@ -2,7 +2,7 @@ package com.web.happyhouse.user.service.implementation;
 
 import com.web.happyhouse.exception.DuplicatedUserException;
 import com.web.happyhouse.exception.NotFoundUserException;
-import com.web.happyhouse.user.dto.UserDto;
+import com.web.happyhouse.user.dto.UserRs;
 import com.web.happyhouse.user.entity.User;
 import com.web.happyhouse.user.repository.UserRepository;
 import com.web.happyhouse.user.service.UserService;
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDto get(Long userId) {
+    public UserRs get(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> {
             throw new NotFoundUserException("해당 아이디(" + userId + ")의 회원을 찾을 수 없습니다.");
         });
@@ -28,24 +28,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto join(UserDto userDto) {
-        if(userRepository.existsByEmail(userDto.getEmail())){
+    public UserRs join(UserRs userRs) {
+        if(userRepository.existsByEmail(userRs.getEmail())){
             throw new DuplicatedUserException("이미 가입되어 있는 유저입니다.");
         }
 
-        User saveUser = userRepository.save(User.toEntity(userDto));
+        User saveUser = userRepository.save(User.toEntity(userRs));
 
         return User.toDto(saveUser);
     }
 
     @Override
     @Transactional
-    public UserDto update(UserDto userDto) {
-        User user = userRepository.findById(userDto.getUserId()).orElseThrow(() -> {
-            throw new NotFoundUserException("해당 아이디(" + userDto.getUserId() + ")의 회원을 찾을 수 없습니다.");
+    public UserRs update(UserRs userRs) {
+        User user = userRepository.findById(userRs.getUserId()).orElseThrow(() -> {
+            throw new NotFoundUserException("해당 아이디(" + userRs.getUserId() + ")의 회원을 찾을 수 없습니다.");
         });
 
-        user.update(userDto.getName(), userDto.getPassword());
+        user.update(userRs.getName(), userRs.getPassword());
 
         return User.toDto(user);
     }

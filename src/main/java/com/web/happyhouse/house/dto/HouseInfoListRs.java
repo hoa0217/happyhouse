@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseInfoListDto {
+public class HouseInfoListRs {
     @ApiModelProperty(notes = "동 코드")
     String dongCode;                        // 동코드
     @ApiModelProperty(notes = "집 유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")

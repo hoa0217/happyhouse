@@ -16,7 +16,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @NoArgsConstructor
 @ToString
-public class UserDto extends BaseDto {
+public class UserRs extends BaseDto {
 
     @ApiModelProperty(notes = "사용자 ID", example = "1", required = true)
     private Long userId; // 사용자ID

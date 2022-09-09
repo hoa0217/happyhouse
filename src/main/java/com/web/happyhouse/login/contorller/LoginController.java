@@ -5,7 +5,7 @@ import com.web.happyhouse.login.service.LoginService;
 import com.web.happyhouse.login.session.SessionConst;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
-import com.web.happyhouse.user.dto.UserDto;
+import com.web.happyhouse.user.dto.UserRs;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,7 +26,7 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseDto login(@Valid @ModelAttribute("loginForm") LoginForm loginForm, HttpServletRequest request){
 
-        UserDto user = loginService.login(loginForm.getEmail(), loginForm.getPassword());
+        UserRs user = loginService.login(loginForm.getEmail(), loginForm.getPassword());
 
         // 로그인 성공 처리
         HttpSession session = request.getSession();

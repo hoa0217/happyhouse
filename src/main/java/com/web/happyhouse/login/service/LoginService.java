@@ -1,6 +1,6 @@
 package com.web.happyhouse.login.service;
 
-import com.web.happyhouse.user.dto.UserDto;
+import com.web.happyhouse.user.dto.UserRs;
 
 public interface LoginService {
 
@@ -10,6 +10,6 @@ public interface LoginService {
      * @param password
      * @return
      */
-    UserDto login(String email, String password);
+    UserRs login(String email, String password);
 
 }

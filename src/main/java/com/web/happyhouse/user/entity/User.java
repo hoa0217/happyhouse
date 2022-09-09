@@ -1,7 +1,7 @@
 package com.web.happyhouse.user.entity;
 
 import com.web.happyhouse.base.BaseEntity;
-import com.web.happyhouse.user.dto.UserDto;
+import com.web.happyhouse.user.dto.UserRs;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,8 +38,8 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
-    public static UserDto toDto(User entity){
-        UserDto dto = new UserDto();
+    public static UserRs toDto(User entity){
+        UserRs dto = new UserRs();
         dto.setUserId(entity.getUserId());
         dto.setEmail(entity.getEmail());
         dto.setName(entity.getName());
@@ -49,7 +49,7 @@ public class User extends BaseEntity {
         return dto;
     }
 
-    public static User toEntity(UserDto dto){
+    public static User toEntity(UserRs dto){
         User entity = User.builder()
                 .userId(dto.getUserId())
                 .email(dto.getEmail())

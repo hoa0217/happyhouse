@@ -3,9 +3,9 @@ package com.web.happyhouse.house.contorller;
 import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.address.repository.DongRepository;
 import com.web.happyhouse.house.domain.HouseType;
-import com.web.happyhouse.house.dto.HouseInfoListDto;
-import com.web.happyhouse.house.dto.HouseOnSaleDetailDto;
-import com.web.happyhouse.house.dto.HouseOnSaleListDto;
+import com.web.happyhouse.house.dto.HouseInfoListRs;
+import com.web.happyhouse.house.dto.HouseOnSaleDetailRs;
+import com.web.happyhouse.house.dto.HouseOnSaleListRs;
 import com.web.happyhouse.house.entity.HouseDeal;
 import com.web.happyhouse.house.entity.HouseInfo;
 import com.web.happyhouse.house.entity.HouseOnSale;
@@ -56,7 +56,7 @@ public class HouseControllerTest {
         String url = "http://localhost:" + port + "/house/apt/map/"+dongCode;
 
         //when
-        ResponseEntity<HouseInfoListDto> responseEntity = restTemplate.getForEntity(url, HouseInfoListDto.class);
+        ResponseEntity<HouseInfoListRs> responseEntity = restTemplate.getForEntity(url, HouseInfoListRs.class);
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -76,7 +76,7 @@ public class HouseControllerTest {
         String url = "http://localhost:" + port + "/house/apt/list/"+houseInfoId;
 
         //when
-        ResponseEntity<HouseOnSaleListDto> responseEntity = restTemplate.getForEntity(url, HouseOnSaleListDto.class);
+        ResponseEntity<HouseOnSaleListRs> responseEntity = restTemplate.getForEntity(url, HouseOnSaleListRs.class);
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -102,7 +102,7 @@ public class HouseControllerTest {
         String url = "http://localhost:" + port + "/house/detail/"+houseOnSaleId;
 
         //when
-        ResponseEntity<HouseOnSaleDetailDto> responseEntity = restTemplate.getForEntity(url, HouseOnSaleDetailDto.class);
+        ResponseEntity<HouseOnSaleDetailRs> responseEntity = restTemplate.getForEntity(url, HouseOnSaleDetailRs.class);
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);

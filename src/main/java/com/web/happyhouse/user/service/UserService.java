@@ -1,6 +1,6 @@
 package com.web.happyhouse.user.service;
 
-import com.web.happyhouse.user.dto.UserDto;
+import com.web.happyhouse.user.dto.UserRs;
 
 public interface UserService {
 
@@ -9,21 +9,21 @@ public interface UserService {
      * @param userId
      * @return
      */
-    UserDto get(Long userId);
+    UserRs get(Long userId);
 
     /**
      * 회원가입
-     * @param userDto
+     * @param userRs
      * @return
      */
-    UserDto join(UserDto userDto);
+    UserRs join(UserRs userRs);
 
     /**
      * 회원정보 수정
-     * @param userDto
+     * @param userRs
      * @return
      */
-    UserDto update(UserDto userDto);
+    UserRs update(UserRs userRs);
 
     /**
      * 탈퇴하기
