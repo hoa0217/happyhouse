@@ -1,14 +1,17 @@
 package com.web.happyhouse.user.controller;
 
-import com.web.happyhouse.login.dto.LoginForm;
-import com.web.happyhouse.login.session.SessionConst;
+import com.web.happyhouse.config.security.TokenProvider;
+import com.web.happyhouse.login.dto.LoginRq;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
 import com.web.happyhouse.user.dto.UserRs;
 import com.web.happyhouse.user.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,42 +22,56 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+    private final TokenProvider tokenProvider;
 
-    @ApiOperation(value = "로그인한 User 조회", notes="로그인한 User 조회하기")
-    @GetMapping("/user/get")
-    public ResponseDto<UserRs> get(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserRs user){
-        // 세션에 회원 데이터가 없으면
-        if (user == null) {
-            return ResponseDto.res(ResponseCode.OK,"GUEST");
-        }
-
-        // 세션이 유지되면
-        return ResponseDto.res(ResponseCode.OK,"USER", user);
-    }
-
-    @ApiOperation(value = "User 조회", notes="User 조회하기")
-    @GetMapping("/user/{userId}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "User 조회 (아이디)", notes="userId로 User 조회하기")
+    @GetMapping("/user/id/{userId}")
     public ResponseDto<UserRs> get(@PathVariable("userId") Long userId){
-        return ResponseDto.res(ResponseCode.OK, "회원조회 성공", userService.get(userId));
+        return ResponseDto.res(ResponseCode.OK, "회원조회 성공", userService.getById(userId));
     }
 
-    @ApiOperation(value = "User 가입", notes="User 가입하기")
-    @PostMapping("/user")
-    public ResponseDto join(@Valid @ModelAttribute("userDto") UserRs userRs){
-        userService.join(userRs);
-        return ResponseDto.res(ResponseCode.CREATED, "회원가입 성공");
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "User 조회 (이메일)", notes="email로 User 조회하기")
+    @GetMapping("/user/email/{email}")
+    public ResponseDto<UserRs> get(@PathVariable("email") String email){
+        return ResponseDto.res(ResponseCode.OK, "회원조회 성공", userService.getByEmail(email));
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "User 정보수정", notes="User 정보수정하기(이름, 비밀번호)")
-    @PatchMapping("/user/{userId}")
-    public ResponseDto<UserRs> update(@Valid @ModelAttribute("userDto") UserRs userRs) {
-        return ResponseDto.res(ResponseCode.OK, "회원정보 업데이트 성공", userService.update(userRs));
+    @PatchMapping("/user")
+    public ResponseDto<Long> update(@RequestParam("userId") Long userId,
+                                    @RequestParam("name") String name) {
+        Long updateId = userService.update(userId, name);
+        return ResponseDto.res(ResponseCode.OK, "회원정보 업데이트 성공", updateId);
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "User 탈퇴", notes="User 탈퇴하기")
-    @DeleteMapping("/user/{userId}")
-    public ResponseDto delete(@Valid @ModelAttribute("loginForm")LoginForm loginForm) {
-        userService.delete(loginForm.getEmail(), loginForm.getPassword());
+    @DeleteMapping("/user")
+    public ResponseDto delete(@Valid @RequestBody LoginRq loginRq) {
+        userService.delete(loginRq.getEmail(), loginRq.getPassword());
         return ResponseDto.res(ResponseCode.OK, "회원탈퇴 완료");
     }
 

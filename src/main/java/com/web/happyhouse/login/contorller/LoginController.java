@@ -1,19 +1,20 @@
 package com.web.happyhouse.login.contorller;
 
-import com.web.happyhouse.login.dto.LoginForm;
+import com.web.happyhouse.login.dto.JoinRq;
+import com.web.happyhouse.login.dto.LoginRq;
+import com.web.happyhouse.config.security.JwtFilter;
 import com.web.happyhouse.login.service.LoginService;
-import com.web.happyhouse.login.session.SessionConst;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
-import com.web.happyhouse.user.dto.UserRs;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
@@ -23,28 +24,20 @@ public class LoginController {
     private final LoginService loginService;
 
     @ApiOperation(value = "User 로그인", notes="User 로그인하기(이메일, 비밀번호)")
-    @PostMapping("/login")
-    public ResponseDto login(@Valid @ModelAttribute("loginForm") LoginForm loginForm, HttpServletRequest request){
-
-        UserRs user = loginService.login(loginForm.getEmail(), loginForm.getPassword());
-
-        // 로그인 성공 처리
-        HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.LOGIN_USER, user);
-
-        return ResponseDto.res(ResponseCode.OK, "로그인 성공");
+    @GetMapping("/login")
+    public ResponseDto<String> login(
+            @ApiParam(value = "로그인 요청 form", required = true)
+            @Valid @RequestBody LoginRq loginRq)
+    {
+        return ResponseDto.res(ResponseCode.OK, "로그인 성공", loginService.login(loginRq));
     }
 
-    @ApiOperation(value = "User 로그아웃", notes="User 로그인아웃하기")
-    @PostMapping("/logout")
-    public ResponseDto logOut(HttpServletRequest request){
-        HttpSession session = request.getSession(false);
-        if(session!=null){
-            session.invalidate();
-        }
-
-        return ResponseDto.res(ResponseCode.OK, "로그아웃 성공");
+    @ApiOperation(value = "User 가입", notes="User 가입하기")
+    @PostMapping("/join")
+    public ResponseDto<Long> join(
+            @ApiParam(value = "가입 요청 form", required = true)
+            @Valid @RequestBody JoinRq joinRq){
+        return ResponseDto.res(ResponseCode.CREATED, "회원가입 성공", loginService.join(joinRq));
     }
-
 
 }

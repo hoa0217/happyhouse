@@ -1,29 +1,31 @@
 package com.web.happyhouse.user.service;
 
+import com.web.happyhouse.user.dto.UserRq;
 import com.web.happyhouse.user.dto.UserRs;
 
 public interface UserService {
 
     /**
-     * 회원 조회
+     * 회원 아이디 조회
      * @param userId
      * @return
      */
-    UserRs get(Long userId);
+    UserRs getById(Long userId);
 
     /**
-     * 회원가입
-     * @param userRs
+     * 회원 이메일 조회
+     * @param email
      * @return
      */
-    UserRs join(UserRs userRs);
+    UserRs getByEmail(String email);
 
     /**
      * 회원정보 수정
-     * @param userRs
+     * @param userId
+     * @param name
      * @return
      */
-    UserRs update(UserRs userRs);
+    Long update(Long userId, String name);
 
     /**
      * 탈퇴하기
