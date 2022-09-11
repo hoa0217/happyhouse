@@ -11,10 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +60,7 @@ public class TokenProvider{
 
         // 권한 정보가 없음
         if (claims.get(ROLES) == null) {
-            throw new AuthenticationEntryPointException();
+            throw new AuthenticationEntryPointException("잘못된 접근입니다.");
         }
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());

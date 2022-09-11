@@ -1,8 +1,6 @@
 package com.web.happyhouse.advice;
 
-import com.web.happyhouse.advice.exception.DuplicatedUserException;
-import com.web.happyhouse.advice.exception.EmailLoginFailedException;
-import com.web.happyhouse.advice.exception.NotFoundUserException;
+import com.web.happyhouse.advice.exception.*;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -46,10 +44,35 @@ public class ExceptionAdvice {
      */
     @ExceptionHandler(DuplicatedUserException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    protected ResponseDto duplicatedUserException(HttpServletRequest request, NotFoundUserException e){
+    protected ResponseDto duplicatedUserException(HttpServletRequest request, DuplicatedUserException e){
         return ResponseDto.res(ResponseCode.CONFLICT, e.getMessage());
     }
 
+    /**
+     * 유효한 자격증명을 제공하지 않고 접근할 경우 예외 (JWT 정상X)
+     */
+    @ExceptionHandler(AuthenticationEntryPointException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    protected ResponseDto authenticationEntryPointException(HttpServletRequest request, AuthenticationEntryPointException e){
+        return ResponseDto.res(ResponseCode.UNAUTHORIZED, e.getMessage());
+    }
 
+    /**
+     * 필요한 권한이 없이 접근하려 할 경우 예외
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    protected ResponseDto accessDeniedException(HttpServletRequest request, NotFoundUserException e){
+        return ResponseDto.res(ResponseCode.FORBIDDEN, e.getMessage());
+    }
+
+    /**
+     * 액세스 토큰 만료시 발생하는 예외
+     */
+    @ExceptionHandler(ExpiredAccessTokenException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    protected ResponseDto expiredAccessTokenException(HttpServletRequest request, ExpiredAccessTokenException e) {
+        return ResponseDto.res(ResponseCode.UNAUTHORIZED, e.getMessage());
+    }
 
 }

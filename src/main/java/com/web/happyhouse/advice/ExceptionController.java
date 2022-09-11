@@ -15,12 +15,12 @@ public class ExceptionController {
 
     @GetMapping("/entryPoint")
     public ResponseDto entrypointException() {
-        throw new AuthenticationEntryPointException();
+        throw new AuthenticationEntryPointException("잘못된 접근입니다.");
     }
 
     @GetMapping("/accessDenied")
     public ResponseDto accessDeniedException() {
-        throw new AccessDeniedException();
+        throw new AccessDeniedException("권한이 없습니다.");
     }
 
 }
