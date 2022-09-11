@@ -1,13 +1,13 @@
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
-import React, { ReactNode, useState } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, ReactNode, useState } from 'react';
 import axios from 'axios';
 import ShowList from './showList/index';
 import customAxios from 'src/utils/axios';
 
 interface EventMarkerContainerProps {
   position : positonDto;
-  content : ReactNode;
-  houseInfoId : number;
+  content : ReactNode
+  houseInfoId : Number;
 }
 
 interface positonDto {
