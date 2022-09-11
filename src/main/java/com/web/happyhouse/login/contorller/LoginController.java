@@ -2,14 +2,13 @@ package com.web.happyhouse.login.contorller;
 
 import com.web.happyhouse.login.dto.JoinRq;
 import com.web.happyhouse.login.dto.LoginRq;
-import com.web.happyhouse.config.security.JwtFilter;
 import com.web.happyhouse.login.service.LoginService;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+@Api(tags = {"로그인 Controller"})
 @RestController
 @RequiredArgsConstructor
 public class LoginController {

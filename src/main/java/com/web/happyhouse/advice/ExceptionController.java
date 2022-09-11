@@ -3,11 +3,13 @@ package com.web.happyhouse.advice;
 import com.web.happyhouse.advice.exception.AccessDeniedException;
 import com.web.happyhouse.advice.exception.AuthenticationEntryPointException;
 import com.web.happyhouse.network.ResponseDto;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags = {"에러 관리 Controller"})
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/exception")

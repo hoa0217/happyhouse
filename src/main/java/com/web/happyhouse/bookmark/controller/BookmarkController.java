@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = {"북마크 컨트롤러"})
+@Api(tags = {"관심매물 관리 Controller"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/bookmark")

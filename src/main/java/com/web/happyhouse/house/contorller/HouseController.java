@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags ={"House Controller"})
+@Api(tags ={"집 정보 Controller"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/house")

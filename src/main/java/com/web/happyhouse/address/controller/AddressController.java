@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(tags ={"Address 선택 Controller"})
+@Api(tags ={"주소 선택 Controller"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/address")
