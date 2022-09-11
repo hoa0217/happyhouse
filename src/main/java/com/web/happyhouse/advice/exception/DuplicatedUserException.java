@@ -1,4 +1,4 @@
-package com.web.happyhouse.exception;
+package com.web.happyhouse.advice.exception;
 
 public class DuplicatedUserException extends RuntimeException{
     public DuplicatedUserException() {

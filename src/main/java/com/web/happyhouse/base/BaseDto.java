@@ -18,6 +18,4 @@ import java.time.LocalDateTime;
 public class BaseDto {
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
-    private String CreatedBy;
-    private String updatedBy;
 }
