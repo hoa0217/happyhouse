@@ -14,8 +14,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
     @Override
-    public UserDetails loadUserByUsername(String userPk) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userPk){
         return userRepository.findById(Long.parseLong(userPk))
-                .orElseThrow(NotFoundUserException::new);
+                .orElseThrow(() -> {
+                    throw new NotFoundUserException("해당 ID(" + userPk + ")의 회원을 찾을 수 없습니다.");
+                });
     }
 }

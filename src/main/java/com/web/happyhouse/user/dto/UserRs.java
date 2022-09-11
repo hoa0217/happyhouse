@@ -1,13 +1,10 @@
 package com.web.happyhouse.user.dto;
 
 import com.web.happyhouse.base.BaseDto;
-import com.web.happyhouse.user.entity.Role;
 import com.web.happyhouse.user.entity.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
@@ -30,7 +27,7 @@ public class UserRs extends BaseDto {
     private String name; // 이름
 
 
-    @ApiModelProperty(notes = "사용자 역할(일반 사용자, 부동산 중개인, 관리자)", example = "ROLE_USER", allowableValues = "ROLE_USER, ROLE_AGENT")
+    @ApiModelProperty(notes = "사용자 역할(일반 사용자, 부동산 중개인)", example = "ROLE_USER", allowableValues = "ROLE_USER, ROLE_AGENT")
     private List<String> roles;
 
     public UserRs(User user){
