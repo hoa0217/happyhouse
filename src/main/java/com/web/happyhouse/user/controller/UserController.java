@@ -11,7 +11,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +22,18 @@ public class UserController {
 
     private final UserService userService;
     private final TokenProvider tokenProvider;
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    name = "Authorization",
+                    value = "로그인 성공 후 AccessToken",
+                    required = true, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "현재 로그인된 User 조회 (인증정보)", notes="인증정보로 User 조회하기")
+    @GetMapping("/user")
+    public ResponseDto<UserRs> getMyUserInfo() {
+        return ResponseDto.res(ResponseCode.OK, "회원조회 성공", userService.getMyUserWithAuthorities());
+    }
 
     @ApiImplicitParams({
             @ApiImplicitParam(
@@ -54,7 +65,7 @@ public class UserController {
                     value = "로그인 성공 후 AccessToken",
                     required = true, dataType = "String", paramType = "header")
     })
-    @ApiOperation(value = "User 정보수정", notes="User 정보수정하기(이름, 비밀번호)")
+    @ApiOperation(value = "User 정보수정", notes="User 정보수정하기(이름)")
     @PatchMapping("/user")
     public ResponseDto<Long> update(@RequestParam("userId") Long userId,
                                     @RequestParam("name") String name) {

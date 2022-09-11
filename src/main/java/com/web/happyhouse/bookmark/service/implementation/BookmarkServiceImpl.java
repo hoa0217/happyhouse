@@ -1,5 +1,6 @@
 package com.web.happyhouse.bookmark.service.implementation;
 
+import com.web.happyhouse.advice.exception.NotFoundUserException;
 import com.web.happyhouse.bookmark.dto.BookmarkDto;
 import com.web.happyhouse.bookmark.dto.BookmarkVillaDto;
 import com.web.happyhouse.bookmark.entity.Bookmark;
@@ -34,7 +35,9 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     public List<BookmarkDto> getBookmarkList(Long userId){
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findById(userId).orElseThrow(() -> {
+            throw new NotFoundUserException("해당 아이디(" + userId + ")의 회원을 찾을 수 없습니다.");
+        });
 
         return bookmarkRepository.findAllByUser(user)
                 .stream()
@@ -43,7 +46,9 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
     @Override
     public List<BookmarkVillaDto> getBookmarkVillaList(Long userId){
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findById(userId).orElseThrow(() -> {
+            throw new NotFoundUserException("해당 아이디(" + userId + ")의 회원을 찾을 수 없습니다.");
+        });
 
         return bookmarkVillaRepository.findAllByUser(user)
                 .stream()
@@ -53,13 +58,12 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     public void saveBookmark(Long userId, Long houseOnSaleId){
-
         User user = userRepository.findById(userId).orElseThrow(() -> {
-            throw new IllegalArgumentException("해당 ID(" + userId + ")의 회원을 찾을 수 없습니다.");
+            throw new NotFoundUserException("해당 아이디(" + userId + ")의 회원을 찾을 수 없습니다.");
         });
 
         HouseOnSale houseOnSale = houseOnSaleRepository.findById(houseOnSaleId).orElseThrow(() -> {
-            throw new IllegalArgumentException("해당 ID(" + houseOnSaleId + ")의 매물 찾을 수 없습니다.");
+            throw new IllegalArgumentException("해당 아이디(" + houseOnSaleId + ")의 매물 찾을 수 없습니다.");
         });
 
         bookmarkRepository.save(Bookmark.createBookmark(user, houseOnSale));
@@ -67,13 +71,12 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     public void saveBookmarkVilla(Long userId, Long houseOnSaleVillaId){
-
         User user = userRepository.findById(userId).orElseThrow(() -> {
-            throw new IllegalArgumentException("해당 ID(" + userId + ")의 회원을 찾을 수 없습니다.");
+            throw new NotFoundUserException("해당 아이디(" + userId + ")의 회원을 찾을 수 없습니다.");
         });
 
         HouseOnSaleVilla houseOnSaleVilla = houseOnSaleVillaRepository.findById(houseOnSaleVillaId).orElseThrow(() -> {
-            throw new IllegalArgumentException("해당 ID(" + houseOnSaleVillaId + ")의 빌라 매물 찾을 수 없습니다.");
+            throw new IllegalArgumentException("해당 아이디(" + houseOnSaleVillaId + ")의 빌라 매물 찾을 수 없습니다.");
         });
 
         bookmarkVillaRepository.save(BookmarkVilla.createBookmark(user, houseOnSaleVilla));

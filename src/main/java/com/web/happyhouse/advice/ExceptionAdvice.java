@@ -62,7 +62,7 @@ public class ExceptionAdvice {
      */
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    protected ResponseDto accessDeniedException(HttpServletRequest request, NotFoundUserException e){
+    protected ResponseDto accessDeniedException(HttpServletRequest request, AccessDeniedException e){
         return ResponseDto.res(ResponseCode.FORBIDDEN, e.getMessage());
     }
 

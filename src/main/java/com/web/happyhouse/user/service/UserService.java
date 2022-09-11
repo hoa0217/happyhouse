@@ -1,9 +1,14 @@
 package com.web.happyhouse.user.service;
 
-import com.web.happyhouse.user.dto.UserRq;
 import com.web.happyhouse.user.dto.UserRs;
 
 public interface UserService {
+
+    /**
+     * 현재 로그인한 회원 조회
+     * @return
+     */
+    UserRs getMyUserWithAuthorities();
 
     /**
      * 회원 아이디 조회

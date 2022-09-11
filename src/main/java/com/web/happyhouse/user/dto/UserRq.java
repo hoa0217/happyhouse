@@ -1,6 +1,5 @@
 package com.web.happyhouse.user.dto;
 
-import com.web.happyhouse.user.entity.Role;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

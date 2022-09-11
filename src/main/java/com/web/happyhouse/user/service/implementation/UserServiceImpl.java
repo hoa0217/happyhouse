@@ -1,19 +1,16 @@
 package com.web.happyhouse.user.service.implementation;
 
-import com.web.happyhouse.advice.exception.DuplicatedUserException;
 import com.web.happyhouse.advice.exception.EmailLoginFailedException;
 import com.web.happyhouse.advice.exception.NotFoundUserException;
-import com.web.happyhouse.user.dto.UserRq;
 import com.web.happyhouse.user.dto.UserRs;
 import com.web.happyhouse.user.entity.User;
 import com.web.happyhouse.user.repository.UserRepository;
 import com.web.happyhouse.user.service.UserService;
+import com.web.happyhouse.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collections;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,6 +19,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserRs getMyUserWithAuthorities() {
+        String username = SecurityUtil.getCurrentUsername().get();
+        return this.getById(Long.parseLong(username));
+    }
 
     @Override
     public UserRs getById(Long userId) {
