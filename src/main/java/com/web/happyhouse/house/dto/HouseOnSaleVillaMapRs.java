@@ -14,7 +14,7 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseOnSaleVillaMapDto {
+public class HouseOnSaleVillaMapRs {
     @ApiModelProperty(notes = "법정동코드")
     String dongCode;                                                    // 법정동코드
     @ApiModelProperty(notes = "집유형")

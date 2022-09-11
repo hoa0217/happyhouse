@@ -13,7 +13,7 @@ public interface HouseService {
      * @param houseType
      * @return
      */
-    HouseInfoListDto searchHouseInfoList(String dongCode, HouseType houseType);
+    HouseInfoListRs searchHouseInfoList(String dongCode, HouseType houseType);
 
     /**
      * 동에 해당하는 집 정보 List (Map)
@@ -23,7 +23,7 @@ public interface HouseService {
      * @param houseType
      * @return
      */
-    HouseOnSaleVillaMapDto searchHouseOnSaleList(String dongCode, HouseType houseType);
+    HouseOnSaleVillaMapRs searchHouseOnSaleList(String dongCode, HouseType houseType);
 
     /**
      * 클릭한 houseInfo에 해당하는 매물 정보 List (사이드바)
@@ -32,7 +32,7 @@ public interface HouseService {
      * @param houseInfoId
      * @return
      */
-    HouseOnSaleListDto getHouseOnSale(Long houseInfoId);
+    HouseOnSaleListRs getHouseOnSale(Long houseInfoId);
 
     /**
      * 클릭한 우편번호에 해당하는 매물 정보 List (사이드바)
@@ -41,7 +41,7 @@ public interface HouseService {
      * @param zoneCode
      * @return
      */
-    HouseOnSaleVillaListDto getHouseOnSaleVilla(String zoneCode, HouseType houseType);
+    HouseOnSaleVillaListRs getHouseOnSaleVilla(String zoneCode, HouseType houseType);
 
     /**
      * 클릭한 houseOnSale에 해당하는 상세 정보 (새로운탭)
@@ -50,7 +50,7 @@ public interface HouseService {
      * @param houseOnSaleId
      * @return
      */
-    HouseOnSaleDetailDto getHouseOnSaleDetail(Long houseOnSaleId);
+    HouseOnSaleDetailRs getHouseOnSaleDetail(Long houseOnSaleId);
 
     /**
      * 클릭한 houseOnSale에 해당하는 상세 정보 (새로운탭)
@@ -59,5 +59,5 @@ public interface HouseService {
      * @param houseOnSaleVillaId
      * @return
      */
-    HouseOnSaleVillaDetailDto getHouseOnSaleVillaDetail(Long houseOnSaleVillaId);
+    HouseOnSaleVillaDetailRs getHouseOnSaleVillaDetail(Long houseOnSaleVillaId);
 }

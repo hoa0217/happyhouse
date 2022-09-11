@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseOnSaleListDto {
+public class HouseOnSaleListRs {
     @ApiModelProperty(notes = "집정보")
     HouseInfoDto houseInfoDto;                      // 집정보
     @ApiModelProperty(notes = "매매 매물 리스트")
