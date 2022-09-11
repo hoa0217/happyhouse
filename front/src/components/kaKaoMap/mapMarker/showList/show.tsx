@@ -25,6 +25,7 @@ const Show = ({selectedData} : ShowProps) => {
                             <div>해당 층 : {item.floor}층</div>
                             <div>가격 : {item.price >= 10000 ? item.price / 10000 + `억` : item.price + `만원` }</div>
                             <div>주차 가능 수 : {parseInt(item.parkCount)}대</div>
+                            <div>기타 등등...</div>
                         </div>
                     )
                 })
