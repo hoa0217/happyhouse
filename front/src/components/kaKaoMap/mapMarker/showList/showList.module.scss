@@ -1,0 +1,16 @@
+@import '@styles/constants.scss';
+
+
+.wrapper {
+    position: fixed;
+    width: 20vw;
+    height: 100vh;
+    background-color: white;
+    top: 86px;
+    left: 0px;
+    z-index: 20;
+    color: $C_Black;
+    .list_wrapper{
+        margin : 10px 0px;
+    }
+}

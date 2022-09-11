@@ -1,0 +1,37 @@
+@import '@styles/constants.scss';
+
+$IMG_PATH: $STATIC_IMG_PATH + '/header';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $HEADER_HEIGHT;
+  background-color: $C_Gray20;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+  font-size: $FS_Mm;
+  font-weight: $Fw_Md;
+}
+
+.login_Wrap {
+  .login {
+    display: flex;
+    align-items: center;
+    font-size: $Fw_Md;
+    font-weight: $Fw_Md;
+
+    &:before {
+      width: 30px;
+      height: 30px;
+      background-image: url($IMG_PATH + '/iconLogin.png');
+      background-size: cover;
+      content: '';
+    }
+  }
+}
