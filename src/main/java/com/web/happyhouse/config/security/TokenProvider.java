@@ -1,6 +1,7 @@
 package com.web.happyhouse.config.security;
 
 import com.web.happyhouse.advice.exception.AuthenticationEntryPointException;
+import com.web.happyhouse.advice.exception.NotFoundUserException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.Base64UrlCodec;
 import lombok.RequiredArgsConstructor;
@@ -89,8 +90,9 @@ public class TokenProvider{
             log.error("지원하지 않는 토큰입니다.");
         } catch (IllegalArgumentException e) {
             log.error("잘못된 토큰입니다.");
+        } catch (SignatureException e){
+            log.error("잘못된 토큰입니다.");
         }
-
         return false;
     }
 

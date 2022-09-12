@@ -24,7 +24,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @ApiOperation(value = "User 로그인", notes="User 로그인하기(이메일, 비밀번호)")
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseDto<String> login(
             @ApiParam(value = "로그인 요청 form", required = true)
             @Valid @RequestBody LoginRq loginRq)
