@@ -4,7 +4,7 @@ export default class GugunListVO {
     gugunDtoList : GugunVO[];
 
     constructor(rs: GugunListRs) {
-        this.gugunDtoList = rs.gugunDtoList.map((gugunDto) => new GugunVO(gugunDto));
+        this.gugunDtoList = rs.data.map((gugunDto) => new GugunVO(gugunDto));
     }
 }
 

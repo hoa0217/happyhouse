@@ -4,7 +4,7 @@ export default class DongListVO {
   dongDtoList: DongVO[];
 
   constructor(rs: DongListRs) {
-    this.dongDtoList = rs.dongDtoList.map((dongDto) => new DongVO(dongDto));
+    this.dongDtoList = rs.data.map((dongDto) => new DongVO(dongDto));
   }
 }
 

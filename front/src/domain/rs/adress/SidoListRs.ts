@@ -1,5 +1,5 @@
 export default interface SidoListRs {
-    sidoDtoList : SidoDto[];
+    data : SidoDto[];
 }
 
 export interface SidoDto {

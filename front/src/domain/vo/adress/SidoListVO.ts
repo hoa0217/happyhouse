@@ -4,7 +4,7 @@ export default class SidoListVO {
     sidoDtoList : SidoVO[];
 
     constructor(rs: SidoListRs){
-        this.sidoDtoList = rs.sidoDtoList.map((sidoDto)=> new SidoVO(sidoDto));
+        this.sidoDtoList = rs.data.map((sidoDto)=> new SidoVO(sidoDto));
     }
 }
 
