@@ -1,5 +1,6 @@
 import apiStore from '@api';
 import { useQuery } from '@tanstack/react-query';
+import { IdRs } from 'src/domain/rs/house/detail/HouseDetailRs';
 import MapListVO from 'src/domain/vo/house/apt/MapListVO';
 
 const keys = ['house', 'apt'];
@@ -15,16 +16,9 @@ export function useHouseAptMap(dongCode: string) {
   return useQuery([...keys, 'map', dongCode], () => fetchHouseAptMap(dongCode));
 }
 
-export function useHouseDetail(houseOnSaleId: string) {
-  const {
-    remoteHouseRepo: { fetchHouseDetail },
-  } = apiStore;
-  return useQuery(['houseDetail', houseOnSaleId], () => fetchHouseDetail(houseOnSaleId), {
-    onSuccess: (data) => {
-      console.log('fetch success!', data);
-    },
-    onError: (error) => {
-      console.log('fetch fail!', error);
-    },
+export function useHouseDetail(houseOnSaleId: IdRs) {
+  return useQuery(['houseDetail', houseOnSaleId], () => apiStore.remoteHouseRepo.fetchHouseDetail(houseOnSaleId), {
+    // houseOnSaleId 값이 있을때만 실횅
+    enabled: !!houseOnSaleId,
   });
 }

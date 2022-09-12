@@ -1,12 +1,27 @@
+export type DealTypeRs = 'JEONSE' | 'MAEMAE' | 'WOLSE';
+export type IdRs = string | number;
+export type ResponseCodeType =
+  | 'BAD_REQUEST'
+  | 'CONFLICT'
+  | 'CREATED'
+  | 'DB_ERROR'
+  | 'FORBIDDEN'
+  | 'INTERNAL_SERVER_ERROR'
+  | 'NOT_FOUND'
+  | 'NO_CONTENT'
+  | 'OK'
+  | 'SERVICE_UNAVAILABLE'
+  | 'UNAUTHORIZED';
+
 export type houseDealDto = {
   area: number;
   dealDay: string;
   dealMonth: string;
-  dealType: string;
+  dealType: DealTypeRs;
   dealYear: string;
   floor: string;
   houseDealId: number;
-  houseInfoId: number;
+  houseInfoId: IdRs;
   price: number;
   rent: number;
 };
@@ -14,7 +29,7 @@ export type houseDealDto = {
 export type houseInfoDto = {
   buildYear: string;
   dongCode: string;
-  houseInfoId: number;
+  houseInfoId: IdRs;
   houseName: string;
   houseType: string;
   jiBun: string;
@@ -26,12 +41,12 @@ export type houseOnSaleDto = {
   contractArea: number;
   createdBy: string | null;
   createdTime: Date | null;
-  dealType: string;
+  dealType: DealTypeRs;
   dirType: string;
   dongCode: string;
   floor: string;
-  houseInfoId: number;
-  houseOnSaleId: number;
+  houseInfoId: IdRs;
+  houseOnSaleId: IdRs;
   mngFee: number;
   movingDate: string;
   netLeasableArea: number;
@@ -53,8 +68,8 @@ export type houseOptionDto = {
   elevatorYn: boolean;
   gasStoveYn: boolean;
   gasYn: boolean;
-  houseOnSaleId: number;
-  houseOptionId: number;
+  houseOnSaleId: IdRs;
+  houseOptionId: IdRs;
   inductionYn: boolean;
   internetYn: boolean;
   laundryYn: boolean;
@@ -67,11 +82,17 @@ export type houseOptionDto = {
   waterYn: boolean;
 };
 
-export interface HouseDetailRs {
+export type HouseDetailDataRs = {
   houseDealJEONSEList: houseDealDto[];
   houseDealMAEMAEList: houseDealDto[];
   houseDealWOLSEList: houseDealDto[];
   houseInfoDto: houseInfoDto;
   houseOnSaleDto: houseOnSaleDto;
   houseOptionDto: houseOptionDto;
+};
+
+export interface HouseDetailRs {
+  data: HouseDetailDataRs;
+  message: string;
+  responseCode: ResponseCodeType;
 }

@@ -1,6 +1,8 @@
 import DetailHeader from './DetailHeader';
-import DetailWrapper from './DetailWrapper';
 import HouseInfo from './HouseInfo';
-import IntroduceHouse from './IntroduceHouse';
+import IntroduceHouse from './HouseInfo/IntroduceHouse';
+import HousePriceInfo from './HouseInfo/HousePriceInfo';
+import PriceChart from './HouseInfo/PriceChart';
+import RealDealList from './HouseInfo/RealDealList';
 
-export { DetailHeader, DetailWrapper, HouseInfo, IntroduceHouse };
+export { DetailHeader, HouseInfo, IntroduceHouse, HousePriceInfo, PriceChart, RealDealList };
