@@ -5,23 +5,20 @@ import ShowList from './showList/index';
 import customAxios from 'src/utils/axios';
 
 interface EventMarkerContainerProps {
-  position : positonDto;
-  content : ReactNode
-  houseInfoId : number;
+  position: positonDto;
+  houseInfoId: number;
 }
 
 interface positonDto {
-  lat : number;
-  lng : number;
+  lat: number;
+  lng: number;
 }
 
-
-const EventMarkerContainer = ({ position, content, houseInfoId } : EventMarkerContainerProps) => {
+const EventMarkerContainer = ({ position, houseInfoId }: EventMarkerContainerProps) => {
   const map = useMap();
-  const [isVisible, setIsVisible] = useState<Boolean>(false);
   const [houseData, setHouseData] = useState();
 
-  const markerClick = async (marker : any) => {
+  const markerClick = async (marker: any) => {
     const center = marker.getPosition();
 
     if (map.getLevel() > 4) {
@@ -32,21 +29,16 @@ const EventMarkerContainer = ({ position, content, houseInfoId } : EventMarkerCo
       //   //4보다 작으면 이동만
       map.panTo(center);
     }
-    const {data : { data } } = await customAxios.get(`house/apt/list/${houseInfoId}`);//나중에 주석없애줘야됨!!!
+    const {
+      data: { data },
+    } = await customAxios.get(`house/apt/list/${houseInfoId}`); //나중에 주석없애줘야됨!!!
     // const {data : {data}} = await customAxios.get(`house/apt/list/138`);
     setHouseData(data);
   };
 
   return (
     <>
-      <MapMarker
-        position={position}
-        onClick={markerClick}
-        onMouseOver={() => setIsVisible(true)}
-        onMouseOut={() => setIsVisible(false)}
-      >
-        {isVisible && content}
-      </MapMarker>
+      <MapMarker position={position} onClick={markerClick}></MapMarker>
       <ShowList houseData={houseData} />
     </>
   );
