@@ -3,17 +3,17 @@ import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import styles from './showList.module.scss'
 import { HouseOnSale } from "src/domain/rs/house/apt/HouseInfoListRs";
+import { HouseOnSaleVO } from "src/domain/vo/house/apt/HouseInfoListVO";
 const cx = classNames.bind(styles);
 
 interface ShowProps {
-    selectedData : HouseOnSale[] ;
+    selectedData : HouseOnSale[] | undefined;
 }
 
 const Show = ({selectedData} : ShowProps) => {
-
     const router = useRouter();
 
-    if(!selectedData) return null;
+    if(!selectedData?.length) return <div>데이터가 없습니다!</div>
     
     return (
           <div className={cx('list_wrapper')}>

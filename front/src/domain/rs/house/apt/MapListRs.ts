@@ -5,7 +5,7 @@ export default interface MapListRs {
 export interface houseInfoDto {
     buildYear : string,
     dongCode : string,
-    houseInfoId : Number,
+    houseInfoId : number,
     houseName : string,
     houseType : string,
     jibun : string,

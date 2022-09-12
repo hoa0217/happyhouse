@@ -3,17 +3,22 @@ import { Radio, RadioChangeEvent } from 'antd';
 import classNames from 'classnames/bind';
 import styles from './showList.module.scss'
 import Show from './show';
+import { useHouseAptList } from '@query/houseQuery';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import customAxios from 'src/utils/axios';
 
 const cx = classNames.bind(styles);
 
-const ShowList = ({ houseData} : any) => {
-  if (!houseData) return null; //처음실행할때 undefined 방지
+const ShowList = ( {houseData}:any) => {
+
+  if (!houseData) return null;
 
   const [selected, setSelected] = useState('매매');
-  const {
-    data: { houseOnSaleJEONSEList, houseOnSaleMAEMAEList, houseOnSaleWOLSEList },
-  } = houseData;
-  const [selectedData, setSelectedData] = useState(houseOnSaleMAEMAEList)
+  const houseOnSaleMAEMAEList = houseData?.houseOnSaleMAEMAEList;
+  const houseOnSaleJEONSEList = houseData?.houseOnSaleJEONSEList;
+  const houseOnSaleWOLSEList = houseData?.houseOnSaleWOLSEList;
+  const [selectedData, setSelectedData] = useState(houseOnSaleMAEMAEList);
   const onChange = (e : RadioChangeEvent) => {
     setSelected(e.target.value);
 

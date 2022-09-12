@@ -1,8 +1,13 @@
 export default interface HouseInfoListRs {
+    data : DataList
+}
+
+interface DataList {
     houseOnSaleJEONSEList : HouseOnSale[];
     houseOnSaleMAEMAEList : HouseOnSale[];
     houseOnSaleWOLSEList : HouseOnSale[];
 }
+
 
 export interface HouseOnSale {
     bathCount : string;

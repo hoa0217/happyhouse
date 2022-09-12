@@ -1,5 +1,5 @@
 export default interface GugunListRs {
-       gugunDtoList : GugunDto[];
+       data : GugunDto[];
 }
 
 export interface GugunDto{
