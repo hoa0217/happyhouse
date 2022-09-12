@@ -10,7 +10,6 @@ import { SidoVO } from 'src/domain/vo/adress/SidoListVO';
 import { DongVO } from 'src/domain/vo/adress/DongListVO';
 import moveMap from './utils/moveMap';
 
-
 interface KakaoMapProps {
     dong: DongVO[] | undefined;
     sido: SidoVO[] | undefined;
@@ -28,7 +27,7 @@ interface centerDto {
 
 interface homesProps{
   content : ReactNode;
-  houseInfoId : Number;
+  houseInfoId : number;
   latlng : centerDto
 
 }
@@ -49,9 +48,9 @@ const KakaoMap = ({sido, gugun, dong} : KakaoMapProps) => {
         const houseList : homesProps[] = [];
     
         const {
-          data: { houseInfoDtoList },
+          data : {data : { houseInfoDtoList }}
         } = await customAxios.get(`house/apt/map/${dongCode}`);
-    
+      
         if (!houseInfoDtoList.length) return; //매물이 없는 경우 종료
     
         const isCode = houseInfoDtoList[0].dongCode;

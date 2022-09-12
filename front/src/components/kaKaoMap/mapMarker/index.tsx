@@ -7,7 +7,7 @@ import customAxios from 'src/utils/axios';
 interface EventMarkerContainerProps {
   position : positonDto;
   content : ReactNode
-  houseInfoId : Number;
+  houseInfoId : number;
 }
 
 interface positonDto {
@@ -19,7 +19,7 @@ interface positonDto {
 const EventMarkerContainer = ({ position, content, houseInfoId } : EventMarkerContainerProps) => {
   const map = useMap();
   const [isVisible, setIsVisible] = useState<Boolean>(false);
-  const [houseData, setHouseData] = useState<any>();
+  const [houseData, setHouseData] = useState();
 
   const markerClick = async (marker : any) => {
     const center = marker.getPosition();
@@ -32,9 +32,9 @@ const EventMarkerContainer = ({ position, content, houseInfoId } : EventMarkerCo
       //   //4보다 작으면 이동만
       map.panTo(center);
     }
-    // const res = await customAxios.get(`apt/list/${houseInfoId}`);//나중에 주석없애줘야됨!!!
-    const res = await customAxios.get(`house/apt/list/138`);
-    setHouseData(res);
+    const {data : { data } } = await customAxios.get(`house/apt/list/${houseInfoId}`);//나중에 주석없애줘야됨!!!
+    // const {data : {data}} = await customAxios.get(`house/apt/list/138`);
+    setHouseData(data);
   };
 
   return (

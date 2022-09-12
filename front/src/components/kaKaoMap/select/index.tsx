@@ -29,10 +29,9 @@ const SelectBar = ({sido, gugun, dong, setSearchAddress, setDongCode } : SelectB
     const code = key.slice(0, 2);
     const _sido = key.slice(3);
     const res1 = await customAxios.get(`address/gugun/${code}`);
-    const res2 = await customAxios.get(`dong/${res1.data.gugunDtoList[0].gugunCode}`);
-
-    setGugun1(res1.data.gugunDtoList);
-    setDong1(res2.data.dongDtoList);
+    const res2 = await customAxios.get(`address/dong/${res1.data.data[0].gugunCode}`);
+    setGugun1(res1.data.data);
+    setDong1(res2.data.data);
     setSido2(_sido);
   };
 
@@ -41,8 +40,8 @@ const SelectBar = ({sido, gugun, dong, setSearchAddress, setDongCode } : SelectB
     const _gugun = key.slice(6);
     setGugun2(_gugun);
 
-    const res = await customAxios.get(`address/dong/${code}`);
-    setDong1(res.data.dongDtoList);
+    const {data : { data } } = await customAxios.get(`address/dong/${code}`);
+    setDong1(data);
   };
 
   const dongChange = (key : string) => {
@@ -73,7 +72,7 @@ const SelectBar = ({sido, gugun, dong, setSearchAddress, setDongCode } : SelectB
         }}
         onChange={sidoChange}
       >
-        {sido?.map((el) => (
+        {sido?.reverse().map((el) => (
           <Option key={`${el.sidoCode},${el.sidoName}`}>{el.sidoName}</Option>
         ))}
       </Select>
