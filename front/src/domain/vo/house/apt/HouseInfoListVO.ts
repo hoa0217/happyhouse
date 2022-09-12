@@ -1,4 +1,4 @@
-import HouseInfoListRs, { HouseOnSale } from "src/domain/rs/house/apt/houseInfoListRs";
+import HouseInfoListRs, { HouseOnSale } from "src/domain/rs/house/apt/HouseInfoListRs";
 
 export default class HouseInfoListVO {
     houseOnSaleJEONSEList : HouseOnSaleVO[];
@@ -6,9 +6,9 @@ export default class HouseInfoListVO {
     houseOnSaleWOLSEList : HouseOnSaleVO[];
 
     constructor(rs:HouseInfoListRs){
-        this.houseOnSaleJEONSEList = rs.houseOnSaleJEONSEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
-        this.houseOnSaleMAEMAEList = rs.houseOnSaleMAEMAEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
-        this.houseOnSaleWOLSEList = rs.houseOnSaleWOLSEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
+        this.houseOnSaleJEONSEList = rs.data.houseOnSaleJEONSEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
+        this.houseOnSaleMAEMAEList = rs.data.houseOnSaleMAEMAEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
+        this.houseOnSaleWOLSEList = rs.data.houseOnSaleWOLSEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
     }
 }
 

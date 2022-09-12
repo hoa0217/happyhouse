@@ -1,8 +1,5 @@
 package com.web.happyhouse.address.controller;
 
-import com.web.happyhouse.address.dto.DongListDto;
-import com.web.happyhouse.address.dto.GugunListDto;
-import com.web.happyhouse.address.dto.SidoListDto;
 import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.address.entity.Gugun;
 import com.web.happyhouse.address.entity.Sido;
@@ -42,51 +39,51 @@ public class AddressControllerTest {
     @Autowired
     private DongRepository dongRepository;
 
-    @Test
-    public void getSidoList() {
-        // given
-        String url = "http://localhost:" + port + "/address/sido";
-
-        //when
-        ResponseEntity<SidoListDto> responseEntity = restTemplate.getForEntity(url, SidoListDto.class);
-
-        //then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        List<Sido> all = sidoRepository.findAll();
-        assertThat(all.size()).isEqualTo(responseEntity.getBody().getSidoDtoList().size());
-        System.out.println(responseEntity.getBody().getSidoDtoList());
-    }
-
-    @Test
-    public void getGugunList() {
-        // given
-        String url = "http://localhost:" + port + "/address/gugun/11";
-
-        //when
-        ResponseEntity<GugunListDto> responseEntity = restTemplate.getForEntity(url, GugunListDto.class);
-
-        //then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        List<Gugun> bySidoCode = gugunRepository.findBySidoCode("11");
-        assertThat(bySidoCode.size()).isEqualTo(responseEntity.getBody().getGugunDtoList().size());
-        System.out.println(responseEntity.getBody().getGugunDtoList());
-    }
-
-    @Test
-    public void getDongList(){
-        // given
-        String url = "http://localhost:" + port + "/address/dong/11350";
-
-        //when
-        ResponseEntity<DongListDto> responseEntity = restTemplate.getForEntity(url, DongListDto.class);
-
-        //then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        List<Dong> byGugunCode = dongRepository.findBySidoCodeAndGugunCode("11","11350");
-        assertThat((byGugunCode.size())).isEqualTo(responseEntity.getBody().getDongDtoList().size());
-        System.out.println(responseEntity.getBody().getDongDtoList());
-    }
+//    @Test
+//    public void getSidoList() {
+//        // given
+//        String url = "http://localhost:" + port + "/address/sido";
+//
+//        //when
+//        ResponseEntity<SidoListDto> responseEntity = restTemplate.getForEntity(url, SidoListDto.class);
+//
+//        //then
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//
+//        List<Sido> all = sidoRepository.findAll();
+//        assertThat(all.size()).isEqualTo(responseEntity.getBody().getSidoDtoList().size());
+//        System.out.println(responseEntity.getBody().getSidoDtoList());
+//    }
+//
+//    @Test
+//    public void getGugunList() {
+//        // given
+//        String url = "http://localhost:" + port + "/address/gugun/11";
+//
+//        //when
+//        ResponseEntity<GugunListDto> responseEntity = restTemplate.getForEntity(url, GugunListDto.class);
+//
+//        //then
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//
+//        List<Gugun> bySidoCode = gugunRepository.findBySidoCode("11");
+//        assertThat(bySidoCode.size()).isEqualTo(responseEntity.getBody().getGugunDtoList().size());
+//        System.out.println(responseEntity.getBody().getGugunDtoList());
+//    }
+//
+//    @Test
+//    public void getDongList(){
+//        // given
+//        String url = "http://localhost:" + port + "/address/dong/11350";
+//
+//        //when
+//        ResponseEntity<DongListDto> responseEntity = restTemplate.getForEntity(url, DongListDto.class);
+//
+//        //then
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//
+//        List<Dong> byGugunCode = dongRepository.findBySidoCodeAndGugunCode("11","11350");
+//        assertThat((byGugunCode.size())).isEqualTo(responseEntity.getBody().getDongDtoList().size());
+//        System.out.println(responseEntity.getBody().getDongDtoList());
+//    }
 }

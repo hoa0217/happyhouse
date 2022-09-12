@@ -1,5 +1,5 @@
 export default interface DongListRs {
-  dongDtoList: DongDto[];
+  data: DongDto[];
 }
 
 export interface DongDto {

@@ -1,8 +1,6 @@
 package com.web.happyhouse.address.controller;
 
-import com.web.happyhouse.address.dto.DongListDto;
-import com.web.happyhouse.address.dto.GugunListDto;
-import com.web.happyhouse.address.dto.SidoListDto;
+import com.web.happyhouse.address.dto.*;
 import com.web.happyhouse.address.service.AddressService;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
@@ -15,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags ={"Address 선택 Controller"})
+import java.util.List;
+
+@Api(tags ={"주소 선택 Controller"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/address")
@@ -25,35 +25,32 @@ public class AddressController {
 
     @ApiOperation(value = "시도 리스트 조회", notes="시도 리스트 조회하기")
     @GetMapping("/sido")
-    public ResponseDto<SidoListDto> getSidoList(){
-        SidoListDto sidoListDto = new SidoListDto();
-        sidoListDto.setSidoDtoList(addressService.searchSidoList());
-        return ResponseDto.res(ResponseCode.OK, sidoListDto);
+    public ResponseDto<List<SidoDto>> getSidoList(){
+        return ResponseDto.res(ResponseCode.OK, addressService.searchSidoList());
     }
-
 
     @ApiOperation(value = "구군 리스트 조회", notes="특정 시도코드에 속하는 구군 리스트를 조회한다.")
     @ApiImplicitParam(name="sidoCode",value = "시도 코드")
     @GetMapping("/gugun/{sidoCode}")
-    public ResponseDto<GugunListDto> getGugunList(@PathVariable("sidoCode") String sidoCode){
-        GugunListDto gugunListDto = new GugunListDto();
-        gugunListDto.setGugunDtoList(addressService.searchGugunList(sidoCode));
-        return ResponseDto.res(ResponseCode.OK, gugunListDto);
+    public ResponseDto<List<GugunDto>> getGugunList(@PathVariable("sidoCode") String sidoCode){
+        return ResponseDto.res(ResponseCode.OK, addressService.searchGugunList(sidoCode));
     }
 
     @ApiOperation(value = "동 리스트 조회", notes="특정 구군에 속하는 구군 리스트를 조회한다.")
     @ApiImplicitParam(name="gugunCode", value = "구군 코드")
     @GetMapping("/dong/{gugunCode}")
-    public ResponseDto<DongListDto> getDongList(@PathVariable("gugunCode") String gugunCode){
-        DongListDto dongListDto = new DongListDto();
+    public ResponseDto<List<DongDto>> getDongList(@PathVariable("gugunCode") String gugunCode){
+
+        List<DongDto> dongDtoList = null;
+
         if(gugunCode.equals("3611")){
             // 세종특별자치시만 4자리 시도코드를 가짐
-            dongListDto.setDongDtoList(addressService.searchDongList("3611", gugunCode));
+            dongDtoList = addressService.searchDongList("3611", gugunCode);
         }
         else{
-            dongListDto.setDongDtoList(addressService.searchDongList(gugunCode.substring(0,2), gugunCode));
+            dongDtoList = addressService.searchDongList(gugunCode.substring(0,2), gugunCode);
         }
-        return ResponseDto.res(ResponseCode.OK, dongListDto);
+        return ResponseDto.res(ResponseCode.OK, dongDtoList);
     }
 
 }

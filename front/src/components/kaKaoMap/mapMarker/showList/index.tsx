@@ -1,27 +1,50 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import { Radio, RadioChangeEvent } from 'antd';
+import classNames from 'classnames/bind';
+import styles from './showList.module.scss'
+import Show from './show';
+import { useHouseAptList } from '@query/houseQuery';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import customAxios from 'src/utils/axios';
 
-// interface ShowListProps{
-// 	houseData:
-// }
+const cx = classNames.bind(styles);
 
-export default function ShowList({ houseData }) {
-  if (!houseData) return; //처음실행할때 undefined 방지
+const ShowList = ( {houseData}:any) => {
 
-  const {
-    data: { houseOnSaleJEONSEList, houseOnSaleMAEMAEList, houseOnSaleWOLSEList },
-  } = houseData;
+  if (!houseData) return null;
+
+  const [selected, setSelected] = useState('매매');
+  const houseOnSaleMAEMAEList = houseData?.houseOnSaleMAEMAEList;
+  const houseOnSaleJEONSEList = houseData?.houseOnSaleJEONSEList;
+  const houseOnSaleWOLSEList = houseData?.houseOnSaleWOLSEList;
+  const [selectedData, setSelectedData] = useState(houseOnSaleMAEMAEList);
+  const onChange = (e : RadioChangeEvent) => {
+    setSelected(e.target.value);
+
+    switch (e.target.value) {
+      case '매매':
+        setSelectedData(houseOnSaleMAEMAEList);
+        break;
+      case '전세':
+        setSelectedData(houseOnSaleJEONSEList);
+      break;
+      case '월세':
+        setSelectedData(houseOnSaleWOLSEList);
+      break;
+    }
+  }
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        width: '20vw',
-        height: '100vh',
-        backgroundColor: 'white',
-        top: '32px',
-        left: '0px',
-        zIndex: '10',
-      }}
-    ></div>
+    <div className={cx('wrapper')}>
+      <Radio.Group onChange={onChange} value={selected}>
+        <Radio value={'매매'}>매매</Radio>
+        <Radio value={'전세'}>전세</Radio>
+        <Radio value={'월세'}>월세</Radio>
+      </Radio.Group>
+      <Show selectedData={selectedData}/>
+    </div>
   );
 }
+
+export default ShowList
