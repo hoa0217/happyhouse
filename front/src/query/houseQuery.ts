@@ -1,9 +1,12 @@
-import apiStore from "@api"
-import { useQuery } from "@tanstack/react-query";
+import apiStore from '@api';
+import { useQuery } from '@tanstack/react-query';
+import { IdRs } from 'src/domain/rs/house/detail/HouseDetailRs';
 import HouseInfoListVO from "src/domain/vo/house/apt/HouseInfoListVO";
-import MapListVO from "src/domain/vo/house/apt/MapListVO";
+import MapListVO from 'src/domain/vo/house/apt/MapListVO';
 
-const keys = ['house','apt']
+
+const keys = ['house', 'apt'];
+
 
 export const fetchHouseAptMap = async(dongCode: string) => {
     const { data } = await apiStore.remoteHouseRepo.fetchHouseAptMap(dongCode);
@@ -21,4 +24,11 @@ export function useHouseAptMap(dongCode:string){
 
 export function useHouseAptList(houseInfoId: string) {
     return useQuery([...keys, 'list', houseInfoId], () => fetchHouseAptList(houseInfoId));
+}
+
+export function useHouseDetail(houseOnSaleId: IdRs) {
+  return useQuery(['houseDetail', houseOnSaleId], () => apiStore.remoteHouseRepo.fetchHouseDetail(houseOnSaleId), {
+    // houseOnSaleId 값이 있을때만 실횅
+    enabled: !!houseOnSaleId,
+  });
 }
