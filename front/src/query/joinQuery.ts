@@ -1,17 +1,17 @@
 import apiStore from '@api';
 import { useMutation } from '@tanstack/react-query';
-import LoginRq from 'src/domain/rq/login/LoginRq';
+import JoinRq from 'src/domain/rq/join/JoinRq';
 
-export const fetchLogin = async (params: LoginRq) => {
-  const { data } = await apiStore.remoteLoginRepo.fetchLogin(params);
+export const fetchJoin = async (params: JoinRq) => {
+  const { data } = await apiStore.remoteJoinRepo.fetchJoin(params);
   return data;
 };
 
-export function useLogin() {
-  return useMutation((params: LoginRq) => fetchLogin(params), {
+export function useJoin() {
+  return useMutation((params: JoinRq) => fetchJoin(params), {
     onSuccess: ({ data }) => {
       alert(data);
-      //redux
+      //
     },
     onError: (error: any) => {
       const {

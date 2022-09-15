@@ -7,6 +7,7 @@ import customAxios from 'src/utils/axios';
 interface EventMarkerContainerProps {
   position: positonDto;
   houseInfoId: number;
+  api: string;
 }
 
 interface positonDto {
@@ -14,7 +15,7 @@ interface positonDto {
   lng: number;
 }
 
-const EventMarkerContainer = ({ position, houseInfoId }: EventMarkerContainerProps) => {
+const EventMarkerContainer = ({ position, houseInfoId, api }: EventMarkerContainerProps) => {
   const map = useMap();
   const [houseData, setHouseData] = useState();
 
@@ -31,7 +32,7 @@ const EventMarkerContainer = ({ position, houseInfoId }: EventMarkerContainerPro
     }
     const {
       data: { data },
-    } = await customAxios.get(`house/apt/list/${houseInfoId}`); //나중에 주석없애줘야됨!!!
+    } = await customAxios.get(`house/${api}/list/${houseInfoId}`); //나중에 주석없애줘야됨!!!
     // const {data : {data}} = await customAxios.get(`house/apt/list/138`);
     setHouseData(data);
   };

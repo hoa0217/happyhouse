@@ -15,6 +15,7 @@ interface KakaoMapProps {
   dong?: DongVO[];
   sido?: SidoVO[];
   gugun?: GugunVO[];
+  api: string;
 }
 
 export interface mapCenter {
@@ -31,7 +32,7 @@ interface homesProps {
   latlng: centerDto;
 }
 
-const KakaoMap = ({ sido, gugun, dong }: KakaoMapProps) => {
+const KakaoMap = ({ sido, gugun, dong, api }: KakaoMapProps) => {
   const [state, setState] = useState<mapCenter>({
     center: { lat: 37.5891974378629, lng: 126.969329763593 },
   });
@@ -50,7 +51,7 @@ const KakaoMap = ({ sido, gugun, dong }: KakaoMapProps) => {
       data: {
         data: { houseInfoDtoList },
       },
-    } = await customAxios.get(`house/apt/map/${dongCode}`);
+    } = await customAxios.get(`house/${api}/map/${dongCode}`);
 
     if (!houseInfoDtoList.length) {
       setIsSearch(false);
@@ -96,7 +97,7 @@ const KakaoMap = ({ sido, gugun, dong }: KakaoMapProps) => {
       {isSearch && <Loading></Loading>}
       <Map center={state.center} style={{ width: '100%', height: '88vh' }} level={4}>
         {homes.map((value, idx) => (
-          <EventMarkerContainer key={idx} position={value.latlng} houseInfoId={value.houseInfoId} />
+          <EventMarkerContainer key={idx} api={api} position={value.latlng} houseInfoId={value.houseInfoId} />
         ))}
       </Map>
     </>
