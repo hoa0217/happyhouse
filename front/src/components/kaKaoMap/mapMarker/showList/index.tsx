@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Radio, RadioChangeEvent } from 'antd';
 import classNames from 'classnames/bind';
-import styles from './showList.module.scss'
+import styles from './showList.module.scss';
 import Show from './show';
 import { useHouseAptList } from '@query/houseQuery';
 import { useQuery } from '@tanstack/react-query';
@@ -10,8 +10,7 @@ import customAxios from 'src/utils/axios';
 
 const cx = classNames.bind(styles);
 
-const ShowList = ( {houseData}:any) => {
-
+const ShowList = ({ houseData }: any) => {
   if (!houseData) return null;
 
   const [selected, setSelected] = useState('매매');
@@ -19,7 +18,7 @@ const ShowList = ( {houseData}:any) => {
   const houseOnSaleJEONSEList = houseData?.houseOnSaleJEONSEList;
   const houseOnSaleWOLSEList = houseData?.houseOnSaleWOLSEList;
   const [selectedData, setSelectedData] = useState(houseOnSaleMAEMAEList);
-  const onChange = (e : RadioChangeEvent) => {
+  const onChange = (e: RadioChangeEvent) => {
     setSelected(e.target.value);
 
     switch (e.target.value) {
@@ -28,12 +27,12 @@ const ShowList = ( {houseData}:any) => {
         break;
       case '전세':
         setSelectedData(houseOnSaleJEONSEList);
-      break;
+        break;
       case '월세':
         setSelectedData(houseOnSaleWOLSEList);
-      break;
+        break;
     }
-  }
+  };
 
   return (
     <div className={cx('wrapper')}>
@@ -42,9 +41,9 @@ const ShowList = ( {houseData}:any) => {
         <Radio value={'전세'}>전세</Radio>
         <Radio value={'월세'}>월세</Radio>
       </Radio.Group>
-      <Show selectedData={selectedData}/>
+      <Show selectedData={selectedData} />
     </div>
   );
-}
+};
 
-export default ShowList
+export default ShowList;
