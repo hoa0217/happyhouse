@@ -5,6 +5,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 package.json
+application-db.properties
+application-jwt.properties
 
 ### STS ###
 .apt_generated
