@@ -2,6 +2,8 @@ package com.web.happyhouse.house.service.implementation;
 
 import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.address.repository.DongRepository;
+import com.web.happyhouse.advice.exception.NotFoundHouseInfoException;
+import com.web.happyhouse.advice.exception.NotFoundHouseOnSaleException;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.HouseType;
 import com.web.happyhouse.house.dto.*;
@@ -50,11 +52,11 @@ public class HouseServiceImpl implements HouseService {
 
         Map<String, Long> zoneCodeToCountingMap = houseOnSaleVillaRepository.findByDongAndHouseType(dong, houseType)
                 .stream()
-                .collect(Collectors.groupingBy(HouseOnSaleVilla::getZoneCode, Collectors.counting()));
+                .collect(Collectors.groupingBy(HouseOnSaleVilla::getJibunAddress, Collectors.counting()));
 
         houseOnSaleVillaMapRs.setDongCode(dongCode);
         houseOnSaleVillaMapRs.setHouseType(houseType);
-        houseOnSaleVillaMapRs.setZoneCodeToCountingMap(zoneCodeToCountingMap);
+        houseOnSaleVillaMapRs.setJibunAddressToCountingMap(zoneCodeToCountingMap);
 
         return houseOnSaleVillaMapRs;
     }
@@ -66,7 +68,7 @@ public class HouseServiceImpl implements HouseService {
         // 집정보 매핑
         HouseInfo houseInfo = houseInfoRepository.findById(houseInfoId)
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("해당 ID(" + houseInfoId + ")의 집 정보를 찾을 수 없습니다.");
+                    throw new NotFoundHouseInfoException("해당 ID(" + houseInfoId + ")의 집 정보를 찾을 수 없습니다.");
                 });
         houseOnSaleListRs.setHouseInfoDto(HouseInfo.toDto(houseInfo));
 
@@ -95,26 +97,37 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public HouseOnSaleVillaListRs getHouseOnSaleVilla(String zoneCode, HouseType houseType) {
+    public HouseOnSaleVillaListRs getHouseOnSaleVilla(String jibunAddress, HouseType houseType) {
 
         HouseOnSaleVillaListRs houseOnSaleVillaListRs = new HouseOnSaleVillaListRs();
-        houseOnSaleVillaListRs.setZoneCode(zoneCode);
+        houseOnSaleVillaListRs.setJibunAddress(jibunAddress);
         houseOnSaleVillaListRs.setHouseType(houseType);
 
+        List<HouseOnSaleVilla> houseOnSaleVillaList = houseOnSaleVillaRepository.findByJibunAddressAndHouseType(jibunAddress, houseType);
+        if(houseOnSaleVillaList.isEmpty()){
+            throw new NotFoundHouseInfoException("해당 주소(" + jibunAddress + ")의 집 정보를 찾을 수 없습니다.");
+        }
+
         // 매물정보매핑
-        Map<DealType, List<HouseOnSaleVillaDto>> dealTypeToHouseOnSaleVillaMap = houseOnSaleVillaRepository.findByZoneCodeAndHouseType(zoneCode, houseType)
+        Map<DealType, List<HouseOnSaleVillaDto>> dealTypeToHouseOnSaleVillaMap = houseOnSaleVillaList
                 .stream()
                 .map(entity -> HouseOnSaleVilla.toDto(entity))
                 .collect(Collectors.groupingBy(HouseOnSaleVillaDto::getDealType));
 
+        List<HouseOnSaleVillaDto> houseOnSaleMAEMAEList = new ArrayList<>();
+        List<HouseOnSaleVillaDto> houseOnSaleJEONSEList = new ArrayList<>();
+        List<HouseOnSaleVillaDto> houseOnSaleWOLSEList = new ArrayList<>();
         for (DealType dealType : dealTypeToHouseOnSaleVillaMap.keySet()) {
             if (dealType.equals(DealType.MAEMAE))
-                houseOnSaleVillaListRs.setHouseOnSaleVillaMAEMAEList(dealTypeToHouseOnSaleVillaMap.get(dealType));
+                houseOnSaleMAEMAEList = dealTypeToHouseOnSaleVillaMap.get(dealType);
             else if (dealType.equals(DealType.JEONSE))
-                houseOnSaleVillaListRs.setHouseOnSaleVillaJEONSEList(dealTypeToHouseOnSaleVillaMap.get(dealType));
+                houseOnSaleJEONSEList = dealTypeToHouseOnSaleVillaMap.get(dealType);
             else if (dealType.equals(DealType.WOLSE))
-                houseOnSaleVillaListRs.setHouseOnSaleVillaWOLSELList(dealTypeToHouseOnSaleVillaMap.get(dealType));
+                houseOnSaleWOLSEList = dealTypeToHouseOnSaleVillaMap.get(dealType);
         }
+        houseOnSaleVillaListRs.setHouseOnSaleVillaMAEMAEList(houseOnSaleMAEMAEList);
+        houseOnSaleVillaListRs.setHouseOnSaleVillaJEONSEList(houseOnSaleJEONSEList);
+        houseOnSaleVillaListRs.setHouseOnSaleVillaWOLSELList(houseOnSaleWOLSEList);
 
         return houseOnSaleVillaListRs;
     }
@@ -125,19 +138,20 @@ public class HouseServiceImpl implements HouseService {
         HouseOnSaleDetailRs houseOnSaleDetailRs = new HouseOnSaleDetailRs();
 
         // 매물정보매핑
-        HouseOnSale houseOnSale = houseOnSaleRepository.findById(houseOnSaleId)
-                .orElseThrow(() -> {
-                    throw new IllegalArgumentException("해당 ID(" + houseOnSaleId + ")의 매물 정보를 찾을 수 없습니다.");
-                });
-
+        HouseOnSale houseOnSale = houseOnSaleRepository.findByHouseOnSaleId(houseOnSaleId);
+        if(houseOnSale == null){
+            throw new NotFoundHouseOnSaleException("해당 ID(" + houseOnSaleId + ")의 매물 정보를 찾을 수 없습니다.");
+        }
         houseOnSaleDetailRs.setHouseOnSaleDto(HouseOnSale.toDto(houseOnSale));
 
         // 집정보매핑
         houseOnSaleDetailRs.setHouseInfoDto(HouseInfo.toDto(houseOnSale.getHouseInfo()));
 
         // 매물옵션매핑
-        HouseOption houseOption = houseOptionRepository.findByHouseOnSale(houseOnSale).get(0);
-        houseOnSaleDetailRs.setHouseOptionDto(HouseOption.toDto(houseOption));
+        HouseOption houseOption = houseOptionRepository.findByHouseOnSale(houseOnSale);
+        if(houseOption != null){
+            houseOnSaleDetailRs.setHouseOptionDto(HouseOption.toDto(houseOption));
+        }
 
         // 집거래내역매핑
         Map<DealType, List<HouseDealDto>> dealTypeToHouseDealMap = houseDealRepository.findByHouseInfo(houseOnSale.getHouseInfo())
@@ -164,13 +178,15 @@ public class HouseServiceImpl implements HouseService {
         // 매물정보매핑
         HouseOnSaleVilla houseOnSaleVilla = houseOnSaleVillaRepository.findById(houseOnSaleVillaId)
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("해당 ID(" + houseOnSaleVillaId + ")의 매물 정보를 찾을 수 없습니다.");
+                    throw new NotFoundHouseOnSaleException("해당 ID(" + houseOnSaleVillaId + ")의 매물 정보를 찾을 수 없습니다.");
                 });
         houseOnSaleVillaDetailRs.setHouseOnSaleVillaDto(HouseOnSaleVilla.toDto(houseOnSaleVilla));
 
         // 매물옵션매핑
-        HouseOptionVilla houseOptionVilla = houseOptionVillaRepository.findByHouseOnSaleVilla(houseOnSaleVilla).get(0);
-        houseOnSaleVillaDetailRs.setHouseOptionVillaDto(HouseOptionVilla.toDto(houseOptionVilla));
+        HouseOptionVilla houseOptionVilla = houseOptionVillaRepository.findByHouseOnSaleVilla(houseOnSaleVilla);
+        if(houseOptionVilla!=null){
+            houseOnSaleVillaDetailRs.setHouseOptionVillaDto(HouseOptionVilla.toDto(houseOptionVilla));
+        }
 
         return houseOnSaleVillaDetailRs;
     }

@@ -13,6 +13,6 @@ public interface HouseOnSaleVillaRepository extends JpaRepository<HouseOnSaleVil
 
     List<HouseOnSaleVilla> findByDongAndHouseType(Dong dong, HouseType houseType);
 
-    List<HouseOnSaleVilla> findByZoneCodeAndHouseType(String zoneCode, HouseType houseType);
+    List<HouseOnSaleVilla> findByJibunAddressAndHouseType(String jibunAddress, HouseType houseType);
 
 }
