@@ -15,8 +15,8 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 public class HouseOnSaleVillaListRs {
-    @ApiModelProperty(notes = "우편번호")
-    String zoneCode;                                                    // 우편번호
+    @ApiModelProperty(notes = "주소")
+    String jibunAddress;                                                //
     @ApiModelProperty(notes = "집유형")
     HouseType houseType;                                                // 집유형
     @ApiModelProperty(notes = "매매 매물 리스트")

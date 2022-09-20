@@ -22,6 +22,24 @@ public class ExceptionAdvice {
     }
 
     /**
+     * 집정보 찾기 실패 예외
+     */
+    @ExceptionHandler(NotFoundHouseInfoException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ResponseDto notFoundHouseInfoException(HttpServletRequest request, NotFoundHouseInfoException e){
+        return ResponseDto.res(ResponseCode.BAD_REQUEST, e.getMessage());
+    }
+
+    /**
+     * 매물정보 찾기 실패 예외
+     */
+    @ExceptionHandler(NotFoundHouseOnSaleException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ResponseDto notFoundHouseOnSaleException(HttpServletRequest request, NotFoundHouseOnSaleException e){
+        return ResponseDto.res(ResponseCode.BAD_REQUEST, e.getMessage());
+    }
+
+    /**
      * 유저 찾기 실패 예외
      */
     @ExceptionHandler(NotFoundUserException.class)

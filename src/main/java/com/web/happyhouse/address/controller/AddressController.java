@@ -4,14 +4,10 @@ import com.web.happyhouse.address.dto.*;
 import com.web.happyhouse.address.service.AddressService;
 import com.web.happyhouse.network.ResponseCode;
 import com.web.happyhouse.network.ResponseDto;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +21,10 @@ public class AddressController {
 
     @ApiOperation(value = "시도 리스트 조회", notes="시도 리스트 조회하기")
     @GetMapping("/sido")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK 시도코드조회를 성공했습니다."),
+    })
+    @ResponseStatus(HttpStatus.OK)
     public ResponseDto<List<SidoDto>> getSidoList(){
         return ResponseDto.res(ResponseCode.OK, addressService.searchSidoList());
     }
@@ -32,6 +32,10 @@ public class AddressController {
     @ApiOperation(value = "구군 리스트 조회", notes="특정 시도코드에 속하는 구군 리스트를 조회한다.")
     @ApiImplicitParam(name="sidoCode",value = "시도 코드")
     @GetMapping("/gugun/{sidoCode}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK 구군코드조회를 성공했습니다."),
+    })
+    @ResponseStatus(HttpStatus.OK)
     public ResponseDto<List<GugunDto>> getGugunList(@PathVariable("sidoCode") String sidoCode){
         return ResponseDto.res(ResponseCode.OK, addressService.searchGugunList(sidoCode));
     }
@@ -39,6 +43,10 @@ public class AddressController {
     @ApiOperation(value = "동 리스트 조회", notes="특정 구군에 속하는 구군 리스트를 조회한다.")
     @ApiImplicitParam(name="gugunCode", value = "구군 코드")
     @GetMapping("/dong/{gugunCode}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK 동코드조회를 성공했습니다."),
+    })
+    @ResponseStatus(HttpStatus.OK)
     public ResponseDto<List<DongDto>> getDongList(@PathVariable("gugunCode") String gugunCode){
 
         List<DongDto> dongDtoList = null;

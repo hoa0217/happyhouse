@@ -20,5 +20,5 @@ public class HouseOnSaleVillaMapRs {
     @ApiModelProperty(notes = "집유형")
     HouseType houseType;                                                // 집유형
     @ApiModelProperty(notes = "맵에 띄울 정보")
-    Map<String, Long> zoneCodeToCountingMap;                            // 맵에 띄울 정보
+    Map<String, Long> jibunAddressToCountingMap;                            // 맵에 띄울 정보
 }
