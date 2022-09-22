@@ -7,15 +7,18 @@ import com.web.happyhouse.advice.exception.NotFoundHouseOnSaleException;
 import com.web.happyhouse.advice.exception.NotFoundHouseOptionException;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.HouseType;
-import com.web.happyhouse.house.dto.*;
+import com.web.happyhouse.house.dto.HouseDealDto;
+import com.web.happyhouse.house.dto.HouseInfoDto;
+import com.web.happyhouse.house.dto.HouseOnSaleDto;
+import com.web.happyhouse.house.dto.createRequest.HouseOnSaleCreateRq;
 import com.web.happyhouse.house.dto.response.HouseInfoListRs;
 import com.web.happyhouse.house.dto.response.HouseOnSaleDetailRs;
 import com.web.happyhouse.house.dto.response.HouseOnSaleListRs;
-import com.web.happyhouse.house.dto.createRequest.HouseOnSaleCreateRq;
-import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateDto;
 import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateRq;
-import com.web.happyhouse.house.dto.updateRequest.HouseOptionUpdateDto;
-import com.web.happyhouse.house.entity.*;
+import com.web.happyhouse.house.entity.HouseDeal;
+import com.web.happyhouse.house.entity.HouseInfo;
+import com.web.happyhouse.house.entity.HouseOnSale;
+import com.web.happyhouse.house.entity.HouseOption;
 import com.web.happyhouse.house.repository.HouseDealRepository;
 import com.web.happyhouse.house.repository.HouseInfoRepository;
 import com.web.happyhouse.house.repository.HouseOnSaleRepository;
@@ -25,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -132,11 +134,11 @@ public class AptOfficeServiceImpl implements AptOfficeService {
                 });
 
         // 매물정보 저장
-        HouseOnSale houseOnSale = createRq.getHouseOnSaleCreateDto().toEntity(houseInfo);
+        HouseOnSale houseOnSale = createRq.toHouseOnSaleEntity(houseInfo);
         HouseOnSale saved = houseOnSaleRepository.save(houseOnSale);
 
         // 옵션정보 저장
-        HouseOption houseOption = createRq.getHouseOptionCreateDto().toEntity(saved);
+        HouseOption houseOption = createRq.toHouseOptionEntity(saved);
         houseOptionRepository.save(houseOption);
 
         return saved.getHouseOnSaleId();
@@ -146,20 +148,18 @@ public class AptOfficeServiceImpl implements AptOfficeService {
     @Transactional
     public Long updateHouseOnSale(HouseOnSaleUpdateRq updateRq) {
         // 매물정보 업데이트
-        HouseOnSaleUpdateDto updateDto = updateRq.getHouseOnSaleUpdateDto();
-        HouseOnSale houseOnSale = houseOnSaleRepository.findById(updateDto.getHouseOnSaleId())
+        HouseOnSale houseOnSale = houseOnSaleRepository.findById(updateRq.getHouseOnSaleId())
                 .orElseThrow(() -> {
-                    throw new NotFoundHouseOnSaleException("해당 ID(" + updateDto.getHouseOnSaleId() + ")의 매물 정보를 찾을 수 없습니다.");
+                    throw new NotFoundHouseOnSaleException("해당 ID(" + updateRq.getHouseOnSaleId() + ")의 매물 정보를 찾을 수 없습니다.");
                 });
-        houseOnSale.update(updateDto);
+        houseOnSale.update(updateRq);
 
         // 옵션정보 업데이트
-        HouseOptionUpdateDto optionUpdateDto = updateRq.getHouseOptionUpdateDto();
         HouseOption houseOption = houseOptionRepository.findByHouseOnSale(houseOnSale);
         if(houseOption == null){
             throw new NotFoundHouseOptionException("해당 매물(" + houseOnSale.getHouseOnSaleId() + ")의 옵션 정보를 찾을 수 없습니다.");
         }
-        houseOption.update(optionUpdateDto);
+        houseOption.update(updateRq);
 
         return houseOnSale.getHouseOnSaleId();
     }
