@@ -90,6 +90,8 @@ public class HouseOptionVilla extends BaseEntity{
         dto.setTvYn(entity.getTvYn());
         dto.setElevatorYn(entity.getElevatorYn());
 
+        dto.setCreatedTime(entity.getCreatedTime());
+        dto.setUpdatedTime(entity.getUpdatedTime());
         return dto;
     }
 

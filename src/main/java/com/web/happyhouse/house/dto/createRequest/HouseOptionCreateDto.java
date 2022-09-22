@@ -1,34 +1,30 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.createRequest;
 
-import com.web.happyhouse.base.BaseDto;
+import com.web.happyhouse.house.entity.HouseOnSale;
+import com.web.happyhouse.house.entity.HouseOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@ApiModel("아파트/오피스텔 매물 옵션 DTO")
+@ApiModel("아파트/오피스텔 옵션 Create 정보 DTO")
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseOptionDto extends BaseDto {
-    @ApiModelProperty(notes = "옵션ID")
-    private Long houseOptionId;
-
-    @ApiModelProperty(notes = "매물ID")
-    private Long houseOnSaleId;
+public class HouseOptionCreateDto {
 
     @ApiModelProperty(notes = "전기포함유무")
-    private Boolean electricYn;
+    private Boolean electricYn;             // 전기포함유무
 
     @ApiModelProperty(notes = "가스포함유무")
-    private Boolean gasYn;
+    private Boolean gasYn;                  // 가스포함유무
 
     @ApiModelProperty(notes = "수도포함유무")
-    private Boolean waterYn;
+    private Boolean waterYn;                // 수도포함유무
 
     @ApiModelProperty(notes = "인터넷포함유무")
-    private Boolean internetYn;
+    private Boolean internetYn;             // 인터넷포함유무
 
     @ApiModelProperty(notes = "TV연결포함유무")
     private Boolean tvConnectYn;
@@ -71,4 +67,29 @@ public class HouseOptionDto extends BaseDto {
 
     @ApiModelProperty(notes = "승강기유무")
     private Boolean elevatorYn;
+
+    public HouseOption toEntity(HouseOnSale houseOnSale){
+        return HouseOption.builder()
+                .houseOnSale(houseOnSale)
+                .electricYn(electricYn)
+                .gasYn(gasYn)
+                .waterYn(waterYn)
+                .internetYn(internetYn)
+                .tvConnectYn(tvConnectYn)
+                .personalBoilYn(personalBoilYn)
+                .centerBoilYn(centerBoilYn)
+                .localBoilYn(localBoilYn)
+                .rfgYn(rfgYn)
+                .bedYn(bedYn)
+                .laundryYn(laundryYn)
+                .airConditionerYn(airConditionerYn)
+                .microwaveYn(microwaveYn)
+                .gasStoveYn(gasStoveYn)
+                .inductionYn(inductionYn)
+                .closetYn(closetYn)
+                .tvYn(tvYn)
+                .elevatorYn(elevatorYn)
+                .build();
+    }
+
 }

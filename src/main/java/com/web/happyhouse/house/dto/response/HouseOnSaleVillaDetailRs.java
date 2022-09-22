@@ -1,12 +1,12 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.response;
 
+import com.web.happyhouse.house.dto.HouseOnSaleVillaDto;
+import com.web.happyhouse.house.dto.HouseOptionVillaDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @ApiModel("빌라 매물 상세정보")
 @Getter

@@ -2,6 +2,7 @@ package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.base.BaseEntity;
 import com.web.happyhouse.house.dto.HouseOptionDto;
+import com.web.happyhouse.house.dto.updateRequest.HouseOptionUpdateDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "house_option")
 public class HouseOption extends BaseEntity{
 
     @Id
@@ -67,7 +69,7 @@ public class HouseOption extends BaseEntity{
         this.elevatorYn = elevatorYn;
     }
 
-    public static HouseOptionDto toDto(HouseOption entity){
+    public static HouseOptionDto    toDto(HouseOption entity){
         HouseOptionDto dto = new HouseOptionDto();
         dto.setHouseOptionId(entity.getHouseOptionId());
         dto.setHouseOnSaleId(entity.getHouseOnSale().getHouseOnSaleId());
@@ -90,6 +92,8 @@ public class HouseOption extends BaseEntity{
         dto.setTvYn(entity.getTvYn());
         dto.setElevatorYn(entity.getElevatorYn());
 
+        dto.setCreatedTime(entity.getCreatedTime());
+        dto.setUpdatedTime(entity.getUpdatedTime());
         return dto;
     }
 
@@ -119,5 +123,26 @@ public class HouseOption extends BaseEntity{
                 .build();
 
         return entity;
+    }
+
+    public void update(HouseOptionUpdateDto dto){
+        this.electricYn = dto.getElectricYn();
+        this.gasYn = dto.getGasYn();
+        this.waterYn = dto.getWaterYn();
+        this.internetYn = dto.getInternetYn();
+        this.tvConnectYn = dto.getTvConnectYn();
+        this.personalBoilYn = dto.getPersonalBoilYn();
+        this.centerBoilYn = dto.getCenterBoilYn();
+        this.localBoilYn = dto.getLocalBoilYn();
+        this.rfgYn = dto.getRfgYn();
+        this.bedYn = dto.getBedYn();
+        this.laundryYn = dto.getLaundryYn();
+        this.airConditionerYn = dto.getAirConditionerYn();
+        this.microwaveYn = dto.getMicrowaveYn();
+        this.gasStoveYn = dto.getGasStoveYn();
+        this.inductionYn = dto.getInductionYn();
+        this.closetYn = dto.getClosetYn();
+        this.tvYn = dto.getTvYn();
+        this.elevatorYn = dto.getElevatorYn();
     }
 }
