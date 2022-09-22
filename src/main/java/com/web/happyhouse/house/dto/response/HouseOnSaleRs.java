@@ -1,10 +1,7 @@
-package com.web.happyhouse.house.dto.createRequest;
+package com.web.happyhouse.house.dto.response;
 
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
-import com.web.happyhouse.house.entity.HouseInfo;
-import com.web.happyhouse.house.entity.HouseOnSale;
-import com.web.happyhouse.house.entity.HouseOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -16,15 +13,15 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@ApiModel("아파트,오피스텔 매물 Create 요청 DTO")
+@ApiModel("아파트/오피스텔 매물 응답 DTO")
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseOnSaleCreateRq {
+public class HouseOnSaleRs {
 
     @NotNull
-    @ApiModelProperty(value = "집정보ID", example = "1", required = true)
-    Long houseInfoId;                       // 집정보ID
+    @ApiModelProperty(value = "매물ID", example = "1")
+    private Long houseOnSaleId;             // 매물ID
 
     @ApiModelProperty(value = "계약면적")
     private double contractArea;            // 계약면적
@@ -67,36 +64,25 @@ public class HouseOnSaleCreateRq {
     @ApiModelProperty(value = "관리비")
     private BigDecimal mngFee;              // 관리비
 
-    public HouseOnSale toHouseOnSaleEntity(HouseInfo houseInfo){
-        return HouseOnSale.builder()
-                .houseInfo(houseInfo)
-                .contractArea(contractArea)
-                .netLeasableArea(netLeasableArea)
-                .totalFloor(totalFloor)
-                .floor(floor)
-                .roomCount(roomCount)
-                .bathCount(bathCount)
-                .dirType(dirType)
-                .parkCount(parkCount)
-                .movingDate(movingDate)
-                .dealType(dealType)
-                .price(price)
-                .rent(rent)
-                .mngFee(mngFee)
-                .build();
-    }
+    @NotNull
+    @ApiModelProperty(value = "집정보ID", example = "1", required = true)
+    private Long houseInfoId;
+
+    @NotNull
+    @ApiModelProperty(value = "옵션ID", example = "1", required = true)
+    private Long houseOptionId;
 
     @ApiModelProperty(value = "전기포함유무")
-    private Boolean electricYn;             // 전기포함유무
+    private Boolean electricYn;
 
     @ApiModelProperty(value = "가스포함유무")
-    private Boolean gasYn;                  // 가스포함유무
+    private Boolean gasYn;
 
     @ApiModelProperty(value = "수도포함유무")
-    private Boolean waterYn;                // 수도포함유무
+    private Boolean waterYn;
 
     @ApiModelProperty(value = "인터넷포함유무")
-    private Boolean internetYn;             // 인터넷포함유무
+    private Boolean internetYn;
 
     @ApiModelProperty(value = "TV연결포함유무")
     private Boolean tvConnectYn;
@@ -139,29 +125,5 @@ public class HouseOnSaleCreateRq {
 
     @ApiModelProperty(value = "승강기유무")
     private Boolean elevatorYn;
-
-    public HouseOption toHouseOptionEntity(HouseOnSale houseOnSale){
-        return HouseOption.builder()
-                .houseOnSale(houseOnSale)
-                .electricYn(electricYn)
-                .gasYn(gasYn)
-                .waterYn(waterYn)
-                .internetYn(internetYn)
-                .tvConnectYn(tvConnectYn)
-                .personalBoilYn(personalBoilYn)
-                .centerBoilYn(centerBoilYn)
-                .localBoilYn(localBoilYn)
-                .rfgYn(rfgYn)
-                .bedYn(bedYn)
-                .laundryYn(laundryYn)
-                .airConditionerYn(airConditionerYn)
-                .microwaveYn(microwaveYn)
-                .gasStoveYn(gasStoveYn)
-                .inductionYn(inductionYn)
-                .closetYn(closetYn)
-                .tvYn(tvYn)
-                .elevatorYn(elevatorYn)
-                .build();
-    }
 
 }

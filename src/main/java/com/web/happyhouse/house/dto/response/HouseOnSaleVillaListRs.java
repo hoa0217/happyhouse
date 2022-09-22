@@ -16,18 +16,18 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class HouseOnSaleVillaListRs {
-    @ApiModelProperty(notes = "주소")
+    @ApiModelProperty(value = "주소", example = "서울특별시 종로구 적선동 156")
     String jibunAddress;
 
-    @ApiModelProperty(notes = "집유형")
+    @ApiModelProperty(value = "집유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")
     HouseType houseType;
 
-    @ApiModelProperty(notes = "매매 매물 리스트")
+    @ApiModelProperty(value = "매매 매물 리스트")
     List<HouseOnSaleVillaDto> houseOnSaleVillaMAEMAEList = new ArrayList<>();
 
-    @ApiModelProperty(notes = "매물 전세 리스트")
+    @ApiModelProperty(value = "매물 전세 리스트")
     List<HouseOnSaleVillaDto> houseOnSaleVillaJEONSEList = new ArrayList<>();
 
-    @ApiModelProperty(notes = "매물 월세 리스트")
+    @ApiModelProperty(value = "매물 월세 리스트")
     List<HouseOnSaleVillaDto> houseOnSaleVillaWOLSELList = new ArrayList<>();
 }

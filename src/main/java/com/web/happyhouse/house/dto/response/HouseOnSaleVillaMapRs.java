@@ -14,10 +14,12 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 public class HouseOnSaleVillaMapRs {
-    @ApiModelProperty(notes = "법정동코드")
-    String dongCode;                                                    // 법정동코드
-    @ApiModelProperty(notes = "집유형")
-    HouseType houseType;                                                // 집유형
-    @ApiModelProperty(notes = "맵에 띄울 정보")
-    Map<String, Long> jibunAddressToCountingMap;                            // 맵에 띄울 정보
+    @ApiModelProperty(value = "법정동코드", example = "1165010800")
+    String dongCode;
+
+    @ApiModelProperty(value = "집유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")
+    HouseType houseType;
+
+    @ApiModelProperty(value = "맵에 띄울 정보", example = "{서울특별시 종로구 적선동 156 : 2}")
+    Map<String, Long> jibunAddressToCountingMap;
 }

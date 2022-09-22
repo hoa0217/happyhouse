@@ -18,15 +18,15 @@ import java.util.Collections;
 public class JoinRq {
 
     @NotEmpty
-    @ApiModelProperty(notes = "사용자 이메일", example = "gjwjdghk123@gmail.com", required = true)
+    @ApiModelProperty(value = "사용자 이메일", example = "gjwjdghk123@gmail.com", required = true)
     private String email; // 이메일
 
     @NotEmpty
-    @ApiModelProperty(notes = "사용자 이름", example = "허정화")
+    @ApiModelProperty(value = "사용자 이름", example = "허정화")
     private String name; // 이름
 
     @NotEmpty
-    @ApiModelProperty(notes = "비밀번호")
+    @ApiModelProperty(value = "비밀번호")
     private String password; // 비밀번호
 
     public User toEntity(PasswordEncoder passwordEncoder){

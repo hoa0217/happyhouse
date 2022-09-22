@@ -19,20 +19,20 @@ import java.util.List;
 @NoArgsConstructor
 public class HouseOnSaleDetailRs {
     // 집정보
-    @ApiModelProperty(notes = "집 정보")
+    @ApiModelProperty(value = "집 정보")
     HouseInfoDto houseInfoDto;
 
     // 집거래내역
-    @ApiModelProperty(notes = "집 거래 내역리스트 (매매)")
+    @ApiModelProperty(value = "집 거래 내역리스트 (매매)")
     List<HouseDealDto> houseDealMAEMAEList = new ArrayList<>();
-    @ApiModelProperty(notes = "집 거래 내역리스트 (전세)")
+    @ApiModelProperty(value = "집 거래 내역리스트 (전세)")
     List<HouseDealDto> houseDealJEONSEList = new ArrayList<>();
-    @ApiModelProperty(notes = "집 거래 내역리스트 (월세)")
+    @ApiModelProperty(value = "집 거래 내역리스트 (월세)")
     List<HouseDealDto> houseDealWOLSEList = new ArrayList<>();
 
     // 매물정보
-    @ApiModelProperty(notes = "집 매물")
+    @ApiModelProperty(value = "집 매물")
     HouseOnSaleDto houseOnSaleDto;
-    @ApiModelProperty(notes = "집 옵션")
+    @ApiModelProperty(value = "집 옵션")
     HouseOptionDto houseOptionDto;
 }

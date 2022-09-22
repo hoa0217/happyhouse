@@ -18,11 +18,11 @@ import javax.validation.constraints.NotEmpty;
 @ToString
 public class LoginRq {
 
-    @ApiModelProperty(notes = "사용자 이메일", example = "gjwjdghk123@gmail.com", required = true)
+    @ApiModelProperty(value = "사용자 이메일", example = "gjwjdghk123@gmail.com", required = true)
     @NotEmpty
     private String email;
 
-    @ApiModelProperty(notes = "비밀번호")
+    @ApiModelProperty(value = "비밀번호")
     @NotEmpty
     private String password;
 

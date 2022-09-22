@@ -15,12 +15,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class HouseOnSaleListRs {
-    @ApiModelProperty(notes = "집정보")
+    @ApiModelProperty(value = "집정보")
     HouseInfoDto houseInfoDto;                      // 집정보
-    @ApiModelProperty(notes = "매매 매물 리스트")
+
+    @ApiModelProperty(value = "매매 매물 리스트")
     List<HouseOnSaleDto> houseOnSaleMAEMAEList = new ArrayList<>();     // 매매 매물 리스트
-    @ApiModelProperty(notes = "전세 매물 리스트")
+    @ApiModelProperty(value = "전세 매물 리스트")
     List<HouseOnSaleDto> houseOnSaleJEONSEList = new ArrayList<>();     // 전세 매물 리스트
-    @ApiModelProperty(notes = "월세 매물 리스트")
+    @ApiModelProperty(value = "월세 매물 리스트")
     List<HouseOnSaleDto> houseOnSaleWOLSEList = new ArrayList<>();      // 월세 매물 리스트
 }
