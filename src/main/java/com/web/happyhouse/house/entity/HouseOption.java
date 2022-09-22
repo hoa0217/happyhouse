@@ -2,7 +2,7 @@ package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.base.BaseEntity;
 import com.web.happyhouse.house.dto.HouseOptionDto;
-import com.web.happyhouse.house.dto.updateRequest.HouseOptionUpdateDto;
+import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateRq;
 import lombok.*;
 
 import javax.persistence.*;
@@ -125,7 +125,7 @@ public class HouseOption extends BaseEntity{
         return entity;
     }
 
-    public void update(HouseOptionUpdateDto dto){
+    public void update(HouseOnSaleUpdateRq dto){
         this.electricYn = dto.getElectricYn();
         this.gasYn = dto.getGasYn();
         this.waterYn = dto.getWaterYn();

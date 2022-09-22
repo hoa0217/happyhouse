@@ -13,9 +13,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class HouseOnSaleVillaDetailRs {
-    // 매물정보
-    @ApiModelProperty(notes = "빌라 매물 정보")
+    @ApiModelProperty(value = "빌라 매물 정보")
     HouseOnSaleVillaDto houseOnSaleVillaDto;
-    @ApiModelProperty(notes = "빌라 옵션 정보")
+
+    @ApiModelProperty(value = "빌라 옵션 정보")
     HouseOptionVillaDto houseOptionVillaDto;
 }

@@ -4,7 +4,7 @@ import com.web.happyhouse.base.BaseEntity;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
 import com.web.happyhouse.house.dto.HouseOnSaleDto;
-import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateDto;
+import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateRq;
 import lombok.*;
 
 import javax.persistence.*;
@@ -126,7 +126,7 @@ public class HouseOnSale extends BaseEntity {
         return entity;
     }
 
-    public void update(HouseOnSaleUpdateDto dto){
+    public void update(HouseOnSaleUpdateRq dto){
         this.contractArea = dto.getContractArea();
         this.netLeasableArea = dto.getNetLeasableArea();
         this.totalFloor = dto.getTotalFloor();
