@@ -10,7 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @ApiModel("아파트/오피스텔 매물 Update DTO")
@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class HouseOnSaleUpdateDto {
 
-    @NotEmpty
+    @NotNull
     @ApiModelProperty(notes = "거래ID")
     private Long houseOnSaleId;        // 거래ID
 

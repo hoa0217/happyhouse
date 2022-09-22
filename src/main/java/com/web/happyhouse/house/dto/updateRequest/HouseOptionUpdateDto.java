@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @ApiModel("아파트/오피스텔 옵션 Update 정보 DTO")
 @Getter
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class HouseOptionUpdateDto {
 
-    @NotEmpty
+    @NotNull
     @ApiModelProperty(notes = "옵션ID")
     private Long houseOptionId;
 

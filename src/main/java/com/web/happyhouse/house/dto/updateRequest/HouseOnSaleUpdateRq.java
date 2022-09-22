@@ -13,9 +13,9 @@ import lombok.Setter;
 public class HouseOnSaleUpdateRq {
 
     @ApiModelProperty(notes = "매물 정보")
-    HouseOnSaleUpdateDto houseOnSaleUpdateDto;
+    HouseOnSaleUpdateDto houseOnSaleDto;
 
     @ApiModelProperty(notes = "옵션 정보")
-    HouseOptionUpdateDto houseOptionUpdateDto;
+    HouseOptionUpdateDto houseOptionDto;
 
 }

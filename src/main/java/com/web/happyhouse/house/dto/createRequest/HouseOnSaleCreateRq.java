@@ -19,9 +19,9 @@ public class HouseOnSaleCreateRq {
     Long houseInfoId;                       // 정보ID
 
     @ApiModelProperty(notes = "매물 정보")
-    HouseOnSaleCreateDto houseOnSaleCreateDto;
+    HouseOnSaleCreateDto houseOnSaleDto;
 
     @ApiModelProperty(notes = "옵션 정보")
-    HouseOptionCreateDto houseOptionCreateDto;
+    HouseOptionCreateDto houseOptionDto;
 
 }
