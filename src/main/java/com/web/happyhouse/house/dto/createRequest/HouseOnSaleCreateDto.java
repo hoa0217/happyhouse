@@ -1,27 +1,24 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.createRequest;
 
-import com.web.happyhouse.base.BaseDto;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
+import com.web.happyhouse.house.entity.HouseInfo;
+import com.web.happyhouse.house.entity.HouseOnSale;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 
-@ApiModel("아파트/오피스텔 매물 DTO")
+@ApiModel("아파트/오피스텔 매물 Create DTO")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class HouseOnSaleDto extends BaseDto {
-    @ApiModelProperty(notes = "거래ID")
-    private Long houseOnSaleId;             // 거래ID
+public class HouseOnSaleCreateDto {
 
     @ApiModelProperty(notes = "계약면적")
     private double contractArea;            // 계약면적
@@ -64,6 +61,23 @@ public class HouseOnSaleDto extends BaseDto {
     @ApiModelProperty(notes = "관리비")
     private BigDecimal mngFee;              // 관리비
 
-    @ApiModelProperty(notes = "정보ID")
-    private Long houseInfoId;               // 정보ID
+    public HouseOnSale toEntity(HouseInfo houseInfo){
+        return HouseOnSale.builder()
+                .houseInfo(houseInfo)
+                .contractArea(contractArea)
+                .netLeasableArea(netLeasableArea)
+                .totalFloor(totalFloor)
+                .floor(floor)
+                .roomCount(roomCount)
+                .bathCount(bathCount)
+                .dirType(dirType)
+                .parkCount(parkCount)
+                .movingDate(movingDate)
+                .dealType(dealType)
+                .price(price)
+                .rent(rent)
+                .mngFee(mngFee)
+                .build();
+    }
+
 }

@@ -5,7 +5,6 @@ import com.web.happyhouse.base.BaseEntity;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
 import com.web.happyhouse.house.domain.HouseType;
-import com.web.happyhouse.house.dto.HouseOnSaleDto;
 import com.web.happyhouse.house.dto.HouseOnSaleVillaDto;
 import lombok.*;
 
@@ -29,8 +28,6 @@ public class HouseOnSaleVilla extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Dong dong;                      // 법정동코드
-
-    private String zoneCode;                // 우편번호
 
     private String jibunAddress;            // 지번주소
 
@@ -69,10 +66,9 @@ public class HouseOnSaleVilla extends BaseEntity {
     private BigDecimal mngFee;                    // 관리비
 
     @Builder
-    public HouseOnSaleVilla(Long houseOnSaleVillaId, Dong dong, String zonecode, String jibunAddress, HouseType houseType, double contractArea, double netLeasableArea, String totalFloor, String floor, String roomCount, String bathCount, DirType dirType, String parkCount, String movingDate, DealType dealType, BigDecimal price, BigDecimal rent, BigDecimal mngFee) {
+    public HouseOnSaleVilla(Long houseOnSaleVillaId, Dong dong, String jibunAddress, HouseType houseType, double contractArea, double netLeasableArea, String totalFloor, String floor, String roomCount, String bathCount, DirType dirType, String parkCount, String movingDate, DealType dealType, BigDecimal price, BigDecimal rent, BigDecimal mngFee) {
         this.houseOnSaleVillaId = houseOnSaleVillaId;
         this.dong = dong;
-        this.zoneCode = zonecode;
         this.jibunAddress = jibunAddress;
         this.houseType = houseType;
         this.contractArea = contractArea;
@@ -94,7 +90,6 @@ public class HouseOnSaleVilla extends BaseEntity {
         HouseOnSaleVillaDto dto = new HouseOnSaleVillaDto();
         dto.setHouseOnSaleVillaId(entity.getHouseOnSaleVillaId());
         dto.setDongCode(entity.getDong().getDongCode());
-        dto.setZoneCode(entity.getZoneCode());
         dto.setHouseType(entity.getHouseType());
         dto.setJibunAddress(entity.getJibunAddress());
         dto.setContractArea(entity.getContractArea());
@@ -111,6 +106,8 @@ public class HouseOnSaleVilla extends BaseEntity {
         dto.setRent(entity.getRent());
         dto.setMngFee(entity.getMngFee());
 
+        dto.setCreatedTime(entity.getCreatedTime());
+        dto.setUpdatedTime(entity.getUpdatedTime());
         return dto;
     }
 
@@ -119,7 +116,6 @@ public class HouseOnSaleVilla extends BaseEntity {
         HouseOnSaleVilla entity = HouseOnSaleVilla.builder()
                 .houseOnSaleVillaId(dto.getHouseOnSaleVillaId())
                 .dong(dong)
-                .zonecode(dto.getZoneCode())
                 .jibunAddress(dto.getJibunAddress())
                 .houseType(dto.getHouseType())
                 .contractArea(dto.getContractArea())

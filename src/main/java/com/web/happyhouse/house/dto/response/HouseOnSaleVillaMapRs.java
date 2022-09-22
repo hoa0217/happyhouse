@@ -1,4 +1,4 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.response;
 
 import com.web.happyhouse.house.domain.HouseType;
 import io.swagger.annotations.ApiModel;
@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Map;
 
 @ApiModel("MAP용 빌라 매물 정보")

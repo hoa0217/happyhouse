@@ -1,22 +1,22 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.updateRequest;
 
-import com.web.happyhouse.base.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@ApiModel("아파트/오피스텔 매물 옵션 DTO")
+import javax.validation.constraints.NotEmpty;
+
+@ApiModel("아파트/오피스텔 옵션 Update 정보 DTO")
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseOptionDto extends BaseDto {
+public class HouseOptionUpdateDto {
+
+    @NotEmpty
     @ApiModelProperty(notes = "옵션ID")
     private Long houseOptionId;
-
-    @ApiModelProperty(notes = "매물ID")
-    private Long houseOnSaleId;
 
     @ApiModelProperty(notes = "전기포함유무")
     private Boolean electricYn;
@@ -71,4 +71,5 @@ public class HouseOptionDto extends BaseDto {
 
     @ApiModelProperty(notes = "승강기유무")
     private Boolean elevatorYn;
+
 }

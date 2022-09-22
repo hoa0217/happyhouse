@@ -1,53 +1,74 @@
 package com.web.happyhouse.house.dto;
 
+import com.web.happyhouse.base.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-@ApiModel("빌라 옵션 정보")
+
+@ApiModel("빌라(원룸, 투룸) 옵션 DTO")
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseOptionVillaDto {
+public class HouseOptionVillaDto extends BaseDto {
     @ApiModelProperty(notes = "옵션ID")
-    private Long houseOptionVillaId;             // 옵션ID
+    private Long houseOptionVillaId;
+
     @ApiModelProperty(notes = "빌라매물ID")
-    private Long houseOnSaleVillaId;            // 빌라매물ID
+    private Long houseOnSaleVillaId;
+
     @ApiModelProperty(notes = "전기포함유무")
-    private Boolean electricYn;             // 전기포함유무
+    private Boolean electricYn;
+
     @ApiModelProperty(notes = "가스포함유무")
-    private Boolean gasYn;                  // 가스포함유무
+    private Boolean gasYn;
+
     @ApiModelProperty(notes = "수도포함유무")
-    private Boolean waterYn;                // 수도포함유무
+    private Boolean waterYn;
+
     @ApiModelProperty(notes = "인터넷포함유무")
-    private Boolean internetYn;             // 인터넷포함유무
+    private Boolean internetYn;
+
     @ApiModelProperty(notes = "TV연결포함유무")
     private Boolean tvConnectYn;
+
     @ApiModelProperty(notes = "개인난방")
     private Boolean personalBoilYn;
+
     @ApiModelProperty(notes = "중앙난방")
     private Boolean centerBoilYn;
+
     @ApiModelProperty(notes = "지역난방")
     private Boolean localBoilYn;
+
     @ApiModelProperty(notes = "냉장고유무")
     private Boolean rfgYn;
+
     @ApiModelProperty(notes = "침대유무")
     private Boolean bedYn;
+
     @ApiModelProperty(notes = "세탁기유무")
     private Boolean laundryYn;
+
     @ApiModelProperty(notes = "에어컨유무")
     private Boolean airConditionerYn;
+
     @ApiModelProperty(notes = "전자레인지유무")
     private Boolean microwaveYn;
+
     @ApiModelProperty(notes = "가스레인지유무")
     private Boolean gasStoveYn;
+
     @ApiModelProperty(notes = "인덕션유무")
     private Boolean inductionYn;
+
     @ApiModelProperty(notes = "옷장유무")
     private Boolean closetYn;
+
     @ApiModelProperty(notes = "TV유무")
     private Boolean tvYn;
+
     @ApiModelProperty(notes = "승강기유무")
     private Boolean elevatorYn;
 }

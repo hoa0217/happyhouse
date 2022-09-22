@@ -1,6 +1,7 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.response;
 
 import com.web.happyhouse.house.domain.HouseType;
+import com.web.happyhouse.house.dto.HouseInfoDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

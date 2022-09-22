@@ -29,7 +29,7 @@ public class BookmarkController {
     })
     @ApiOperation(value = "저장된 북마크 리스트 가져오기", notes="현재 유저의 북마크 리스트가져오기")
     @ApiImplicitParam(name="userId", value = "현재 유저의 id")
-    @GetMapping("/apt/{userId}")
+    @GetMapping("/house/{userId}")
     public ResponseDto<List<BookmarkDto>> getBookmarkList(@PathVariable("userId") Long userId){
         return ResponseDto.res(ResponseCode.OK, bookmarkService.getBookmarkList(userId));
     }
@@ -41,7 +41,7 @@ public class BookmarkController {
                     required = true, dataType = "String", paramType = "header")
     })
     @ApiOperation(value = "북마크 저장", notes="북마크 저장하기")
-    @PostMapping ("/apt/{userId}/{houseOnSaleId}")
+    @PostMapping ("/house/{userId}/{houseOnSaleId}")
     public ResponseDto saveBookmark(@PathVariable("userId") Long userId, @PathVariable("houseOnSaleId") Long houseOnSaleId){
         bookmarkService.saveBookmark(userId, houseOnSaleId);
         return ResponseDto.res(ResponseCode.CREATED);

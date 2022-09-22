@@ -18,7 +18,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseDto defaultException(HttpServletRequest request, Exception e){
-        return ResponseDto.res(ResponseCode.INTERNAL_SERVER_ERROR);
+        return ResponseDto.res(ResponseCode.INTERNAL_SERVER_ERROR, e.getMessage());
     }
 
     /**
@@ -36,6 +36,15 @@ public class ExceptionAdvice {
     @ExceptionHandler(NotFoundHouseOnSaleException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseDto notFoundHouseOnSaleException(HttpServletRequest request, NotFoundHouseOnSaleException e){
+        return ResponseDto.res(ResponseCode.BAD_REQUEST, e.getMessage());
+    }
+
+    /**
+     * 옵션정보 찾기 실패 예외
+     */
+    @ExceptionHandler(NotFoundHouseOptionException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ResponseDto notFoundHouseOptionException(HttpServletRequest request, NotFoundHouseOptionException e){
         return ResponseDto.res(ResponseCode.BAD_REQUEST, e.getMessage());
     }
 

@@ -1,6 +1,5 @@
-package com.web.happyhouse.house.dto;
+package com.web.happyhouse.house.dto.updateRequest;
 
-import com.web.happyhouse.base.BaseDto;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
 import io.swagger.annotations.ApiModel;
@@ -8,20 +7,21 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 
-@ApiModel("아파트/오피스텔 매물 DTO")
+@ApiModel("아파트/오피스텔 매물 Update DTO")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class HouseOnSaleDto extends BaseDto {
+public class HouseOnSaleUpdateDto {
+
+    @NotEmpty
     @ApiModelProperty(notes = "거래ID")
-    private Long houseOnSaleId;             // 거래ID
+    private Long houseOnSaleId;        // 거래ID
 
     @ApiModelProperty(notes = "계약면적")
     private double contractArea;            // 계약면적
@@ -63,7 +63,4 @@ public class HouseOnSaleDto extends BaseDto {
 
     @ApiModelProperty(notes = "관리비")
     private BigDecimal mngFee;              // 관리비
-
-    @ApiModelProperty(notes = "정보ID")
-    private Long houseInfoId;               // 정보ID
 }
