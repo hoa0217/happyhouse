@@ -1,8 +1,7 @@
 package com.web.happyhouse.config.security;
 
+import com.web.happyhouse.advice.exception.NotFoundUserException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -39,8 +38,13 @@ public class JwtFilter extends GenericFilterBean {
         log.info(((HttpServletRequest) request).getRequestURL().toString());
 
         if (token != null && tokenProvider.validationToken(token)) {
-            Authentication authentication = tokenProvider.getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            try {
+                Authentication authentication = tokenProvider.getAuthentication(token);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+            catch (NotFoundUserException e){
+                filterChain.doFilter(request, response);
+            }
         }
         filterChain.doFilter(request, response);
     }
