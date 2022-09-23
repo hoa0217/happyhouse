@@ -20,7 +20,9 @@
 
 ## 기술 스택
 
-## 아키텍처
+## DB ERD
+![happy_house_table](https://user-images.githubusercontent.com/48192141/191943864-c9e906fe-76fd-4c9f-bdb0-575b183c619b.png)
+
 
 ## 🔥 [기능 명세서](https://futuristic-iodine-84f.notion.site/c89aa776dc064e7e90a5731efb8e6ca0)
 > 프로젝트 요구사항 명세서입니다.
