@@ -9,16 +9,21 @@
 ## 👬 Member
 
 ## 📌 프로젝트 소개
+#### 내가 살집을 쉽고 빠르게 찾아주는 부동산 중개 서비스 플랫폼 HAPPY HOUSE
+원하는 집의 실거래가와 주변환경 데이터를 제공합니다!
 
-## 🛺 [배포 URL](http://49.50.172.69)
-> 프로젝트 배포 사이트(http://49.50.172.69) 입니다.
+## 🛺 프로젝트 URL
+> 배포 예정 입니다.
+ 
+## 🎯 [API 문서 URL](https://happy-haapyhouse.herokuapp.com/swagger-ui/index.html)
+> 프로젝트 API 배포 사이트 (https://happy-haapyhouse.herokuapp.com/swagger-ui/index.html) 입니다.
 
 ## 기술 스택
 
 ## 아키텍처
 
-## 🔥 [기능 명세서](https://www.notion.so/b626f197b9bf48d3901dadff4adb877f)
+## 🔥 [기능 명세서](https://futuristic-iodine-84f.notion.site/c89aa776dc064e7e90a5731efb8e6ca0)
 > 프로젝트 요구사항 명세서입니다.
 
-## 📖 [WIKI Home](https://github.com/hoa0217/happyhouse/wiki)
-> 팀 그라운드 룰, 스프린트 과정의 기록을 남깁니다.
+## 📖 [개발 규칙](https://futuristic-iodine-84f.notion.site/1917e92cc8854c24874fa04e9c4bbe77)
+> 개발에 필요한 규칙를 지정합니다.
