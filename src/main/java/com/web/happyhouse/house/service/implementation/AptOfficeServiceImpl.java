@@ -14,6 +14,7 @@ import com.web.happyhouse.house.dto.createRequest.HouseOnSaleCreateRq;
 import com.web.happyhouse.house.dto.response.HouseInfoListRs;
 import com.web.happyhouse.house.dto.response.HouseOnSaleDetailRs;
 import com.web.happyhouse.house.dto.response.HouseOnSaleListRs;
+import com.web.happyhouse.house.dto.response.HouseOnSaleRs;
 import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateRq;
 import com.web.happyhouse.house.entity.HouseDeal;
 import com.web.happyhouse.house.entity.HouseInfo;
@@ -46,7 +47,12 @@ public class AptOfficeServiceImpl implements AptOfficeService {
     @Override
     public HouseInfoListRs searchHouseInfoList(String dongCode, HouseType houseType) {
         HouseInfoListRs houseInfoListRs = new HouseInfoListRs();
+
+        // 동정보 매핑
         Dong dong = dongRepository.findByDongCode(dongCode);
+        houseInfoListRs.setDongDto(Dong.toDto(dong));
+
+        // 집정보 매핑
         List<HouseInfoDto> houseInfoDtoList = houseInfoRepository.findByDongAndHouseType(dong, houseType)
                 .stream()
                 .map(entity -> HouseInfo.toDto(entity))
@@ -57,7 +63,7 @@ public class AptOfficeServiceImpl implements AptOfficeService {
     }
 
     @Override
-    public HouseOnSaleListRs getHouseOnSale(Long houseInfoId) {
+    public HouseOnSaleListRs getHouseOnSaleList(Long houseInfoId) {
         HouseOnSaleListRs houseOnSaleListRs = new HouseOnSaleListRs();
 
         // 집정보 매핑
@@ -123,6 +129,22 @@ public class AptOfficeServiceImpl implements AptOfficeService {
         }
 
         return houseOnSaleDetailRs;
+    }
+
+    @Override
+    public HouseOnSaleRs getHouseOnSale(Long houseOnSaleId) {
+
+        HouseOnSale houseOnSale = houseOnSaleRepository.findById(houseOnSaleId)
+                .orElseThrow(() -> {
+                    throw new NotFoundHouseOnSaleException("해당 ID(" + houseOnSaleId + ")의 매물 정보를 찾을 수 없습니다.");
+                });
+
+        HouseOption houseOption = houseOptionRepository.findByHouseOnSale(houseOnSale);
+        if(houseOption == null){
+            throw new NotFoundHouseOptionException("해당 매물(" + houseOnSale.getHouseOnSaleId() + ")의 옵션 정보를 찾을 수 없습니다.");
+        }
+
+        return HouseOnSaleRs.toHouseOnSaleRs(houseOnSale, houseOption);
     }
 
     @Override
