@@ -39,7 +39,7 @@ public class HouseDeal {
     private String floor;               // 충
 
     @Enumerated(EnumType.STRING)
-    private DealType dealType;            // 거래유형(매매, 전세, 월세)
+    private DealType dealType;            // 거래 유형(매매, 전세, 월세)
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "house_info_id")

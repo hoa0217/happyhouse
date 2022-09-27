@@ -17,7 +17,7 @@ public class HouseOnSaleVillaMapRs {
     @ApiModelProperty(value = "법정동코드", example = "1165010800")
     String dongCode;
 
-    @ApiModelProperty(value = "집유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")
+    @ApiModelProperty(value = "건물 유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")
     HouseType houseType;
 
     @ApiModelProperty(value = "맵에 띄울 정보", example = "{서울특별시 종로구 적선동 156 : 2}")
