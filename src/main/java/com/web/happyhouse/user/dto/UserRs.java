@@ -27,7 +27,7 @@ public class UserRs extends BaseDto {
     private String name; // 이름
 
 
-    @ApiModelProperty(value = "사용자 역할(일반 사용자, 부동산 중개인)", example = "ROLE_USER", allowableValues = "ROLE_USER, ROLE_AGENT")
+    @ApiModelProperty(value = "사용자 역할(일반 사용자, 부동산 중개인, 관리자)", example = "ROLE_USER", allowableValues = "ROLE_USER, ROLE_AGENT, ROLE_ADMIN")
     private List<String> roles;
 
     public UserRs(User user){
