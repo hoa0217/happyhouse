@@ -66,4 +66,11 @@ public class HouseOnSaleDto extends BaseDto {
 
     @ApiModelProperty(value = "집정보 ID", example = "1")
     private Long houseInfoId;               // 집정보ID
+
+    @ApiModelProperty(value = "생성자", example = "1")
+    private Long createBy;
+
+    @ApiModelProperty(value = "수정자", example = "1")
+    private Long updateBy;
+
 }

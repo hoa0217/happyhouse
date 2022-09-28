@@ -2,6 +2,7 @@ package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.base.BaseEntity;
+import com.web.happyhouse.base.BaseTimeEntity;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
 import com.web.happyhouse.house.domain.HouseType;

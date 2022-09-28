@@ -100,6 +100,9 @@ public class HouseOnSale extends BaseEntity {
 
         dto.setCreatedTime(entity.getCreatedTime());
         dto.setUpdatedTime(entity.getUpdatedTime());
+        dto.setCreateBy(entity.getCreateBy());
+        dto.setUpdateBy(entity.getUpdateBy());
+
         return dto;
     }
 

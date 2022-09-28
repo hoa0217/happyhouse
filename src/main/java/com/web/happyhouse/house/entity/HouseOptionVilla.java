@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HouseOptionVilla extends BaseEntity{
+public class HouseOptionVilla extends BaseEntity {
 
     @Id
     @GeneratedValue
