@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseDto defaultException(HttpServletRequest request, Exception e){
-        return ResponseDto.res(ResponseCode.INTERNAL_SERVER_ERROR, e.getMessage());
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    protected ResponseDto defaultException(HttpServletRequest request, Exception e){
+//        return ResponseDto.res(ResponseCode.INTERNAL_SERVER_ERROR, e.getMessage());
+//    }
 
     /**
      * 집정보 찾기 실패 예외
