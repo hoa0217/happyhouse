@@ -33,7 +33,7 @@ public class HouseInfo {
     private String buildYear;           // 건축년도
 
     @Enumerated(EnumType.STRING)
-    private HouseType houseType;        // 유형
+    private HouseType houseType;        // 건물 유형
 
 
     @Builder

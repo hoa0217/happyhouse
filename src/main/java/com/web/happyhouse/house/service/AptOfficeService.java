@@ -5,6 +5,7 @@ import com.web.happyhouse.house.dto.createRequest.HouseOnSaleCreateRq;
 import com.web.happyhouse.house.dto.response.HouseInfoListRs;
 import com.web.happyhouse.house.dto.response.HouseOnSaleDetailRs;
 import com.web.happyhouse.house.dto.response.HouseOnSaleListRs;
+import com.web.happyhouse.house.dto.response.HouseOnSaleRs;
 import com.web.happyhouse.house.dto.updateRequest.HouseOnSaleUpdateRq;
 
 public interface AptOfficeService {
@@ -26,7 +27,7 @@ public interface AptOfficeService {
      * @param houseInfoId
      * @return
      */
-    HouseOnSaleListRs getHouseOnSale(Long houseInfoId);
+    HouseOnSaleListRs getHouseOnSaleList(Long houseInfoId);
 
     /**
      * 클릭한 houseOnSale에 해당하는 상세 정보 (새로운탭)
@@ -36,6 +37,15 @@ public interface AptOfficeService {
      * @return
      */
     HouseOnSaleDetailRs getHouseOnSaleDetail(Long houseOnSaleId);
+
+    /**
+     * 매물 찾기
+     * only 오피스텔, 아파트
+     *
+     * @param houseOnSaleId
+     * @return
+     */
+    HouseOnSaleRs getHouseOnSale(Long houseOnSaleId);
 
     /**
      * 매물 생성

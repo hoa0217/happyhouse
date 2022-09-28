@@ -19,7 +19,7 @@ public class HouseOnSaleVillaListRs {
     @ApiModelProperty(value = "주소", example = "서울특별시 종로구 적선동 156")
     String jibunAddress;
 
-    @ApiModelProperty(value = "집유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")
+    @ApiModelProperty(value = "건물 유형", allowableValues = "APT, OFFICETEL, ONEROOM, TWOROOM")
     HouseType houseType;
 
     @ApiModelProperty(value = "매매 매물 리스트")

@@ -1,6 +1,8 @@
 package com.web.happyhouse.user.service;
 
 import com.web.happyhouse.user.dto.UserRs;
+import com.web.happyhouse.user.dto.UserUpdateNameRq;
+import com.web.happyhouse.user.dto.UserUpdatePasswordRq;
 
 public interface UserService {
 
@@ -25,12 +27,18 @@ public interface UserService {
     UserRs getByEmail(String email);
 
     /**
-     * 회원정보 수정
-     * @param userId
-     * @param name
+     * 회원정보 비밀번호 수정
+     * @param updateRq
      * @return
      */
-    Long update(Long userId, String name);
+    Long updatePassword(UserUpdatePasswordRq updateRq);
+
+    /**
+     * 회원정보 이름 수정
+     * @param updateRq
+     * @return
+     */
+    Long updateName(UserUpdateNameRq updateRq);
 
     /**
      * 탈퇴하기

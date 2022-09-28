@@ -2,6 +2,7 @@ package com.web.happyhouse.house.entity;
 
 import com.web.happyhouse.address.entity.Dong;
 import com.web.happyhouse.base.BaseEntity;
+import com.web.happyhouse.base.BaseTimeEntity;
 import com.web.happyhouse.house.domain.DealType;
 import com.web.happyhouse.house.domain.DirType;
 import com.web.happyhouse.house.domain.HouseType;
@@ -32,7 +33,7 @@ public class HouseOnSaleVilla extends BaseEntity {
     private String jibunAddress;            // 지번주소
 
     @Enumerated(EnumType.STRING)
-    private HouseType houseType;            // 유형
+    private HouseType houseType;            // 건물 유형
 
     private double contractArea;            // 계약면적
 
@@ -54,7 +55,7 @@ public class HouseOnSaleVilla extends BaseEntity {
     private String movingDate;              // 입주가능일
 
     @Enumerated(EnumType.STRING)
-    private DealType dealType;              // 거래유형(매매, 전세, 월세)
+    private DealType dealType;              // 거래 유형(매매, 전세, 월세)
 
     @Column(scale = 0)
     private BigDecimal price;                     // 가격(매매가, 전세가, 월세보증금)

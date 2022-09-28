@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "house_option")
-public class HouseOption extends BaseEntity{
+public class HouseOption extends BaseEntity {
 
     @Id
     @GeneratedValue

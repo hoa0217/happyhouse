@@ -1,9 +1,12 @@
 package com.web.happyhouse.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.web.happyhouse.base.BaseEntity;
+import com.web.happyhouse.base.BaseTimeEntity;
 import com.web.happyhouse.user.dto.UserRq;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +20,7 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseEntity implements UserDetails {
+public class User extends BaseTimeEntity implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -109,6 +112,10 @@ public class User extends BaseEntity implements UserDetails {
 
     public void updateName(String name) {
         this.name = name;
+    }
+
+    public void updatePassword(String password){
+        this.password = password;
     }
 
 }
