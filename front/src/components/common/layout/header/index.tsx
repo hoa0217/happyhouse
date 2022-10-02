@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 const Header = () => {
   const { Header } = AntdLayout;
   const { pathname } = useRouter();
-  console.log('path', pathname);
+
   return (
     <Header className={cx('header')}>
       <div className={cx('content')}>
@@ -43,7 +43,12 @@ const Header = () => {
         <div className={cx('login_Wrap')}>
           <Link href="/login">
             <a role="button" className={cx('login')}>
-              Login
+              로그인
+            </a>
+          </Link>
+          <Link href="/">
+            <a role="button" className={cx('login')}>
+              회원가입
             </a>
           </Link>
         </div>
