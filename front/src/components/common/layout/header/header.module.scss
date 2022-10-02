@@ -4,19 +4,61 @@ $IMG_PATH: $STATIC_IMG_PATH + '/header';
 
 .header {
   display: flex;
+  align-items: center;
+  background-color: $C_White;
+  border: solid 1px #e9e9e9;
+}
+
+.content {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: $HEADER_HEIGHT;
-  background-color: $C_Gray20;
+  margin: 0 auto;
+  width: $PAGE_WIDTH;
+  height: 80px;
 }
 
 .menu {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 500px;
-  font-size: $FS_Mm;
-  font-weight: $Fw_Md;
+  font-size: 17px;
+  font-weight: 500;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    opacity: 0.2;
+
+    &:nth-child(n + 2) {
+      margin-left: 25px;
+    }
+  }
+
+  .isCurrent {
+    opacity: 1;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(181deg, #1860ec 99%, #26cbff -27%);
+      content: '';
+    }
+  }
+}
+
+.logo {
+  width: 209px;
+  height: 32.5px;
+  background-image: url($IMG_PATH + '/iconLogo.png');
+  background-size: cover;
+  content: '';
 }
 
 .login_Wrap {
