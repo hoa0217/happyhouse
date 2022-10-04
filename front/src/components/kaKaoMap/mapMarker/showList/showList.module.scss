@@ -1,16 +1,82 @@
 @import '@styles/constants.scss';
 
-
 .wrapper {
-    position: fixed;
-    width: 20vw;
-    height: 100vh;
-    background-color: white;
-    top: 86px;
-    left: 0px;
-    z-index: 20;
-    color: $C_Black;
-    .list_wrapper{
-        margin : 10px 0px;
-    }
+  position: fixed;
+  width: 20vw;
+  height: 100vh;
+  background-color: white;
+  top: 86px;
+  left: 0px;
+  z-index: 20;
+  color: $C_Black;
+  .list_wrapper {
+    margin: 10px;
+  }
+  .noItem {
+    font-size: 15px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+  }
+  .houseType {
+    width: 75px;
+    height: 16px;
+    flex-grow: 0;
+    font-family: NotoSansKR;
+    font-size: 11px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.09px;
+    text-align: left;
+    color: #32415e;
+  }
+  .houseName {
+    width: 124px;
+    height: 26px;
+    flex-grow: 0;
+    font-family: NotoSansKR;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.09px;
+    text-align: left;
+    color: #000;
+  }
+  .price {
+    width: 109px;
+    height: 19px;
+    flex-grow: 0;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.15px;
+    text-align: left;
+    color: #0075ff;
+  }
+  .selected {
+    margin-right: 4px;
+  }
+  .netLeasableArea {
+    height: 19px;
+    flex-grow: 0;
+    font-family: NotoSansKR;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.13px;
+    text-align: left;
+    color: #505050;
+  }
 }

@@ -1,13 +1,17 @@
 export default interface MapListRs {
-    houseInfoDtoList : houseInfoDto[];
+  data: houseInfoDtoList;
+}
+
+export interface houseInfoDtoList {
+  houseInfoDtoList: houseInfoDto[];
 }
 
 export interface houseInfoDto {
-    buildYear : string,
-    dongCode : string,
-    houseInfoId : number,
-    houseName : string,
-    houseType : string,
-    jibun : string,
-    jibunAddress : string,
+  buildYear: string;
+  dongCode: string;
+  houseInfoId: number;
+  houseName: string;
+  houseType: string;
+  jibun: string;
+  jibunAddress: string;
 }

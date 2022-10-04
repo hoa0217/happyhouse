@@ -8,16 +8,18 @@ interface EventMarkerContainerProps {
   position: positonDto;
   houseInfoId: number;
   api: string;
+  dongCode?: string;
 }
 
 interface positonDto {
   lat: number;
   lng: number;
 }
+const imageSize = { width: 25, height: 26 };
 
-const EventMarkerContainer = ({ position, houseInfoId, api }: EventMarkerContainerProps) => {
+const EventMarkerContainer = ({ position, houseInfoId }: EventMarkerContainerProps) => {
   const map = useMap();
-  const [houseData, setHouseData] = useState();
+  const [houseData, setHouseData] = useState(null);
 
   const markerClick = async (marker: any) => {
     const center = marker.getPosition();
@@ -30,17 +32,23 @@ const EventMarkerContainer = ({ position, houseInfoId, api }: EventMarkerContain
       //   //4보다 작으면 이동만
       map.panTo(center);
     }
+    // const {
+    //   data: { data },
+    // } = await customAxios.get(`house/list/${houseInfoId}`); //나중에 주석없애줘야됨!!!
     const {
       data: { data },
-    } = await customAxios.get(`house/${api}/list/${houseInfoId}`); //나중에 주석없애줘야됨!!!
-    // const {data : {data}} = await customAxios.get(`house/apt/list/138`);
+    } = await customAxios.get(`house/list/12456`);
     setHouseData(data);
   };
 
   return (
     <>
-      <MapMarker position={position} onClick={markerClick}></MapMarker>
-      <ShowList houseData={houseData} />
+      <MapMarker
+        position={position}
+        onClick={markerClick}
+        image={{ src: 'img/kakaoMap/iconHome.png', size: imageSize }}
+      ></MapMarker>
+      {houseData && <ShowList houseData={houseData} />}
     </>
   );
 };

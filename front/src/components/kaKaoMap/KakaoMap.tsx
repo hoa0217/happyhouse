@@ -51,7 +51,7 @@ const KakaoMap = ({ sido, gugun, dong, api }: KakaoMapProps) => {
       data: {
         data: { houseInfoDtoList },
       },
-    } = await customAxios.get(`house/${api}/map/${dongCode}`);
+    } = await customAxios.get(`house/map/${api}/${dongCode}`);
 
     if (!houseInfoDtoList.length) {
       setIsSearch(false);
