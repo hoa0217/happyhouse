@@ -16,10 +16,10 @@ export default interface HouseStore {
 
 export class RemoteHouseRepo implements HouseStore {
   fetchHouseAptMap(dongCode: string) {
-    return customAxios.get<MapListRs>(`/house/apt/map/${dongCode}`);
+    return customAxios.get<MapListRs>(`/house/map/apt/${dongCode}`);
   }
   fetchHouseAptList(houseInfoId: string) {
-    return customAxios.get<HouseInfoListRs>(`/house/apt/list/${houseInfoId}`);
+    return customAxios.get<HouseInfoListRs>(`/house/list/${houseInfoId}`);
   }
   async fetchHouseDetail(houseOnSaleId?: IdRs) {
     const {
@@ -29,9 +29,9 @@ export class RemoteHouseRepo implements HouseStore {
     return data;
   }
   fetchHouseOfficetelMap(dongCode: string) {
-    return customAxios.get<OfficeMapListRs>(`house/officetel/${dongCode}`);
+    return customAxios.get<OfficeMapListRs>(`house/map/officetel/${dongCode}`);
   }
   fetchHouseOfficetelList(houseInfoId: string) {
-    return customAxios.get<OfficeHouseListRs>(`house/officetel/${houseInfoId}`);
+    return customAxios.get<OfficeHouseListRs>(`house/list/${houseInfoId}`);
   }
 }

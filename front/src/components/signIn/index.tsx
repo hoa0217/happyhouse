@@ -25,15 +25,17 @@ const SignIn = () => {
   if (isLoading) return <Loading></Loading>;
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onVaild)}>
-        <input {...register('email')} type="text" />
-        <span className={cx('error', { visible: errors.email })}>이메일형식이틀렸습니다'</span>
-        <input {...register('password')} type="password" />
-        <span className={cx('error', { visible: errors.password })}>패스워드형식이틀렸습니다'</span>
-        <input type="submit" value="제출" />
+    <div className={cx('Loggin_wrapper')}>
+      <form className={cx('Loggin')} onSubmit={handleSubmit(onVaild)}>
+        <div>아이디</div>
+        <input {...register('email')} type="text" placeholder="아이디를 입력해주세요" />
+        <span className={cx('error', { visible: errors.email })}>이메일형식이틀렸습니다</span>
+        <div>비밀번호</div>
+        <input {...register('password')} type="password" placeholder="비밀번호를 입력해주세요" />
+        <span className={cx('error', { visible: errors.password })}>패스워드형식이틀렸습니다</span>
+        <input className={cx('Loggin_button')} type="submit" value="로그인" />
       </form>
-    </>
+    </div>
   );
 };
 

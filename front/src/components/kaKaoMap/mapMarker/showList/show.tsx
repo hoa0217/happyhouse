@@ -1,38 +1,42 @@
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import classNames from "classnames/bind";
-import styles from './showList.module.scss'
-import { HouseOnSale } from "src/domain/rs/house/apt/HouseInfoListRs";
-import { HouseOnSaleVO } from "src/domain/vo/house/apt/HouseInfoListVO";
+import classNames from 'classnames/bind';
+import styles from './showList.module.scss';
+import { HouseOnSale } from 'src/domain/rs/house/apt/HouseInfoListRs';
+import Loading from '@common/loading';
+import { useHouseAptList, useHouseAptMap } from '@query/houseQuery';
+import { MapVO } from 'src/domain/vo/house/apt/MapListVO';
 const cx = classNames.bind(styles);
 
 interface ShowProps {
-    selectedData : HouseOnSale[] | undefined;
+  selectedData: HouseOnSale[] | undefined;
+  selected?: string;
+  houseInfoDto: MapVO;
 }
 
-const Show = ({selectedData} : ShowProps) => {
-    const router = useRouter();
+const Show = ({ selectedData, selected, houseInfoDto }: ShowProps) => {
+  const router = useRouter();
 
-    if(!selectedData?.length) return <div>데이터가 없습니다!</div>
-    
-    return (
-          <div className={cx('list_wrapper')}>
-            {
-                selectedData.map((item) => {
-                    return (
-                        <div key={item.houseInfoId} onClick={() => router.push(`/detail/${item.houseOnSaleId}`)}>
-                            <div>욕실 수 : {item.bathCount}</div>
-                            <div>해당 층 : {item.floor}층</div>
-                            <div>가격 : {item.price >= 10000 ? item.price / 10000 + `억` : item.price + `만원` }</div>
-                            <div>주차 가능 수 : {parseInt(item.parkCount)}대</div>
-                            <div>기타 등등...</div>
-                        </div>
-                    )
-                })
-            }
+  if (!selectedData?.length) return <div className={cx('noItem')}>매물이 없습니다!</div>;
+  return (
+    <div className={cx('list_wrapper')}>
+      {selectedData.map((item) => {
+        return (
+          <div key={item.houseInfoId} onClick={() => router.push(`/detail/${item.houseOnSaleId}`)}>
+            <div className={cx('houseType')}>{houseInfoDto.houseType === 'APT' ? '아파트' : '오피스텔'}</div>
+            <div className={cx('houseName')}>{houseInfoDto.houseName}</div>
+            <div className={cx('price')}>
+              <span className={cx('selected')}>{selected}</span>
+              {item.price >= 10000 ? item.price / 10000 + `억` : item.price + `만원`}
+            </div>
+            <div className={cx('netLeasableArea')}>
+              {Math.floor(item.netLeasableArea)}평 {houseInfoDto.jibueAddress}
+            </div>
           </div>
-    )
-}
+        );
+      })}
+    </div>
+  );
+};
 
 export default Show;
-

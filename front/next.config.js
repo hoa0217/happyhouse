@@ -9,6 +9,15 @@ const nextConfig = {
     domains: ['dimg.donga.com'],
   },
   // images 추후에 지워야함
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/apart',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
