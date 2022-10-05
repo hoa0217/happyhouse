@@ -1,9 +1,11 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Radio, RadioChangeEvent } from 'antd';
+import React, { useState } from 'react';
+import { Select, RadioChangeEvent } from 'antd';
+
 import classNames from 'classnames/bind';
 import styles from './showList.module.scss';
 import Show from './show';
 
+const { Option } = Select;
 const cx = classNames.bind(styles);
 
 const ShowList = ({ houseData }: any) => {
@@ -13,10 +15,10 @@ const ShowList = ({ houseData }: any) => {
   const houseOnSaleWOLSEList = houseData?.houseOnSaleWOLSEList;
   const houseInfoDto = houseData?.houseInfoDto;
   const [selectedData, setSelectedData] = useState(houseOnSaleMAEMAEList);
-  const onChange = (e: RadioChangeEvent) => {
-    setSelected(e.target.value);
+  const onChange = (event: string) => {
+    setSelected(event);
 
-    switch (e.target.value) {
+    switch (event) {
       case '매매':
         setSelectedData(houseOnSaleMAEMAEList);
         break;
@@ -31,11 +33,11 @@ const ShowList = ({ houseData }: any) => {
 
   return (
     <div className={cx('wrapper')}>
-      <Radio.Group onChange={onChange} value={selected}>
-        <Radio value={'매매'}>매매</Radio>
-        <Radio value={'전세'}>전세</Radio>
-        <Radio value={'월세'}>월세</Radio>
-      </Radio.Group>
+      <Select className={cx('selectBar')} onChange={onChange} defaultValue={selected}>
+        <Option value={'매매'}>매매</Option>
+        <Option value={'전세'}>전세</Option>
+        <Option value={'월세'}>월세</Option>
+      </Select>
       <Show selectedData={selectedData} selected={selected} houseInfoDto={houseInfoDto} />
     </div>
   );
