@@ -1,5 +1,5 @@
 import React, { DetailedHTMLProps, HTMLAttributes, ReactNode, useEffect, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+import { Map, MapTypeControl, ZoomControl } from 'react-kakao-maps-sdk';
 
 import EventMarkerContainer from 'src/components/kaKaoMap/mapMarker';
 import SelectBar from 'src/components/kaKaoMap/select';
@@ -95,10 +95,12 @@ const KakaoMap = ({ sido, gugun, dong, api }: KakaoMapProps) => {
     <>
       <SelectBar sido={sido} gugun={gugun} dong={dong} setSearchAddress={setSearchAddress} setDongCode={setDongCode} />
       {isSearch && <Loading></Loading>}
-      <Map center={state.center} style={{ width: '100%', height: '88vh' }} level={4}>
+      <Map center={state.center} style={{ width: '100%', height: '86vh' }} level={4}>
         {homes.map((value, idx) => (
           <EventMarkerContainer key={idx} api={api} position={value.latlng} houseInfoId={value.houseInfoId} />
         ))}
+        <ZoomControl position={kakao.maps.ControlPosition.BOTTOMRIGHT} />
+        <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT} />
       </Map>
     </>
   );
