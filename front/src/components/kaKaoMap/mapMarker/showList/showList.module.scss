@@ -5,7 +5,7 @@
   width: 20vw;
   height: 100vh;
   background-color: white;
-  top: 86px;
+  top: 96px;
   left: 0px;
   z-index: 20;
   color: $C_Black;
@@ -78,5 +78,11 @@
     letter-spacing: -0.13px;
     text-align: left;
     color: #505050;
+  }
+  .selectBar {
+    position: fixed;
+    width: 120px;
+    top: 9%;
+    right: 18%;
   }
 }
