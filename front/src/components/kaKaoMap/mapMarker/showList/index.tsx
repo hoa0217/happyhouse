@@ -33,6 +33,10 @@ const ShowList = ({ houseData }: any) => {
 
   return (
     <div className={cx('wrapper')}>
+      <div className={cx('items')}>지역목록 {selectedData.length}개</div>
+      <div className={cx('recom')}>
+        이 지역 추천 매물<img src={'/img/itemList/iconQuestion.png'} height="20px" style={{ marginLeft: '4px' }}></img>
+      </div>
       <Select className={cx('selectBar')} onChange={onChange} defaultValue={selected}>
         <Option value={'매매'}>매매</Option>
         <Option value={'전세'}>전세</Option>
