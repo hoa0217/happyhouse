@@ -1,4 +1,4 @@
-// 공통적으로 쓰이는 타입 모아 놓은 곳
+// CommonTypes
 export type DealType = 'MAEMAE' | 'JEONSE' | 'WOLSE';
 export type DirType = 'EAST' | 'NORTH' | 'NORTHEAST' | 'NORTHWEST' | 'SOUTH' | 'SOUTHEAST' | 'SOUTHWEST' | 'WEST';
 export type HouseType = 'APT' | 'OFFICETEL' | 'ONEROOM' | 'TWOROOM';
@@ -15,8 +15,13 @@ export type ResponseCodeType =
   | 'SERVICE_UNAVAILABLE'
   | 'UNAUTHORIZED';
 
-// APT & OFFICETEL Common Types
-export interface DealDataType {
+export interface CommonReponseType {
+  message: string;
+  responseCode: ResponseCodeType;
+}
+
+// APT & OFFICETEL CommonTypes
+export interface HouseDealList {
   area: number;
   dealDay: string;
   dealMonth: string;
@@ -28,7 +33,7 @@ export interface DealDataType {
   price: number;
   rent: number;
 }
-export interface InfoDtoType {
+export interface HouseInfoDto {
   buildYear: string;
   dongCode: string;
   houseInfoId: number;
@@ -37,15 +42,53 @@ export interface InfoDtoType {
   jibun: string;
   jibunAddress: string;
 }
-export interface DongDtoType {
+export interface DongDto {
   dongCode: string;
   dongName: string;
   gugunCode: string;
   sidoCode: string;
 }
 
-// OneRoom & TwoRoom Common Types
-export interface HouseOnSaleVillaDtoType {
+export interface HouseOnSaleList {
+  bathCount: string;
+  contractArea: number;
+  createBy: number;
+  createdTime: Date;
+  dealType: DealType;
+  dirType: DirType;
+  floor: string;
+  houseInfoId: number;
+  houseOnSaleId: number;
+  mngFee: number;
+  movingDate: string;
+  netLeasableArea: number;
+  parkCount: string;
+  price: number;
+  rent: number;
+  roomCount: string;
+  totalFloor: string;
+  updateBy: number;
+  updatedTime: Date;
+}
+
+// OneRoom & TwoRoom CommonTypes
+export interface VillaMapRoomRs extends CommonReponseType {
+  data: VillaMapDataType;
+}
+
+export interface VillaListRoomDataType {
+  houseOnSaleVillaJEONSEList: HouseOnSaleVillaDto;
+  houseOnSaleVillaMAEMAEList: HouseOnSaleVillaDto;
+  houseOnSaleVillaWOLSELList: HouseOnSaleVillaDto;
+  houseType: HouseType;
+  jibunAddress: string;
+}
+
+export interface VillaListRoomType {
+  data: VillaListRoomDataType;
+}
+
+export interface HouseOnSaleVillaDto {
   bathCount: string;
   contractArea: number;
   createdTime: Date;
@@ -54,7 +97,7 @@ export interface HouseOnSaleVillaDtoType {
   dongCode: string;
   floor: string;
   houseOnSaleVillaId: number;
-  houseType: HouseType;
+  houseType: string;
   jibunAddress: string;
   mngFee: number;
   movingDate: string;

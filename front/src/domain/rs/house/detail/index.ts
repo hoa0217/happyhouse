@@ -1,29 +1,6 @@
-import { DealDataType, DealType, DirType, InfoDtoType, ResponseCodeType } from 'src/domain/rs/types';
+import { HouseDealList, HouseOnSaleList, HouseInfoDto, CommonReponseType } from 'src/domain/rs/commonTypes';
 
-export interface HouseOnSaleType {
-  bathCount: string;
-  contractArea: number;
-  createdBy: string;
-  createdTime: string;
-  dealType: DealType;
-  dirType: DirType;
-  dongCode: string;
-  floor: string;
-  houseInfoId: number;
-  houseOnSaleId: number;
-  mngFee: number;
-  movingDate: string;
-  netLeasableArea: number;
-  parkCount: string;
-  price: number;
-  rent: number;
-  roomCount: string;
-  totalFloor: string;
-  updateBy: string;
-  updatedTime: Date;
-}
-
-export interface HouseOptionDtoType {
+export interface HouseOptionDto {
   airConditionerYn: boolean;
   bedYn: boolean;
   centerBoilYn: boolean;
@@ -49,16 +26,14 @@ export interface HouseOptionDtoType {
 }
 
 export interface HouseDetailDataType {
-  houseDealJEONSEList: DealDataType;
-  houseDealMAEMAEList: DealDataType;
-  houseDealWOLSEList: DealDataType;
-  houseInfoDto: InfoDtoType;
-  houseOnSaleDto: HouseOnSaleType;
-  houseOptionDto: HouseOptionDtoType;
+  houseDealJEONSEList: HouseDealList[];
+  houseDealMAEMAEList: HouseDealList[];
+  houseDealWOLSEList: HouseDealList[];
+  houseInfoDto: HouseInfoDto;
+  houseOnSaleDto: HouseOnSaleList;
+  houseOptionDto: HouseOptionDto;
 }
 
-export interface HouseDetailRs {
+export interface HouseDetailRs extends CommonReponseType {
   data: HouseDetailDataType;
-  message: string;
-  responseCode: ResponseCodeType;
 }

@@ -1,12 +1,17 @@
-import HouseInfoListRs, { HouseOnSale } from 'src/domain/rs/house/apt/HouseInfoListRs';
-import { MapVO } from './MapListVO';
+import { DealType, DirType, HouseOnSaleList } from 'src/domain/rs/commonTypes';
 
-export default class HouseInfoListVO {
+import { HouseListRs } from 'src/domain/rs/house/list';
+import { MapVO } from '../commonVo';
+
+/**
+ * @description fetchHouseList에서 데이터를 핸들링 한 후 리턴해주는 VO
+ */
+export default class HouseListVO {
   houseOnSaleJEONSEList: HouseOnSaleVO[];
   houseOnSaleMAEMAEList: HouseOnSaleVO[];
   houseOnSaleWOLSEList: HouseOnSaleVO[];
   houseInfoDto: MapVO;
-  constructor(rs: HouseInfoListRs) {
+  constructor(rs: HouseListRs) {
     this.houseOnSaleJEONSEList = rs.data.houseOnSaleJEONSEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
     this.houseOnSaleMAEMAEList = rs.data.houseOnSaleMAEMAEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
     this.houseOnSaleWOLSEList = rs.data.houseOnSaleWOLSEList.map((HouseOnSale) => new HouseOnSaleVO(HouseOnSale));
@@ -17,11 +22,10 @@ export default class HouseInfoListVO {
 export class HouseOnSaleVO {
   bathCount: number;
   contractArea: number;
-  createdBy: string;
-  createdTime: string;
-  dealType: string;
-  dirType: string;
-  dongCode: number;
+  createBy: number;
+  createdTime: Date;
+  dealType: DealType;
+  dirType: DirType;
   floor: number;
   houseInfoId: number;
   houseOnSaleId: number;
@@ -33,17 +37,16 @@ export class HouseOnSaleVO {
   rent: number;
   roomCount: number;
   totalFloor: number;
-  updateBy: string;
-  updatedTime: string;
+  updateBy: number;
+  updatedTime: Date;
 
-  constructor(dto: HouseOnSale) {
+  constructor(dto: HouseOnSaleList) {
     this.bathCount = Number(dto.bathCount);
     this.contractArea = dto.contractArea;
-    this.createdBy = dto.createdBy;
+    this.createBy = dto.createBy;
     this.createdTime = dto.createdTime;
     this.dealType = dto.dealType;
     this.dirType = dto.dirType;
-    this.dongCode = Number(dto.dongCode);
     this.floor = Number(dto.floor);
     this.houseInfoId = dto.houseInfoId;
     this.houseOnSaleId = dto.houseOnSaleId;

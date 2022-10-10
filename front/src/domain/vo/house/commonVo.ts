@@ -1,23 +1,15 @@
-import MapListRs, { houseInfoDto } from 'src/domain/rs/house/apt/MapListRs';
-
-export default class MapListVO {
-  houseInfoDtoList: MapVO[];
-
-  constructor(rs: MapListRs) {
-    this.houseInfoDtoList = rs.data.houseInfoDtoList.map((houseInfoDto) => new MapVO(houseInfoDto));
-  }
-}
+import { HouseInfoDto, HouseType } from 'src/domain/rs/commonTypes';
 
 export class MapVO {
   buildYear: Number;
   dongCode: Number;
   houseInfoId: Number;
   houseName: string;
-  houseType: string;
+  houseType: HouseType;
   jibun: string;
   jibueAddress: string;
 
-  constructor(dto: houseInfoDto) {
+  constructor(dto: HouseInfoDto) {
     this.buildYear = Number(dto.buildYear);
     this.dongCode = Number(dto.dongCode);
     this.houseInfoId = dto.houseInfoId;

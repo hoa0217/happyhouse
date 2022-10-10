@@ -18,7 +18,7 @@ export default interface VillaStore {
    */
   fetchVillaListOneroom(jibunAddress: string): Promise<AxiosResponse<VillaListOneroomRs>>;
   /**
-   * @param jibunAddress
+   * @param jibunAddress string
    * @description 특정 투룸에 대한 매물 정보 리스트를 반환하는 Promise 함수
    */
   fetchVillaListTworoom(jibunAddress: string): Promise<AxiosResponse<VillaListTworoomRs>>;
@@ -39,15 +39,15 @@ export class RemoteVillaRepo implements VillaStore {
     return customAxios.get<VillaDetailRs>(`/villa/detail/${houseOnSaleVillaId}`);
   }
   fetchVillaListOneroom(jibunAddress: string) {
-    return customAxios.get<VillaListOneroomRs>(`villa/list/oneroom/${jibunAddress}`);
+    return customAxios.get<VillaListOneroomRs>(`/villa/list/oneroom/${jibunAddress}`);
   }
   fetchVillaListTworoom(jibunAddress: string) {
-    return customAxios.get<VillaListTworoomRs>(`villa/list/tworoom/${jibunAddress}`);
+    return customAxios.get<VillaListTworoomRs>(`/villa/list/tworoom/${jibunAddress}`);
   }
   fetchVillaMapOneroom(dongCode: string) {
-    return customAxios.get<VillaMapOneroomRs>(`villa/map/oneroom/${dongCode}`);
+    return customAxios.get<VillaMapOneroomRs>(`/villa/map/oneroom/${dongCode}`);
   }
   fetchVillaMapTworoom(dongCode: string) {
-    return customAxios.get<VillaMapTworoomRs>(`villa/map/oneroom/${dongCode}`);
+    return customAxios.get<VillaMapTworoomRs>(`/villa/map/tworoom/${dongCode}`);
   }
 }

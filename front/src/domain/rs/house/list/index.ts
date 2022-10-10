@@ -1,14 +1,12 @@
-import { DealDataType, DealType, InfoDtoType, ResponseCodeType } from 'src/domain/rs/types';
+import { HouseOnSaleList, HouseInfoDto, CommonReponseType } from 'src/domain/rs/commonTypes';
 
 export interface HouseDetailDataType {
-  houseDealJEONSEList: DealDataType;
-  houseDealMAEMAEList: DealDataType;
-  houseDealWOLSEList: DealDataType;
-  houseInfoDto: InfoDtoType;
+  houseOnSaleJEONSEList: HouseOnSaleList[];
+  houseOnSaleMAEMAEList: HouseOnSaleList[];
+  houseOnSaleWOLSEList: HouseOnSaleList[];
+  houseInfoDto: HouseInfoDto;
 }
 
-export interface HouseListRs {
+export interface HouseListRs extends CommonReponseType {
   data: HouseDetailDataType;
-  message: string;
-  responseCode: ResponseCodeType;
 }
