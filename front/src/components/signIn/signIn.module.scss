@@ -1,70 +1,117 @@
 @import '@styles/constants.scss';
 
 .Loggin_wrapper {
-  position: absolute;
-  left: 32%;
-  top: 12%;
   width: 480px;
   height: 548px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 10px;
-  margin: 41px 720px 112px 12px;
-  padding: 15px 60px;
+  margin: 66px 720px 112px 480px;
+  padding: 55px 60px;
   border-radius: 15px;
   border: solid 1px #e0e0e0;
-  .Loggin {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-direction: column;
-    width: 200px;
-  }
-  .error {
-    display: none;
-    &.visible {
-      display: inline-block;
-    }
-  }
-  div {
-    width: 52px;
-    height: 20px;
-    flex-grow: 0;
-    font-family: NotoSansKR;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.14px;
-    text-align: left;
-    margin-top: 12px;
-    color: #1b262c;
-  }
-
-  input {
-    width: 380px;
-    height: 50px;
-    flex-grow: 0;
-    margin: 10px 0 0;
-    padding: 15px 216px 15px 13px;
-    border-radius: 5px;
-    border: solid 1px #e9e9e9;
-  }
-  .Loggin_button {
+  .wrapper {
     width: 360px;
-    height: 50px;
+    height: 438px;
     flex-grow: 0;
-    margin: 50px 0 0;
-    padding: 14px 157px 14px 161px;
-    border-radius: 5px;
-    background-color: #0075ff;
-    color: $C_White;
-    transition: all ease 0.5s;
-    &:hover {
-      background-color: $C_White;
-      color: #0075ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 44px;
+    padding: 0;
+    .Loggin_title {
+      width: 249px;
+      height: 74px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      .title {
+        width: 138px;
+        height: 43px;
+        flex-grow: 0;
+        font-family: NotoSansKR;
+        font-size: 30px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.15px;
+        text-align: left;
+        color: #1b262c;
+      }
+      .subTitle {
+        width: 249px;
+        height: 23px;
+        flex-grow: 0;
+        font-family: NotoSansKR;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.08px;
+        text-align: left;
+        color: #a8b1ce;
+      }
+    }
+    .Loggin {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      flex-direction: column;
+    }
+    .error {
+      display: none;
+      &.visible {
+        display: inline-block;
+      }
+    }
+    .IdPwTitle {
+      width: 52px;
+      height: 20px;
+      flex-grow: 0;
+      font-family: NotoSansKR;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.14px;
+      text-align: left;
+      margin-top: 12px;
+      color: #1b262c;
+    }
+
+    input {
+      width: 380px;
+      height: 50px;
+      flex-grow: 0;
+      margin: 10px 0 0;
+      padding: 15px 216px 15px 13px;
+      border-radius: 5px;
+      border: solid 1px #e9e9e9;
+    }
+    .Loggin_button {
+      width: 380px;
+      height: 50px;
+      flex-grow: 0;
+      margin: 50px 0 0;
+      padding: 14px 157px 14px 161px;
+      border-radius: 5px;
+      background-color: #0075ff;
+      color: $C_White;
+      transition: all ease 0.5s;
+      &:hover {
+        background-color: $C_White;
+        color: #0075ff;
+      }
     }
   }
 }

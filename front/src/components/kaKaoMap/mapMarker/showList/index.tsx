@@ -8,7 +8,7 @@ import Show from './show';
 const { Option } = Select;
 const cx = classNames.bind(styles);
 
-const ShowList = ({ houseData }: any) => {
+const ShowList = ({ houseData, api }: any) => {
   const [selected, setSelected] = useState('매매');
   const houseOnSaleMAEMAEList = houseData?.houseOnSaleMAEMAEList;
   const houseOnSaleJEONSEList = houseData?.houseOnSaleJEONSEList;
@@ -42,7 +42,7 @@ const ShowList = ({ houseData }: any) => {
         <Option value={'전세'}>전세</Option>
         <Option value={'월세'}>월세</Option>
       </Select>
-      <Show selectedData={selectedData} selected={selected} houseInfoDto={houseInfoDto} />
+      <Show api={api} selectedData={selectedData} selected={selected} houseInfoDto={houseInfoDto} />
     </div>
   );
 };

@@ -12,9 +12,10 @@ interface ShowProps {
   selectedData: HouseOnSale[] | undefined;
   selected?: string;
   houseInfoDto: MapVO;
+  api: string;
 }
 
-const Show = ({ selectedData, selected, houseInfoDto }: ShowProps) => {
+const Show = ({ selectedData, selected, houseInfoDto, api }: ShowProps) => {
   const router = useRouter();
 
   if (!selectedData?.length) return <div className={cx('noItem')}>매물이 없습니다!</div>;
@@ -22,7 +23,7 @@ const Show = ({ selectedData, selected, houseInfoDto }: ShowProps) => {
     <div className={cx('list_wrapper')}>
       {selectedData.map((item) => {
         return (
-          <div key={item.houseInfoId} onClick={() => router.push(`/detail/${item.houseOnSaleId}`)}>
+          <div key={item.houseInfoId} onClick={() => router.push(`/detail/${api}/${item.houseOnSaleId}`)}>
             <div className={cx('houseType')}>{houseInfoDto.houseType === 'APT' ? '아파트' : '오피스텔'}</div>
             <div className={cx('houseName')}>{houseInfoDto.houseName}</div>
             <div className={cx('price')}>
