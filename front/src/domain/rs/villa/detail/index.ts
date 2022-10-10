@@ -1,6 +1,6 @@
-import { DealType, ResponseCodeType, DirType, HouseType, HouseOnSaleVillaDtoType } from 'src/domain/rs/types';
+import { HouseOnSaleVillaDto, CommonReponseType } from 'src/domain/rs/commonTypes';
 
-export interface HouseOptionVillaDtoType {
+export interface HouseOptionVillaDto {
   airConditionerYn: boolean;
   bedYn: boolean;
   centerBoilYn: boolean;
@@ -26,12 +26,10 @@ export interface HouseOptionVillaDtoType {
 }
 
 export interface ViilaDetailDataType {
-  houseOnSaleVillaDto: HouseOnSaleVillaDtoType;
-  houseOptionVillaDto: HouseOptionVillaDtoType;
+  houseOnSaleVillaDto: HouseOnSaleVillaDto;
+  houseOptionVillaDto: HouseOptionVillaDto;
 }
 
-export interface VillaDetailRs {
+export interface VillaDetailRs extends CommonReponseType {
   data: ViilaDetailDataType;
-  message: string;
-  responseCode: ResponseCodeType;
 }

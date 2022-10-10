@@ -1,8 +1,8 @@
-import { ResponseCodeType, HouseType, DongDtoType, InfoDtoType } from 'src/domain/rs/types';
+import { ResponseCodeType, DongDto, HouseInfoDto } from 'src/domain/rs/commonTypes';
 
 export interface HouseMapOfficetelDataType {
-  dongDto: DongDtoType;
-  houseInfoDtoList: InfoDtoType;
+  dongDto: DongDto;
+  houseInfoDtoList: HouseInfoDto[];
 }
 
 export interface HouseMapOfficetelRs {

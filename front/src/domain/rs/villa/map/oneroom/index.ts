@@ -1,7 +1,3 @@
-import { ResponseCodeType, VillaMapDataType } from 'src/domain/rs/types';
+import { VillaMapRoomRs } from 'src/domain/rs/commonTypes';
 
-export interface VillaMapOneroomRs {
-  data: VillaMapDataType;
-  message: string;
-  responseCode: ResponseCodeType;
-}
+export interface VillaMapOneroomRs extends VillaMapRoomRs {}
