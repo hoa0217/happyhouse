@@ -1,4 +1,4 @@
-import { HouseDealList, HouseOnSaleList, HouseInfoDto, ResponseCodeType } from 'src/domain/rs/commonTypes';
+import { HouseDealList, HouseOnSaleList, HouseInfoDto, CommonReponseType } from 'src/domain/rs/commonTypes';
 
 export interface HouseOptionDto {
   airConditionerYn: boolean;
@@ -34,8 +34,6 @@ export interface HouseDetailDataType {
   houseOptionDto: HouseOptionDto;
 }
 
-export interface HouseDetailRs {
+export interface HouseDetailRs extends CommonReponseType {
   data: HouseDetailDataType;
-  message: string;
-  responseCode: ResponseCodeType;
 }
