@@ -39,15 +39,15 @@ export class RemoteVillaRepo implements VillaStore {
     return customAxios.get<VillaDetailRs>(`/villa/detail/${houseOnSaleVillaId}`);
   }
   fetchVillaListOneroom(jibunAddress: string) {
-    return customAxios.get<VillaListOneroomRs>(`villa/list/oneroom/${jibunAddress}`);
+    return customAxios.get<VillaListOneroomRs>(`/villa/list/oneroom/${jibunAddress}`);
   }
   fetchVillaListTworoom(jibunAddress: string) {
-    return customAxios.get<VillaListTworoomRs>(`villa/list/tworoom/${jibunAddress}`);
+    return customAxios.get<VillaListTworoomRs>(`/villa/list/tworoom/${jibunAddress}`);
   }
   fetchVillaMapOneroom(dongCode: string) {
-    return customAxios.get<VillaMapOneroomRs>(`villa/map/oneroom/${dongCode}`);
+    return customAxios.get<VillaMapOneroomRs>(`/villa/map/oneroom/${dongCode}`);
   }
   fetchVillaMapTworoom(dongCode: string) {
-    return customAxios.get<VillaMapTworoomRs>(`villa/map/oneroom/${dongCode}`);
+    return customAxios.get<VillaMapTworoomRs>(`/villa/map/tworoom/${dongCode}`);
   }
 }
