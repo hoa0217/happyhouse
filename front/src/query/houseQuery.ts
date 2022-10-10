@@ -54,7 +54,7 @@ export async function fetchHouseMapApt(dongCode: string) {
  * @description 동에 있는 오피스텔 정보 리스트를 가져오는 쿼리
  */
 export function useHouseMapOfficetel(dongCode: string) {
-  return useQuery(['house', 'officetel', 'map', dongCode], () => fetchHouseMapOfficetel(dongCode));
+  return useQuery(HouseQueryKeys.HOUSEMAPOFFICETEL(dongCode), () => fetchHouseMapOfficetel(dongCode));
 }
 export async function fetchHouseMapOfficetel(dongCode: string) {
   const { data } = await apiStore.remoteHouseRepo.fetchHouseMapOfficetel(dongCode);
