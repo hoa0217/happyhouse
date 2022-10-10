@@ -18,7 +18,7 @@ export default interface VillaStore {
    */
   fetchVillaListOneroom(jibunAddress: string): Promise<AxiosResponse<VillaListOneroomRs>>;
   /**
-   * @param jibunAddress
+   * @param jibunAddress string
    * @description 특정 투룸에 대한 매물 정보 리스트를 반환하는 Promise 함수
    */
   fetchVillaListTworoom(jibunAddress: string): Promise<AxiosResponse<VillaListTworoomRs>>;
