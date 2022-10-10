@@ -17,7 +17,7 @@ interface positonDto {
 }
 const imageSize = { width: 25, height: 26 };
 
-const EventMarkerContainer = ({ position, houseInfoId }: EventMarkerContainerProps) => {
+const EventMarkerContainer = ({ position, houseInfoId, api }: EventMarkerContainerProps) => {
   const map = useMap();
   const [houseData, setHouseData] = useState(null);
 
@@ -48,7 +48,7 @@ const EventMarkerContainer = ({ position, houseInfoId }: EventMarkerContainerPro
         onClick={markerClick}
         image={{ src: 'img/kakaoMap/iconHome.png', size: imageSize }}
       ></MapMarker>
-      {houseData && <ShowList houseData={houseData} />}
+      {houseData && <ShowList houseData={houseData} api={api} />}
     </>
   );
 };
