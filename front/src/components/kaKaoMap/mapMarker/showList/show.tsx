@@ -27,7 +27,11 @@ const Show = ({ selectedData, selected, houseInfoDto }: ShowProps) => {
             <div className={cx('houseName')}>{houseInfoDto.houseName}</div>
             <div className={cx('price')}>
               <span className={cx('selected')}>{selected}</span>
-              {item.price >= 10000 ? item.price / 10000 + `억` : item.price + `만원`}
+              {selected !== '월세'
+                ? item.price >= 10000
+                  ? item.price / 10000 + `억`
+                  : item.price + `만원`
+                : item.rent + `만원`}
             </div>
             <div className={cx('netLeasableArea')}>
               {Math.floor(item.netLeasableArea)}평 {houseInfoDto.jibueAddress}
