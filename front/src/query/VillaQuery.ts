@@ -34,7 +34,7 @@ export async function fetchVillaListOneroom(jibunAddress: string) {
 }
 
 /**
- * @param jibunAddress
+ * @param jibunAddress string
  * @description 특정 투룸에 대한 매물 정보 리스트를 가져오는 쿼리
  */
 export function useVillaListTworoom(jibunAddress: string) {
