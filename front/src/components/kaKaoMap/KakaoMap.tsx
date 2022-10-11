@@ -4,12 +4,12 @@ import { Map, MapTypeControl, ZoomControl } from 'react-kakao-maps-sdk';
 import EventMarkerContainer from 'src/components/kaKaoMap/mapMarker';
 import SelectBar from 'src/components/kaKaoMap/select';
 import customAxios from 'src/utils/axios';
-import { houseInfoDto } from 'src/domain/rs/house/apt/MapListRs';
 import { GugunVO } from 'src/domain/vo/adress/GugunListVO';
 import { SidoVO } from 'src/domain/vo/adress/SidoListVO';
 import { DongVO } from 'src/domain/vo/adress/DongListVO';
 import moveMap from './utils/moveMap';
 import Loading from '@common/loading';
+import { HouseInfoDto } from 'src/domain/rs/commonTypes';
 
 interface KakaoMapProps {
   dong?: DongVO[];
@@ -68,7 +68,8 @@ const KakaoMap = ({ sido, gugun, dong, api }: KakaoMapProps) => {
       setDongList([...dongList, isCode]); //동 리스트에 동 저장
     }
 
-    houseInfoDtoList.forEach((house: houseInfoDto) => {
+    houseInfoDtoList.forEach((house: HouseInfoDto) => {
+      console.log(house);
       const geocoder = new kakao.maps.services.Geocoder();
 
       geocoder.addressSearch(`${house.jibunAddress}`, (result, status) => {
