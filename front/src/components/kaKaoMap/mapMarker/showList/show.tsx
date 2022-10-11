@@ -2,14 +2,12 @@ import { useRouter } from 'next/router';
 
 import classNames from 'classnames/bind';
 import styles from './showList.module.scss';
-import { HouseOnSale } from 'src/domain/rs/house/apt/HouseInfoListRs';
-import Loading from '@common/loading';
-import { useHouseAptList, useHouseAptMap } from '@query/houseQuery';
-import { MapVO } from 'src/domain/vo/house/apt/MapListVO';
+import { HouseOnSaleList } from 'src/domain/rs/commonTypes';
+import { MapVO } from 'src/domain/vo/house/commonVo';
 const cx = classNames.bind(styles);
 
 interface ShowProps {
-  selectedData: HouseOnSale[] | undefined;
+  selectedData: HouseOnSaleList[] | undefined;
   selected?: string;
   houseInfoDto: MapVO;
   api: string;
