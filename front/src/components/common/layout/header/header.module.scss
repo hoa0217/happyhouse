@@ -73,22 +73,20 @@ $IMG_PATH: $STATIC_IMG_PATH + '/header';
   padding: 10px 20px;
   border-radius: 5px;
 
-  a {
-    &:last-child {
-      position: relative;
-      margin-left: 21px;
-
-      &:before {
-        position: absolute;
-        width: 1px;
-        height: 15px;
-        top: 0;
-        left: -10px;
-        bottom: 0;
-        margin: auto;
-        content: '';
-        background-color: #d9d9d9;
-      }
+  .unLogin {
+    display: none;
+    &.visible {
+      display: block;
     }
+  }
+
+  .doLogin {
+    display: none;
+    &.visible {
+      display: block;
+    }
+  }
+  a {
+    padding: 5px;
   }
 }
