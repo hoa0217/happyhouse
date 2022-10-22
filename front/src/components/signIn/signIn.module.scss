@@ -107,7 +107,8 @@
       border-radius: 5px;
       background-color: #0075ff;
       color: $C_White;
-      transition: all ease 0.5s;
+      transition: all ease 0.7s;
+      cursor: pointer;
       &:hover {
         background-color: $C_White;
         color: #0075ff;
