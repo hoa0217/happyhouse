@@ -21,7 +21,7 @@ const Show = ({ selectedData, selected, houseInfoDto, api }: ShowProps) => {
     <div className={cx('list_wrapper')}>
       {selectedData.map((item) => {
         return (
-          <div key={item.houseInfoId} onClick={() => router.push(`/detail/${api}/${item.houseOnSaleId}`)}>
+          <div className={cx('house')} key={item.houseInfoId} onClick={() => router.push(`/detail/${api}/${item.houseOnSaleId}`)}>
             <div className={cx('houseType')}>{houseInfoDto.houseType === 'APT' ? '아파트' : '오피스텔'}</div>
             <div className={cx('houseName')}>{houseInfoDto.houseName}</div>
             <div className={cx('price')}>

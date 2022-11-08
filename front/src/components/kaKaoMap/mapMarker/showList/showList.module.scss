@@ -2,13 +2,14 @@
 
 .wrapper {
   position: fixed;
-  width: 20vw;
+  width: 16%;
   height: 100vh;
   background-color: white;
   top: 63px;
   left: 0px;
   z-index: 20;
   color: $C_Black;
+
   .items {
     height: 31px;
     flex-grow: 0;
@@ -40,7 +41,8 @@
   .list_wrapper {
     // margin: 10px;
     padding: 5px;
-    border-bottom: 1px solid #e9e9e9;
+    margin-right: 3px;
+    width:100%;
     cursor: pointer;
   }
   .noItem {
@@ -51,6 +53,10 @@
     top: 50%;
     left: 50%;
     margin: -50px 0 0 -50px;
+  }
+  .house{
+    border-bottom: 1px solid #e9e9e9;
+    padding : 3px 0px;
   }
   .houseType {
     width: 75px;
@@ -114,6 +120,6 @@
     position: absolute;
     width: 120px;
     top: 0;
-    left: 380%;
+    left: 456%;
   }
 }
